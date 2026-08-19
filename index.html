@@ -1,133 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>Vairal Video</title>
 
+
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+
     body {
+
       min-height: 100vh;
-      font-family: Arial, Helvetica, sans-serif;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
       color: #fff;
 
       background:
-        radial-gradient(circle at top left, #35105f, transparent 35%),
-        radial-gradient(circle at bottom right, #60103c, transparent 35%),
+        radial-gradient(
+          circle at top left,
+          #35105f,
+          transparent 35%
+        ),
+
+        radial-gradient(
+          circle at bottom right,
+          #60103c,
+          transparent 35%
+        ),
+
         #050507;
+
     }
 
+
     header {
+
       position: sticky;
+
       top: 0;
+
       z-index: 1000;
 
       padding: 14px 16px;
 
-      background: rgba(5,5,8,.92);
-      backdrop-filter: blur(12px);
+      background:
+        rgba(5,5,8,.92);
 
-      border-bottom: 1px solid rgba(255,255,255,.08);
+      backdrop-filter:
+        blur(12px);
+
+      border-bottom:
+        1px solid
+        rgba(255,255,255,.08);
+
     }
 
+
     .header {
+
       max-width: 950px;
+
       margin: auto;
 
       display: flex;
+
       align-items: center;
-      justify-content: space-between;
+
+      justify-content:
+        space-between;
 
       gap: 12px;
+
     }
 
+
     .logo {
+
       font-size: 22px;
+
       font-weight: 900;
 
       background:
-        linear-gradient(90deg,#ff1590,#8c5cff);
+        linear-gradient(
+          90deg,
+          #ff1590,
+          #8c5cff
+        );
 
-      -webkit-background-clip: text;
+      -webkit-background-clip:
+        text;
+
       background-clip: text;
 
       color: transparent;
+
     }
 
+
     .telegram {
+
       text-decoration: none;
-      color: white;
+
+      color: #fff;
 
       background:
-        linear-gradient(135deg,#168cff,#006dcc);
+        linear-gradient(
+          135deg,
+          #168cff,
+          #006dcc
+        );
 
       padding: 10px 15px;
 
       border-radius: 30px;
 
       font-size: 14px;
+
       font-weight: bold;
+
     }
 
+
     main {
+
       width: 100%;
+
       max-width: 950px;
 
       margin: auto;
 
-      padding: 20px 12px 50px;
+      padding:
+        20px
+        12px
+        50px;
+
     }
+
 
     /* =========================
        AD AREA
     ========================== */
 
     .ad-area {
+
       width: 100%;
+
       min-height: 80px;
 
-      margin: 10px 0 20px;
+      margin:
+        10px
+        0
+        20px;
 
       display: flex;
+
       align-items: center;
+
       justify-content: center;
 
       overflow: hidden;
 
       border-radius: 12px;
+
     }
+
 
     /* =========================
        TITLE
     ========================== */
 
     .title {
-      font-size: clamp(24px,5vw,38px);
+
+      font-size:
+        clamp(
+          24px,
+          5vw,
+          38px
+        );
 
       font-weight: 900;
 
       margin-bottom: 10px;
+
     }
 
+
     .meta {
+
       color: #999;
+
       font-size: 14px;
 
       margin-bottom: 15px;
+
     }
+
 
     /* =========================
        VIDEO PLAYER
     ========================== */
 
     .video-box {
+
+      position: relative;
+
       width: 100%;
 
       aspect-ratio: 16 / 9;
@@ -139,32 +233,44 @@
       overflow: hidden;
 
       box-shadow:
-        0 20px 60px rgba(0,0,0,.6),
-        0 0 40px rgba(130,0,255,.08);
+        0 20px 60px
+        rgba(0,0,0,.6);
+
     }
 
-    .video-box iframe {
+
+    #videoPlayer {
+
       width: 100%;
+
       height: 100%;
 
       display: block;
 
-      border: 0;
+      background: #000;
+
+      object-fit: contain;
+
     }
 
+
     /* =========================
-       LIKE BUTTON
+       BUTTONS
     ========================== */
 
     .buttons {
+
       display: flex;
 
       gap: 10px;
 
       margin-top: 14px;
+
     }
 
+
     .control-btn {
+
       border: 0;
 
       color: #fff;
@@ -172,7 +278,9 @@
       background:
         rgba(255,255,255,.08);
 
-      padding: 11px 16px;
+      padding:
+        11px
+        16px;
 
       border-radius: 10px;
 
@@ -181,31 +289,44 @@
       font-size: 14px;
 
       transition: .2s;
+
     }
+
 
     .control-btn:hover {
+
       background:
         rgba(255,255,255,.17);
+
     }
+
 
     .control-btn:active {
-      transform: scale(.96);
+
+      transform:
+        scale(.96);
+
     }
 
+
     .liked {
+
       background:
         linear-gradient(
           135deg,
           #ff1590,
           #8c5cff
         );
+
     }
+
 
     /* =========================
        DESCRIPTION
     ========================== */
 
     .description {
+
       margin-top: 20px;
 
       padding: 18px;
@@ -216,14 +337,18 @@
         rgba(255,255,255,.05);
 
       border:
-        1px solid rgba(255,255,255,.08);
+        1px solid
+        rgba(255,255,255,.08);
 
       color: #aaa;
 
       line-height: 1.6;
+
     }
 
+
     footer {
+
       text-align: center;
 
       color: #555;
@@ -231,7 +356,9 @@
       padding: 30px 10px;
 
       font-size: 12px;
+
     }
+
 
     /* =========================
        MOBILE
@@ -240,331 +367,46 @@
     @media (max-width: 600px) {
 
       .logo {
+
         font-size: 19px;
+
       }
+
 
       .telegram {
-        padding: 9px 12px;
+
+        padding:
+          9px
+          12px;
+
         font-size: 12px;
+
       }
+
 
       main {
-        padding: 15px 8px 40px;
+
+        padding:
+          15px
+          8px
+          40px;
+
       }
 
+
       .video-box {
+
         border-radius: 12px;
+
       }
 
     }
+
   </style>
 
 
-  <!-- ==================================================
+  <!-- =================================================
        ADSTERRA CODE #1
-  =================================================== -->
+  ================================================== -->
 
-  <script src="https://pl30923744.effectivecpmnetwork.com/bc/bf/98/bcbf98c695a71ec20aa923a7a131ffa3.js"></script>
-
-
-  <!-- ==================================================
-       ADSTERRA CODE #2
-  =================================================== -->
-
-  <script src="https://pl30923746.effectivecpmnetwork.com/60/5e/6e/605e6e402e2188c01fb7fcc993d62be2.js"></script>
-
-</head>
-
-
-<body>
-
-
-  <!-- =========================
-       HEADER
-  ========================== -->
-
-  <header>
-
-    <div class="header">
-
-      <div class="logo">
-        VAIRAL VIDEO
-      </div>
-
-      <a
-        class="telegram"
-        href="https://t.me/allvairallinkandvideo"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        ✈️ Join Telegram
-      </a>
-
-    </div>
-
-  </header>
-
-
-  <main>
-
-
-    <!-- =========================
-         TOP AD
-    ========================== -->
-
-    <div class="ad-area">
-
-    </div>
-
-
-    <!-- =========================
-         VIDEO TITLE
-    ========================== -->
-
-    <h1
-      class="title"
-      id="videoTitle"
-    >
-      Premium Viral Video #1
-    </h1>
-
-
-    <div class="meta">
-
-      👁️
-      <span id="views">0</span>
-      Views
-
-      &nbsp; • &nbsp;
-
-      ❤️
-      <span id="likes">0</span>
-      Likes
-
-    </div>
-
-
-    <!-- ==================================================
-
-         আপনার দেওয়া ভিডিও ইতিমধ্যে এখানে বসানো হয়েছে।
-    =================================================== -->
-
-    <div class="video-box">
-
-      <iframe
-        id="videoFrame"
-      https://mshoftgubfbkvynndtnu.supabase.co/storage/v1/object/public/Video/video-10.mp4
-        title="Vairal Video"
-        allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-        allowfullscreen>
-      </iframe>
-
-    </div>
-
-
-    <!-- =========================
-         LIKE BUTTON
-    ========================== -->
-
-    <div class="buttons">
-
-      <button
-        class="control-btn"
-        id="likeBtn"
-        type="button"
-      >
-        ❤️ Like
-      </button>
-
-    </div>
-
-
-    <!-- ==================================================
-         ADSTERRA CODE #3
-    =================================================== -->
-
-    <div class="ad-area">
-
-      <script
-        async="async"
-        data-cfasync="false"
-        src="https://pl30923747.effectivecpmnetwork.com/12b187a99414c09ca49488896ff8e0ac/invoke.js">
-      </script>
-
-      <div
-        id="container-12b187a99414c09ca49488896ff8e0ac">
-      </div>
-
-    </div>
-
-
-    <!-- =========================
-         DESCRIPTION
-    ========================== -->
-
-    <div class="description">
-
-      <strong style="color:#fff;">
-        Vairal Video
-      </strong>
-
-      <br><br>
-
-      Watch the video above and join our Telegram
-      channel for more viral videos and updates.
-
-      <br><br>
-
-      ✈️ Telegram:
-
-      <strong>
-        @allvairallinkandvideo
-      </strong>
-
-    </div>
-
-
-  </main>
-
-
-  <footer>
-
-    © 2026 Vairal Video
-
-  </footer>
-
-
-  <script>
-
-    /* ==========================================
-       VIEW COUNTER
-    ========================================== */
-
-    let views =
-      Number(
-        localStorage.getItem("vairal_views")
-      ) || 0;
-
-    views++;
-
-    localStorage.setItem(
-      "vairal_views",
-      views
-    );
-
-    document.getElementById(
-      "views"
-    ).textContent = views;
-
-
-
-    /* ==========================================
-       LIKE SYSTEM
-    ========================================== */
-
-    let likes =
-      Number(
-        localStorage.getItem("vairal_likes")
-      ) || 0;
-
-    let liked =
-      localStorage.getItem(
-        "vairal_liked"
-      ) === "true";
-
-
-    const likeBtn =
-      document.getElementById(
-        "likeBtn"
-      );
-
-
-    document.getElementById(
-      "likes"
-    ).textContent = likes;
-
-
-    if (liked) {
-
-      likeBtn.textContent =
-        "❤️ Liked";
-
-      likeBtn.classList.add(
-        "liked"
-      );
-
-    }
-
-
-    likeBtn.addEventListener(
-      "click",
-      function () {
-
-        if (!liked) {
-
-          likes++;
-
-          liked = true;
-
-          likeBtn.textContent =
-            "❤️ Liked";
-
-          likeBtn.classList.add(
-            "liked"
-          );
-
-        } else {
-
-          likes =
-            Math.max(
-              0,
-              likes - 1
-            );
-
-          liked = false;
-
-          likeBtn.textContent =
-            "❤️ Like";
-
-          likeBtn.classList.remove(
-            "liked"
-          );
-
-        }
-
-
-        localStorage.setItem(
-          "vairal_likes",
-          likes
-        );
-
-        localStorage.setItem(
-          "vairal_liked",
-          liked
-        );
-
-
-        document.getElementById(
-          "likes"
-        ).textContent = likes;
-
-      }
-    );
-
-
-    /* ==========================================
-       BASIC RIGHT-CLICK PROTECTION
-    ========================================== */
-
-    document.addEventListener(
-      "contextmenu",
-      function(event) {
-        event.preventDefault();
-      }
-    );
-
-  </script>
-
-
-</body>
-</html>
+  <script src="https://pl30923744.effectivecpmnetwork.com/bc
