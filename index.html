@@ -17,21 +17,21 @@
 
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
 
 
     body {
 
+      margin: 0;
+
       min-height: 100vh;
+
+      color: #fff;
 
       font-family:
         Arial,
         Helvetica,
         sans-serif;
-
-      color: #ffffff;
 
       background:
         radial-gradient(
@@ -51,22 +51,20 @@
     }
 
 
-    /* =========================
-       HEADER
-    ========================== */
-
-    header {
+    .header {
 
       position: sticky;
 
       top: 0;
 
-      z-index: 1000;
+      z-index: 100;
 
-      padding: 14px 16px;
+      padding:
+        14px
+        12px;
 
       background:
-        rgba(5,5,8,.92);
+        rgba(5,5,8,.94);
 
       backdrop-filter:
         blur(12px);
@@ -78,9 +76,9 @@
     }
 
 
-    .header {
+    .header-inner {
 
-      max-width: 950px;
+      max-width: 900px;
 
       margin: auto;
 
@@ -91,14 +89,14 @@
       justify-content:
         space-between;
 
-      gap: 12px;
+      gap: 10px;
 
     }
 
 
     .logo {
 
-      font-size: 22px;
+      font-size: 21px;
 
       font-weight: 900;
 
@@ -112,8 +110,7 @@
       -webkit-background-clip:
         text;
 
-      background-clip:
-        text;
+      background-clip: text;
 
       color: transparent;
 
@@ -122,66 +119,56 @@
 
     .telegram {
 
-      display: inline-block;
-
       text-decoration: none;
 
-      color: #ffffff;
+      color: white;
 
       background:
-        linear-gradient(
-          135deg,
-          #168cff,
-          #006dcc
-        );
+        #168cff;
 
       padding:
         10px
-        15px;
+        14px;
 
-      border-radius: 30px;
+      border-radius: 25px;
 
-      font-size: 14px;
+      font-size: 13px;
 
-      font-weight: 700;
+      font-weight: bold;
 
     }
 
 
-    /* =========================
-       MAIN
-    ========================== */
-
-    main {
+    .container {
 
       width: 100%;
 
-      max-width: 950px;
+      max-width: 900px;
 
       margin: auto;
 
       padding:
-        20px
-        12px
-        50px;
+        18px
+        10px
+        40px;
 
     }
 
 
     /* =========================
-       AD AREA
+       ADS
     ========================== */
 
-    .ad-area {
+    .ad-box {
 
       width: 100%;
 
-      min-height: 80px;
+      min-height: 60px;
 
       margin:
         10px
         0
-        20px;
+        18px;
 
       display: flex;
 
@@ -191,8 +178,6 @@
 
       overflow: hidden;
 
-      border-radius: 12px;
-
     }
 
 
@@ -200,50 +185,45 @@
        TITLE
     ========================== */
 
-    .title {
+    h1 {
+
+      margin:
+        5px
+        0
+        8px;
 
       font-size:
         clamp(
-          24px,
+          22px,
           5vw,
-          38px
+          34px
         );
-
-      font-weight: 900;
-
-      line-height: 1.15;
-
-      margin-bottom: 10px;
 
     }
 
 
-    .meta {
+    .info {
 
-      color: #999999;
+      color: #999;
 
-      font-size: 14px;
+      font-size: 13px;
 
-      margin-bottom: 15px;
+      margin-bottom: 14px;
 
     }
 
 
     /* =========================
-       VIDEO PLAYER
+       VIDEO
     ========================== */
 
-    .video-box {
-
-      position: relative;
+    .video-wrapper {
 
       width: 100%;
 
-      aspect-ratio: 16 / 9;
+      background: #000;
 
-      background: #000000;
-
-      border-radius: 16px;
+      border-radius: 14px;
 
       overflow: hidden;
 
@@ -254,78 +234,50 @@
     }
 
 
-    #videoPlayer {
-
-      width: 100%;
-
-      height: 100%;
+    video {
 
       display: block;
 
-      background: #000000;
+      width: 100%;
 
-      object-fit: contain;
+      height: auto;
+
+      min-height: 200px;
+
+      background: #000;
 
     }
 
 
     /* =========================
-       BUTTONS
+       LIKE
     ========================== */
 
-    .buttons {
+    .like-button {
 
-      display: flex;
+      margin-top: 12px;
 
-      gap: 10px;
-
-      margin-top: 14px;
-
-    }
-
-
-    .control-btn {
+      padding:
+        10px
+        16px;
 
       border: 0;
 
-      color: #ffffff;
+      border-radius: 10px;
+
+      color: white;
 
       background:
         rgba(255,255,255,.08);
-
-      padding:
-        11px
-        16px;
-
-      border-radius: 10px;
 
       cursor: pointer;
 
       font-size: 14px;
 
-      transition:
-        .2s;
-
     }
 
 
-    .control-btn:hover {
-
-      background:
-        rgba(255,255,255,.17);
-
-    }
-
-
-    .control-btn:active {
-
-      transform:
-        scale(.96);
-
-    }
-
-
-    .liked {
+    .like-button.active {
 
       background:
         linear-gradient(
@@ -343,11 +295,11 @@
 
     .description {
 
-      margin-top: 20px;
+      margin-top: 18px;
 
-      padding: 18px;
+      padding: 17px;
 
-      border-radius: 15px;
+      border-radius: 13px;
 
       background:
         rgba(255,255,255,.05);
@@ -356,70 +308,38 @@
         1px solid
         rgba(255,255,255,.08);
 
-      color: #aaaaaa;
+      color: #aaa;
 
       line-height: 1.6;
 
     }
 
 
-    /* =========================
-       FOOTER
-    ========================== */
-
     footer {
 
       text-align: center;
 
-      color: #555555;
+      padding: 25px 10px;
 
-      padding:
-        30px
-        10px;
+      color: #555;
 
       font-size: 12px;
 
     }
 
 
-    /* =========================
-       MOBILE
-    ========================== */
-
-    @media (max-width: 600px) {
+    @media(max-width:600px) {
 
       .logo {
-
-        font-size: 19px;
-
+        font-size: 18px;
       }
-
 
       .telegram {
-
         padding:
           9px
-          12px;
+          11px;
 
         font-size: 12px;
-
-      }
-
-
-      main {
-
-        padding:
-          15px
-          8px
-          40px;
-
-      }
-
-
-      .video-box {
-
-        border-radius: 12px;
-
       }
 
     }
@@ -428,15 +348,15 @@
 
 
   <!-- ==================================================
-       ADSTERRA CODE #1
-  =================================================== -->
+       ADSTERRA #1
+  ================================================== -->
 
   <script src="https://pl30923744.effectivecpmnetwork.com/bc/bf/98/bcbf98c695a71ec20aa923a7a131ffa3.js"></script>
 
 
   <!-- ==================================================
-       ADSTERRA CODE #2
-  =================================================== -->
+       ADSTERRA #2
+  ================================================== -->
 
   <script src="https://pl30923746.effectivecpmnetwork.com/60/5e/6e/605e6e402e2188c01fb7fcc993d62be2.js"></script>
 
@@ -447,14 +367,13 @@
 <body>
 
 
-  <!-- ==================================================
+  <!-- =========================
        HEADER
-  =================================================== -->
+  ========================== -->
 
-  <header>
+  <div class="header">
 
-    <div class="header">
-
+    <div class="header-inner">
 
       <div class="logo">
 
@@ -470,103 +389,75 @@
         rel="noopener noreferrer"
       >
 
-        ✈️ Join Telegram
+        ✈️ Telegram
 
       </a>
 
-
     </div>
 
-  </header>
+  </div>
 
 
 
-  <!-- ==================================================
-       MAIN
-  =================================================== -->
-
-  <main>
+  <div class="container">
 
 
-    <!-- ==================================================
-         TOP AD
-    =================================================== -->
+    <!-- =========================
+         AD #1 AREA
+    ========================== -->
 
-    <div class="ad-area">
+    <div class="ad-box">
 
     </div>
 
 
 
-    <!-- ==================================================
-         VIDEO TITLE
-    =================================================== -->
+    <!-- =========================
+         TITLE
+    ========================== -->
 
-    <h1
-      class="title"
-      id="videoTitle"
-    >
+    <h1>
 
-      Premium Viral Video #1
+      Premium Viral Video
 
     </h1>
 
 
-    <div class="meta">
+    <div class="info">
 
       👁️
-
-      <span id="views">
-
-        0
-
-      </span>
-
+      <span id="views">0</span>
       Views
-
 
       &nbsp; • &nbsp;
 
-
       ❤️
-
-      <span id="likes">
-
-        0
-
-      </span>
-
+      <span id="likes">0</span>
       Likes
 
     </div>
 
 
 
-    <!-- ==================================================
-         SUPABASE VIDEO PLAYER
+    <!-- =========================
+         SUPABASE VIDEO
+    ========================== -->
 
-         আপনার ভিডিও URL এখানে বসানো আছে।
-    ================================================== -->
-
-    <div class="video-box">
+    <div class="video-wrapper">
 
       <video
-        id="videoPlayer"
         controls
         playsinline
         preload="metadata"
         controlsList="nodownload"
-        disablePictureInPicture
       >
 
         <source
-          id="videoSource"
           src="https://mshoftgubfbkvynndtnu.supabase.co/storage/v1/object/public/Video/video-10.mp4"
           type="video/mp4"
         >
 
-
-        আপনার browser এই ভিডিওটি চালাতে পারছে না।
+        Your browser does not support HTML5 video.
 
       </video>
 
@@ -574,44 +465,38 @@
 
 
 
-    <!-- ==================================================
-         LIKE BUTTON
-    =================================================== -->
+    <!-- =========================
+         LIKE
+    ========================== -->
 
-    <div class="buttons">
+    <button
+      class="like-button"
+      id="likeButton"
+      type="button"
+    >
 
-      <button
-        class="control-btn"
-        id="likeBtn"
-        type="button"
-      >
+      ❤️ Like
 
-        ❤️ Like
-
-      </button>
-
-    </div>
+    </button>
 
 
 
-    <!-- ==================================================
-         ADSTERRA CODE #3
-    =================================================== -->
+    <!-- =========================
+         AD #3
+    ========================== -->
 
-    <div class="ad-area">
+    <div class="ad-box">
 
 
       <script
         async="async"
         data-cfasync="false"
-        src="https://pl30923747.effectivecpmnetwork.com/12b187a99414c09ca49488896ff8e0ac/invoke.js"
-      >
+        src="https://pl30923747.effectivecpmnetwork.com/12b187a99414c09ca49488896ff8e0ac/invoke.js">
       </script>
 
 
       <div
-        id="container-12b187a99414c09ca49488896ff8e0ac"
-      >
+        id="container-12b187a99414c09ca49488896ff8e0ac">
       </div>
 
 
@@ -619,32 +504,26 @@
 
 
 
-    <!-- ==================================================
+    <!-- =========================
          DESCRIPTION
-    =================================================== -->
+    ========================== -->
 
     <div class="description">
 
-      <strong style="color:#ffffff;">
+      <strong style="color:#fff;">
 
         Vairal Video
 
       </strong>
 
-
       <br><br>
 
-
-      Watch the video above and join our
+      Watch the video and join our
       Telegram channel for more videos.
 
-
       <br><br>
 
-
-      ✈️ Telegram:
-
-
+      ✈️
       <strong>
 
         @allvairallinkandvideo
@@ -654,13 +533,9 @@
     </div>
 
 
-  </main>
+  </div>
 
 
-
-  <!-- ==================================================
-       FOOTER
-  =================================================== -->
 
   <footer>
 
@@ -672,45 +547,142 @@
 
   <script>
 
+    /* =========================
+       VIEW COUNTER
+    ========================== */
 
-    /* ==================================================
-       VIDEO LIST
+    let views =
 
-       আপনার প্রথম Supabase ভিডিও এখানে আছে।
-
-       পরে নতুন ভিডিও এভাবে যোগ করবেন:
-
-       ,"https://....../video-11.mp4"
-
-    ================================================== */
-
-
-    const VIDEOS = [
-
-      "https://mshoftgubfbkvynndtnu.supabase.co/storage/v1/object/public/Video/video-10.mp4"
-
-    ];
-
-
-
-    /* ==================================================
-       VIDEO INDEX
-    ================================================== */
-
-
-    const VIDEO_INDEX_KEY =
-      "vairal_next_video_index";
-
-
-    let currentIndex =
       Number(
         localStorage.getItem(
-          VIDEO_INDEX_KEY
+          "vairal_views"
         )
+      ) || 0;
+
+
+    views++;
+
+
+    localStorage.setItem(
+      "vairal_views",
+      views
+    );
+
+
+    document.getElementById(
+      "views"
+    ).textContent = views;
+
+
+
+    /* =========================
+       LIKE SYSTEM
+    ========================== */
+
+    let likes =
+
+      Number(
+        localStorage.getItem(
+          "vairal_likes"
+        )
+      ) || 0;
+
+
+    let liked =
+
+      localStorage.getItem(
+        "vairal_liked"
+      ) === "true";
+
+
+    const likeButton =
+
+      document.getElementById(
+        "likeButton"
       );
 
 
-    if (
+    document.getElementById(
+      "likes"
+    ).textContent = likes;
 
-      Number.isNaN(
-        current
+
+    if (liked) {
+
+      likeButton.classList.add(
+        "active"
+      );
+
+      likeButton.textContent =
+        "❤️ Liked";
+
+    }
+
+
+    likeButton.addEventListener(
+      "click",
+      function() {
+
+
+        if (!liked) {
+
+          likes++;
+
+          liked = true;
+
+          likeButton.classList.add(
+            "active"
+          );
+
+          likeButton.textContent =
+            "❤️ Liked";
+
+        }
+
+
+        else {
+
+          likes =
+            Math.max(
+              0,
+              likes - 1
+            );
+
+          liked = false;
+
+          likeButton.classList.remove(
+            "active"
+          );
+
+          likeButton.textContent =
+            "❤️ Like";
+
+        }
+
+
+        localStorage.setItem(
+          "vairal_likes",
+          likes
+        );
+
+
+        localStorage.setItem(
+          "vairal_liked",
+          liked
+        );
+
+
+        document.getElementById(
+          "likes"
+        ).textContent = likes;
+
+      }
+
+    );
+
+  </script>
+
+
+</body>
+
+</html>
