@@ -1,237 +1,1099 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-<meta charset="UTF-8">
+  <title>Premium Video</title>
 
-<meta name="viewport"
-content="width=device-width,initial-scale=1">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-<title>Premium Video Player</title>
+    html, body {
+      width: 100%;
+      min-height: 100%;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #050505;
+      color: #fff;
+    }
 
-<style>
+    body {
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(120, 0, 255, .22), transparent 30%),
+        radial-gradient(circle at 80% 30%, rgba(255, 0, 100, .16), transparent 30%),
+        linear-gradient(135deg, #050505, #0d0714, #050505);
+    }
 
-body{
+    /* Animated background */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background:
+        radial-gradient(circle at 30% 50%, rgba(255, 0, 120, .08), transparent 25%),
+        radial-gradient(circle at 70% 80%, rgba(80, 0, 255, .08), transparent 25%);
+      animation: bgMove 8s ease-in-out infinite alternate;
+    }
 
-margin:0;
+    @keyframes bgMove {
+      from {
+        transform: scale(1);
+      }
+      to {
+        transform: scale(1.15);
+      }
+    }
 
-padding:20px;
+    /* Loading */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: #050505;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 99999;
+      transition: opacity .5s ease;
+    }
 
-font-family:Arial;
+    .loader-logo {
+      font-size: 34px;
+      font-weight: 900;
+      background: linear-gradient(90deg, #ff007a, #8b5cff);
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 20px;
+    }
 
-background:
-linear-gradient(135deg,
-#141e30,
-#243b55,
-#2c5364);
+    .spinner {
+      width: 42px;
+      height: 42px;
+      border: 4px solid rgba(255,255,255,.15);
+      border-top-color: #ff1687;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
 
-}
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
 
-.container{
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 15px;
+      background: rgba(5,5,5,.82);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
 
-max-width:900px;
+    .header-inner {
+      max-width: 1000px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
 
-margin:auto;
+    .logo {
+      font-size: 22px;
+      font-weight: 900;
+      background: linear-gradient(90deg, #ff1687, #8b5cff);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
 
-}
+    .telegram-btn {
+      border: 0;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 700;
+      padding: 10px 15px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #168cff, #006dcc);
+      box-shadow: 0 5px 20px rgba(0,140,255,.25);
+      transition: .2s;
+    }
 
-.telegram{
+    .telegram-btn:active {
+      transform: scale(.95);
+    }
 
-display:block;
+    /* Main */
+    main {
+      width: 100%;
+      max-width: 1000px;
+      margin: auto;
+      padding: 18px 12px 50px;
+    }
 
-padding:18px;
+    /* Ad box */
+    .ad-box {
+      width: 100%;
+      min-height: 70px;
+      margin: 5px auto 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      overflow: hidden;
+      background: rgba(255,255,255,.025);
+      border: 1px solid rgba(255,255,255,.06);
+    }
 
-margin-bottom:20px;
+    .ad-label {
+      font-size: 9px;
+      color: #777;
+      margin-bottom: 5px;
+      text-align: center;
+    }
 
-text-align:center;
+    /* Title */
+    .video-title {
+      font-size: clamp(22px, 5vw, 34px);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
 
-text-decoration:none;
+    .video-meta {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      color: #999;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
 
-font-size:24px;
+    /* Video */
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow:
+        0 15px 50px rgba(0,0,0,.55),
+        0 0 40px rgba(150,0,255,.08);
+    }
 
-font-weight:bold;
+    #videoFrame {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+      background: #000;
+    }
 
-color:white;
+    /* Overlay Ad */
+    #overlayAd {
+      position: absolute;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%);
+      width: min(92%, 500px);
+      min-height: 70px;
+      z-index: 20;
+      background: rgba(0,0,0,.82);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
 
-border-radius:20px;
+    .overlay-close {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      width: 25px;
+      height: 25px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,.15);
+      color: #fff;
+      cursor: pointer;
+      z-index: 30;
+    }
 
-background:
-linear-gradient(
-90deg,
-#0088cc,
-#00c6ff);
+    /* Controls */
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 14px;
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.07);
+    }
 
-}
+    .control-left,
+    .control-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-.ad-top,
-.ad-bottom{
+    .control-btn {
+      border: 0;
+      background: rgba(255,255,255,.07);
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 14px;
+    }
 
-background:white;
+    .control-btn:hover {
+      background: rgba(255,255,255,.13);
+    }
 
-padding:20px;
+    .like-btn.liked {
+      background: linear-gradient(135deg, #ff1687, #8b5cff);
+    }
 
-border-radius:20px;
+    /* End Ad */
+    #endAdSection {
+      display: none;
+      margin-top: 20px;
+      padding: 20px 12px;
+      border-radius: 16px;
+      text-align: center;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+    }
 
-margin-bottom:20px;
+    #endAdSection h3 {
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
 
-min-height:100px;
+    /* Description */
+    .description {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.07);
+      color: #aaa;
+      line-height: 1.6;
+    }
 
-}
+    /* Toast */
+    #toast {
+      position: fixed;
+      left: 50%;
+      bottom: 25px;
+      transform: translate(-50%, 100px);
+      background: rgba(20,20,20,.95);
+      color: #fff;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      z-index: 9999;
+      transition: .3s;
+      font-size: 14px;
+    }
 
-.player{
+    #toast.show {
+      transform: translate(-50%, 0);
+    }
 
-position:relative;
+    footer {
+      text-align: center;
+      color: #555;
+      padding: 30px 10px;
+      font-size: 12px;
+    }
 
-overflow:hidden;
+    @media (max-width: 600px) {
+      header {
+        padding: 12px;
+      }
 
-border-radius:25px;
+      .logo {
+        font-size: 19px;
+      }
 
-}
+      .telegram-btn {
+        padding: 9px 12px;
+        font-size: 13px;
+      }
 
-video{
+      main {
+        padding: 14px 8px 40px;
+      }
 
-width:100%;
+      .video-wrapper {
+        border-radius: 12px;
+      }
 
-border-radius:25px;
+      .controls {
+        padding: 9px;
+      }
 
-}
-
-.overlay-ad{
-
-display:none;
-
-position:absolute;
-
-top:50%;
-
-left:50%;
-
-transform:
-translate(-50%,-50%);
-
-width:85%;
-
-background:white;
-
-padding:20px;
-
-border-radius:15px;
-
-z-index:100;
-
-}
-
-.end-ad{
-
-display:none;
-
-margin-top:20px;
-
-background:white;
-
-padding:20px;
-
-border-radius:20px;
-
-}
-
-</style>
-
+      .control-btn {
+        padding: 9px 11px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="container">
+  <!-- ==============================
+       LOADING SCREEN
+  =============================== -->
+  <div id="loader">
+    <div class="loader-logo">PREMIUM</div>
+    <div class="spinner"></div>
+  </div>
 
-<a class="telegram"
-href="https://t.me/yourchannel">
 
-🚀 JOIN TELEGRAM CHANNEL
+  <!-- ==============================
+       HEADER
+  =============================== -->
+  <header>
+    <div class="header-inner">
 
-</a>
+      <div class="logo">
+        PREMIUM
+      </div>
 
-<div class="ad-top">
+      <!-- TELEGRAM LINK -->
+      <a
+        id="telegramButton"
+        class="telegram-btn"
+        href="#"
+        target="_blank"
+        rel="noopener noreferrer">
+        ✈️ Join Telegram
+      </a>
 
-YOUR_TOP_AD_CODE
+    </div>
+  </header>
 
-</div>
 
-<div class="player">
+  <main>
 
-<video
-id="video"
-controls>
+    <!-- ==============================
+         TOP ADSTERRA AD
+         
+         PASTE YOUR ADSTERRA CODE HERE
+    =============================== -->
 
-<source
-src="YOUR_VIDEO_LINK.mp4"
-type="video/mp4">
+    <div class="ad-label">ADVERTISEMENT</div>
 
-</video>
+    <div class="ad-box" id="topAd">
 
-<div
-class="overlay-ad"
-id="middleAd">
+      <!--
+      ================================
+      ADSTERRA TOP AD CODE
+      PASTE HERE
+      ================================
 
-YOUR_MIDDLE_AD_CODE
+      Example:
 
-</div>
+      <script>
+      // YOUR ADSTERRA CODE
+      </script>
 
-</div>
+      -->
 
-<div
-class="end-ad"
-id="endAd">
+      <span style="color:#444;font-size:11px;">
+        TOP AD
+      </span>
 
-YOUR_END_AD_CODE
+    </div>
 
-</div>
 
-</div>
+    <!-- ==============================
+         VIDEO TITLE
+    =============================== -->
 
-<script>
+    <h1 class="video-title" id="videoTitle">
+      Premium Video
+    </h1>
 
-const video=
-document.getElementById(
-"video");
+    <div class="video-meta">
+      <span>👁️ <span id="viewCount">0</span> views</span>
+      <span>❤️ <span id="likeCount">0</span> likes</span>
+    </div>
 
-const middleAd=
-document.getElementById(
-"middleAd");
 
-const endAd=
-document.getElementById(
-"endAd");
+    <!-- ==============================
+         VIDEO PLAYER
+         
+         VIDEY LINK IS SET IN JAVASCRIPT
+    =============================== -->
 
-video.addEventListener(
-"timeupdate",
+    <div class="video-wrapper">
 
-function(){
+      <iframe
+        id="videoFrame"
+        src=""
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen>
+      </iframe>
 
-if(
-video.duration>0&&
-video.currentTime>
-video.duration/2){
 
-middleAd.style.display=
-"block";
+      <!-- ==============================
+           VIDEO OVERLAY AD
+           
+           PASTE ADSTERRA CODE HERE
+      =============================== -->
 
-}
+      <div id="overlayAd">
 
-});
+        <button
+          class="overlay-close"
+          onclick="closeOverlayAd()">
+          ×
+        </button>
 
-video.addEventListener(
-"ended",
+        <!--
+        =================================
+        ADSTERRA OVERLAY CODE
+        PASTE HERE
+        =================================
+        -->
 
-function(){
+        <span style="color:#777;font-size:11px;">
+          VIDEO OVERLAY AD
+        </span>
 
-endAd.style.display=
-"block";
+      </div>
 
-});
+    </div>
 
-</script>
+
+    <!-- ==============================
+         CONTROLS
+    =============================== -->
+
+    <div class="controls">
+
+      <div class="control-left">
+
+        <button
+          class="control-btn like-btn"
+          id="likeButton"
+          onclick="toggleLike()">
+          ❤️ Like
+        </button>
+
+      </div>
+
+      <div class="control-right">
+
+        <button
+          class="control-btn"
+          onclick="openFullscreen()">
+          ⛶ Fullscreen
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- ==============================
+         END AD
+         
+         PASTE ADSTERRA CODE HERE
+    =============================== -->
+
+    <div id="endAdSection">
+
+      <h3>
+        🎬 Thanks for watching
+      </h3>
+
+      <div class="ad-label">
+       ADVERTISEMENT
+      </div>
+
+      <div class="ad-box">
+
+        <!--
+        =================================
+        ADSTERRA END AD CODE
+        PASTE HERE
+        =================================
+        -->
+
+        <span style="color:#444;font-size:11px;">
+          END AD
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- ==============================
+         DESCRIPTION
+    =============================== -->
+
+    <div class="description">
+
+      <strong style="color:#fff;">
+        Premium Video
+      </strong>
+
+      <br><br>
+
+      Enjoy the video in high quality.
+      Join our Telegram channel for more updates.
+
+    </div>
+
+  </main>
+
+
+  <footer>
+    © 2026 Premium Video
+  </footer>
+
+
+  <!-- Toast -->
+  <div id="toast"></div>
+
+
+  <script>
+
+    /* =================================================
+       SETTINGS
+       ================================================= */
+
+
+    /*
+    ====================================================
+    1. VIDEY VIDEO LINK
+    ====================================================
+
+    এখানে আপনার Videy video link বসাবেন।
+
+    Example:
+
+    const VIDEY_VIDEO_URL =
+      "https://videy.co/v/xxxxxxxx";
+
+    */
+
+    const VIDEY_VIDEO_URL =
+      "PASTE_YOUR_VIDEY_LINK_HERE";
+
+
+    /*
+    ====================================================
+    2. TELEGRAM LINK
+    ====================================================
+
+    এখানে আপনার Telegram channel/group link বসাবেন।
+
+    Example:
+
+    const TELEGRAM_URL =
+      "https://t.me/yourchannel";
+
+    */
+
+    const TELEGRAM_URL =
+      "PASTE_YOUR_TELEGRAM_LINK_HERE";
+
+
+    /*
+    ====================================================
+    3. VIDEO TITLE
+    ====================================================
+    */
+
+    const VIDEO_TITLE =
+      "Premium Video";
+
+
+    /*
+    ====================================================
+       BASIC APP
+    ====================================================
+    */
+
+    const videoFrame =
+      document.getElementById("videoFrame");
+
+    const telegramButton =
+      document.getElementById("telegramButton");
+
+    const videoTitle =
+      document.getElementById("videoTitle");
+
+    const loader =
+      document.getElementById("loader");
+
+
+    /*
+    ====================================================
+       LOAD VIDEO
+    ====================================================
+    */
+
+    function loadVideo() {
+
+      if (
+        VIDEY_VIDEO_URL &&
+        !VIDEY_VIDEO_URL.includes("PASTE_YOUR")
+      ) {
+
+        videoFrame.src = VIDEY_VIDEO_URL;
+
+      } else {
+
+        videoFrame.src = "about:blank";
+
+        console.warn(
+          "Videy link is not configured."
+        );
+
+      }
+
+    }
+
+
+    /*
+    ====================================================
+       TELEGRAM
+    ====================================================
+    */
+
+    function setupTelegram() {
+
+      if (
+        TELEGRAM_URL &&
+        !TELEGRAM_URL.includes("PASTE_YOUR")
+      ) {
+
+        telegramButton.href =
+          TELEGRAM_URL;
+
+      } else {
+
+        telegramButton.href = "#";
+
+        telegramButton.addEventListener(
+          "click",
+          function(e) {
+
+            e.preventDefault();
+
+            showToast(
+              "Telegram link is not configured yet."
+            );
+
+          }
+        );
+
+      }
+
+    }
+
+
+    /*
+    ====================================================
+       TITLE
+    ====================================================
+    */
+
+    function setupTitle() {
+
+      if (VIDEO_TITLE.trim()) {
+
+        videoTitle.textContent =
+          VIDEO_TITLE;
+
+        document.title =
+          VIDEO_TITLE;
+
+      }
+
+    }
+
+
+    /*
+    ====================================================
+       VIEW COUNTER
+       
+       Local browser counter.
+       
+       NOTE:
+       এটি server/database counter নয়।
+    ====================================================
+    */
+
+    function setupViews() {
+
+      let views =
+        Number(
+          localStorage.getItem(
+            "premium_video_views"
+          )
+        ) || 0;
+
+      views++;
+
+      localStorage.setItem(
+        "premium_video_views",
+        views
+      );
+
+      document.getElementById(
+        "viewCount"
+      ).textContent = views;
+
+    }
+
+
+    /*
+    ====================================================
+       LIKE
+    ====================================================
+    */
+
+    function setupLikes() {
+
+      const liked =
+        localStorage.getItem(
+          "premium_video_liked"
+        ) === "true";
+
+      let likes =
+        Number(
+          localStorage.getItem(
+            "premium_video_likes"
+          )
+        ) || 0;
+
+      document.getElementById(
+        "likeCount"
+      ).textContent = likes;
+
+      if (liked) {
+
+        document
+          .getElementById("likeButton")
+          .classList.add("liked");
+
+      }
+
+    }
+
+
+    function toggleLike() {
+
+      const button =
+        document.getElementById(
+          "likeButton"
+        );
+
+      let likes =
+        Number(
+          localStorage.getItem(
+            "premium_video_likes"
+          )
+        ) || 0;
+
+      const liked =
+        localStorage.getItem(
+          "premium_video_liked"
+        ) === "true";
+
+
+      if (!liked) {
+
+        likes++;
+
+        localStorage.setItem(
+          "premium_video_likes",
+          likes
+        );
+
+        localStorage.setItem(
+          "premium_video_liked",
+          "true"
+        );
+
+        button.classList.add("liked");
+
+        showToast("❤️ Liked!");
+
+      } else {
+
+        likes = Math.max(
+          0,
+          likes - 1
+        );
+
+        localStorage.setItem(
+          "premium_video_likes",
+          likes
+        );
+
+        localStorage.setItem(
+          "premium_video_liked",
+          "false"
+        );
+
+        button.classList.remove(
+          "liked"
+        );
+
+        showToast("Like removed");
+
+      }
+
+
+      document.getElementById(
+        "likeCount"
+      ).textContent = likes;
+
+    }
+
+
+    /*
+    ====================================================
+       FULLSCREEN
+    ====================================================
+    */
+
+    function openFullscreen() {
+
+      const wrapper =
+        document.querySelector(
+          ".video-wrapper"
+        );
+
+
+      if (
+        document.fullscreenElement
+      ) {
+
+        document.exitFullscreen();
+
+        return;
+
+      }
+
+
+      if (
+        wrapper.requestFullscreen
+      ) {
+
+        wrapper.requestFullscreen();
+
+      }
+
+    }
+
+
+    /*
+    ====================================================
+       OVERLAY AD
+    ====================================================
+    */
+
+    let overlayClosed = false;
+
+
+    function showOverlayAd() {
+
+      if (overlayClosed) return;
+
+      const overlay =
+        document.getElementById(
+          "overlayAd"
+        );
+
+      overlay.style.display =
+        "flex";
+
+    }
+
+
+    function closeOverlayAd() {
+
+      overlayClosed = true;
+
+      document.getElementById(
+        "overlayAd"
+      ).style.display = "none";
+
+    }
+
+
+    /*
+    ====================================================
+       END AD
+    ====================================================
+    */
+
+    function showEndAd() {
+
+      document.getElementById(
+        "endAdSection"
+      ).style.display = "block";
+
+      document
+        .getElementById("endAdSection")
+        .scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+    }
+
+
+    /*
+    ====================================================
+       TOAST
+    ====================================================
+    */
+
+    function showToast(message) {
+
+      const toast =
+        document.getElementById(
+          "toast"
+        );
+
+      toast.textContent =
+        message;
+
+      toast.classList.add(
+        "show"
+      );
+
+
+      setTimeout(
+        function() {
+
+          toast.classList.remove(
+            "show"
+          );
+
+        },
+        2500
+      );
+
+    }
+
+
+    /*
+    ====================================================
+       INIT
+    ====================================================
+    */
+
+    window.addEventListener(
+      "load",
+      function() {
+
+        loadVideo();
+
+        setupTelegram();
+
+        setupTitle();
+
+        setupViews();
+
+        setupLikes();
+
+
+        setTimeout(
+          function() {
+
+            loader.style.opacity =
+              "0";
+
+            setTimeout(
+              function() {
+
+                loader.style.display =
+                  "none";
+
+              },
+              500
+            );
+
+          },
+          700
+        );
+
+      }
+    );
+
+
+    /*
+    ====================================================
+       VIDEO OVERLAY DEMO TRIGGER
+       
+       Videy iframe হলে parent page সবসময়
+       video ended event পাবে না।
+       
+       তাই এখানে automatic timer ব্যবহার করা হয়েছে।
+       
+       পরে চাইলে এটি আপনার নির্দিষ্ট Videy
+       player implementation অনুযায়ী পরিবর্তন
+       করা যাবে।
+    ====================================================
+    */
+
+    setTimeout(
+      function() {
+
+        showOverlayAd();
+
+      },
+      15000
+    );
+
+
+    /*
+    ====================================================
+       END AD DEMO
+       
+       60 seconds পরে End Ad দেখাবে।
+       
+       এটি শুধু placeholder behavior।
+    ====================================================
+    */
+
+    setTimeout(
+      function() {
+
+        showEndAd();
+
+      },
+      60000
+    );
+
+  </script>
 
 </body>
-
 </html>
