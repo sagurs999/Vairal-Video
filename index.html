@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Premium Video</title>
+  <title>Vairal Video</title>
 
   <style>
     * {
@@ -13,1087 +13,845 @@
       padding: 0;
     }
 
-    html, body {
+    html,
+    body {
       width: 100%;
       min-height: 100%;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #050505;
-      color: #fff;
     }
 
     body {
-      overflow-x: hidden;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #fff;
       background:
-        radial-gradient(circle at 20% 10%, rgba(120, 0, 255, .22), transparent 30%),
-        radial-gradient(circle at 80% 30%, rgba(255, 0, 100, .16), transparent 30%),
-        linear-gradient(135deg, #050505, #0d0714, #050505);
+        radial-gradient(circle at top left, #35105f, transparent 35%),
+        radial-gradient(circle at bottom right, #60103c, transparent 35%),
+        #050507;
     }
 
-    /* Animated background */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
       z-index: -1;
+      pointer-events: none;
       background:
-        radial-gradient(circle at 30% 50%, rgba(255, 0, 120, .08), transparent 25%),
-        radial-gradient(circle at 70% 80%, rgba(80, 0, 255, .08), transparent 25%);
-      animation: bgMove 8s ease-in-out infinite alternate;
+        radial-gradient(circle at 30% 40%, rgba(255,0,120,.08), transparent 25%),
+        radial-gradient(circle at 70% 70%, rgba(80,0,255,.08), transparent 25%);
+      animation: backgroundMove 8s ease-in-out infinite alternate;
     }
 
-    @keyframes bgMove {
+    @keyframes backgroundMove {
       from {
         transform: scale(1);
       }
+
       to {
         transform: scale(1.15);
       }
     }
 
-    /* Loading */
-    #loader {
-      position: fixed;
-      inset: 0;
-      background: #050505;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 99999;
-      transition: opacity .5s ease;
-    }
+    /* ================================
+       HEADER
+    ================================= */
 
-    .loader-logo {
-      font-size: 34px;
-      font-weight: 900;
-      background: linear-gradient(90deg, #ff007a, #8b5cff);
-      -webkit-background-clip: text;
-      color: transparent;
-      margin-bottom: 20px;
-    }
-
-    .spinner {
-      width: 42px;
-      height: 42px;
-      border: 4px solid rgba(255,255,255,.15);
-      border-top-color: #ff1687;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
-
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    /* Header */
     header {
       position: sticky;
       top: 0;
       z-index: 1000;
-      padding: 15px;
-      background: rgba(5,5,5,.82);
-      backdrop-filter: blur(15px);
+      padding: 14px 16px;
+      background: rgba(5,5,8,.9);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(255,255,255,.08);
     }
 
-    .header-inner {
-      max-width: 1000px;
+    .header {
+      max-width: 950px;
       margin: auto;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
+
+      gap: 12px;
     }
 
     .logo {
-      font-size: 22px;
+      font-size: 23px;
       font-weight: 900;
-      background: linear-gradient(90deg, #ff1687, #8b5cff);
+
+      background: linear-gradient(
+        90deg,
+        #ff1590,
+        #8c5cff
+      );
+
       -webkit-background-clip: text;
+      background-clip: text;
       color: transparent;
     }
 
-    .telegram-btn {
-      border: 0;
+    .telegram {
+      display: inline-block;
+
       text-decoration: none;
       color: #fff;
-      font-weight: 700;
+
+      background: linear-gradient(
+        135deg,
+        #168cff,
+        #006dcc
+      );
+
       padding: 10px 15px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #168cff, #006dcc);
-      box-shadow: 0 5px 20px rgba(0,140,255,.25);
+      border-radius: 30px;
+
+      font-weight: 700;
+      font-size: 14px;
+
       transition: .2s;
     }
 
-    .telegram-btn:active {
+    .telegram:active {
       transform: scale(.95);
     }
 
-    /* Main */
+
+    /* ================================
+       MAIN
+    ================================= */
+
     main {
       width: 100%;
-      max-width: 1000px;
+      max-width: 950px;
+
       margin: auto;
-      padding: 18px 12px 50px;
+
+      padding: 20px 12px 50px;
     }
 
-    /* Ad box */
-    .ad-box {
+
+    /* ================================
+       AD AREA
+    ================================= */
+
+    .ad-area {
       width: 100%;
-      min-height: 70px;
-      margin: 5px auto 18px;
+
+      min-height: 80px;
+
+      margin: 10px 0 20px;
+
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 14px;
+
       overflow: hidden;
-      background: rgba(255,255,255,.025);
-      border: 1px solid rgba(255,255,255,.06);
+
+      border-radius: 12px;
     }
 
-    .ad-label {
-      font-size: 9px;
-      color: #777;
-      margin-bottom: 5px;
-      text-align: center;
-    }
 
-    /* Title */
-    .video-title {
-      font-size: clamp(22px, 5vw, 34px);
+    /* ================================
+       TITLE
+    ================================= */
+
+    .title {
+      font-size: clamp(24px, 5vw, 38px);
+
       font-weight: 900;
+
       line-height: 1.15;
+
       margin-bottom: 10px;
     }
 
-    .video-meta {
-      display: flex;
-      align-items: center;
-      gap: 15px;
+    .meta {
       color: #999;
+
       font-size: 14px;
+
       margin-bottom: 15px;
     }
 
-    /* Video */
-    .video-wrapper {
+
+    /* ================================
+       VIDEO
+    ================================= */
+
+    .video-box {
       position: relative;
+
       width: 100%;
+
       aspect-ratio: 16 / 9;
+
       background: #000;
+
       border-radius: 16px;
+
       overflow: hidden;
+
       box-shadow:
-        0 15px 50px rgba(0,0,0,.55),
-        0 0 40px rgba(150,0,255,.08);
+        0 20px 60px rgba(0,0,0,.6),
+        0 0 40px rgba(130,0,255,.08);
     }
 
-    #videoFrame {
+    .video-box iframe {
       width: 100%;
       height: 100%;
-      border: 0;
+
       display: block;
+
+      border: 0;
+
       background: #000;
     }
 
-    /* Overlay Ad */
-    #overlayAd {
-      position: absolute;
-      left: 50%;
-      bottom: 20px;
-      transform: translateX(-50%);
-      width: min(92%, 500px);
-      min-height: 70px;
-      z-index: 20;
-      background: rgba(0,0,0,.82);
-      border: 1px solid rgba(255,255,255,.15);
-      border-radius: 12px;
-      backdrop-filter: blur(8px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
 
-    .overlay-close {
-      position: absolute;
-      right: 5px;
-      top: 5px;
-      width: 25px;
-      height: 25px;
-      border: 0;
-      border-radius: 50%;
-      background: rgba(255,255,255,.15);
-      color: #fff;
-      cursor: pointer;
-      z-index: 30;
-    }
+    /* ================================
+       BUTTONS
+    ================================= */
 
-    /* Controls */
-    .controls {
+    .buttons {
       display: flex;
-      justify-content: space-between;
+
       align-items: center;
+
       gap: 10px;
-      margin-top: 14px;
-      padding: 12px;
-      border-radius: 14px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.07);
-    }
 
-    .control-left,
-    .control-right {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      margin-top: 14px;
     }
 
     .control-btn {
       border: 0;
-      background: rgba(255,255,255,.07);
+
       color: #fff;
-      padding: 10px 14px;
+
+      background: rgba(255,255,255,.08);
+
+      padding: 11px 16px;
+
       border-radius: 10px;
+
       cursor: pointer;
+
       font-size: 14px;
+
+      transition: .2s;
     }
 
     .control-btn:hover {
-      background: rgba(255,255,255,.13);
+      background: rgba(255,255,255,.17);
     }
 
-    .like-btn.liked {
-      background: linear-gradient(135deg, #ff1687, #8b5cff);
+    .control-btn:active {
+      transform: scale(.96);
     }
 
-    /* End Ad */
-    #endAdSection {
-      display: none;
-      margin-top: 20px;
-      padding: 20px 12px;
-      border-radius: 16px;
-      text-align: center;
-      background: rgba(255,255,255,.04);
-      border: 1px solid rgba(255,255,255,.08);
+    .liked {
+      background:
+        linear-gradient(
+          135deg,
+          #ff1590,
+          #8c5cff
+        );
     }
 
-    #endAdSection h3 {
-      margin-bottom: 12px;
-      font-size: 18px;
-    }
 
-    /* Description */
+    /* ================================
+       DESCRIPTION
+    ================================= */
+
     .description {
-      margin-top: 18px;
+      margin-top: 20px;
+
       padding: 18px;
-      border-radius: 16px;
-      background: rgba(255,255,255,.035);
-      border: 1px solid rgba(255,255,255,.07);
+
+      border-radius: 15px;
+
+      background: rgba(255,255,255,.05);
+
+      border: 1px solid rgba(255,255,255,.08);
+
       color: #aaa;
+
       line-height: 1.6;
     }
 
-    /* Toast */
-    #toast {
-      position: fixed;
-      left: 50%;
-      bottom: 25px;
-      transform: translate(-50%, 100px);
-      background: rgba(20,20,20,.95);
-      color: #fff;
-      padding: 12px 18px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.12);
-      z-index: 9999;
-      transition: .3s;
-      font-size: 14px;
-    }
 
-    #toast.show {
-      transform: translate(-50%, 0);
-    }
+    /* ================================
+       FOOTER
+    ================================= */
 
     footer {
       text-align: center;
+
       color: #555;
+
       padding: 30px 10px;
+
       font-size: 12px;
     }
 
+
+    /* ================================
+       MOBILE
+    ================================= */
+
     @media (max-width: 600px) {
-      header {
-        padding: 12px;
-      }
 
       .logo {
         font-size: 19px;
       }
 
-      .telegram-btn {
+      .telegram {
         padding: 9px 12px;
-        font-size: 13px;
+
+        font-size: 12px;
       }
 
       main {
-        padding: 14px 8px 40px;
+        padding:
+          15px
+          8px
+          40px;
       }
 
-      .video-wrapper {
+      .video-box {
         border-radius: 12px;
       }
 
-      .controls {
-        padding: 9px;
-      }
-
       .control-btn {
-        padding: 9px 11px;
+        padding:
+          10px
+          12px;
       }
     }
+
   </style>
+
+
+  <!-- =====================================================
+       ADSTERRA CODE #1
+       ===================================================== -->
+
+  <script src="https://pl30923744.effectivecpmnetwork.com/bc/bf/98/bcbf98c695a71ec20aa923a7a131ffa3.js"></script>
+
+
+  <!-- =====================================================
+       ADSTERRA CODE #2
+       ===================================================== -->
+
+  <script src="https://pl30923746.effectivecpmnetwork.com/60/5e/6e/605e6e402e2188c01fb7fcc993d62be2.js"></script>
+
 </head>
 
-<body>
 
-  <!-- ==============================
-       LOADING SCREEN
-  =============================== -->
-  <div id="loader">
-    <div class="loader-logo">PREMIUM</div>
-    <div class="spinner"></div>
-  </div>
+<body
+  oncontextmenu="return false"
+  ondragstart="return false"
+  onselectstart="return false"
+>
 
 
-  <!-- ==============================
+  <!-- =====================================================
        HEADER
-  =============================== -->
+       ===================================================== -->
+
   <header>
-    <div class="header-inner">
+
+    <div class="header">
 
       <div class="logo">
-        PREMIUM
+        VAIRAL VIDEO
       </div>
 
-      <!-- TELEGRAM LINK -->
       <a
-        id="telegramButton"
-        class="telegram-btn"
-        href="#"
+        class="telegram"
+        href="https://t.me/allvairallinkandvideo"
         target="_blank"
-        rel="noopener noreferrer">
+        rel="noopener noreferrer"
+      >
         ✈️ Join Telegram
       </a>
 
     </div>
+
   </header>
 
 
+  <!-- =====================================================
+       MAIN
+       ===================================================== -->
+
   <main>
 
-    <!-- ==============================
-         TOP ADSTERRA AD
-         
-         PASTE YOUR ADSTERRA CODE HERE
-    =============================== -->
 
-    <div class="ad-label">ADVERTISEMENT</div>
+    <!-- =====================================================
+         TOP AD
+         ===================================================== -->
 
-    <div class="ad-box" id="topAd">
+    <div class="ad-area">
 
       <!--
-      ================================
-      ADSTERRA TOP AD CODE
-      PASTE HERE
-      ================================
-
-      Example:
-
-      <script>
-      // YOUR ADSTERRA CODE
-      </script>
-
+        Adsterra Code #1 এবং #2
+        উপরে HEAD-এ load হচ্ছে।
       -->
 
-      <span style="color:#444;font-size:11px;">
-        TOP AD
-      </span>
-
     </div>
 
 
-    <!-- ==============================
+    <!-- =====================================================
          VIDEO TITLE
-    =============================== -->
+         ===================================================== -->
 
-    <h1 class="video-title" id="videoTitle">
-      Premium Video
+    <h1 class="title">
+      Premium Viral Video
     </h1>
 
-    <div class="video-meta">
-      <span>👁️ <span id="viewCount">0</span> views</span>
-      <span>❤️ <span id="likeCount">0</span> likes</span>
+
+    <div class="meta">
+
+      👁️
+      <span id="views">
+        0
+      </span>
+
+      Views
+
+      &nbsp; • &nbsp;
+
+      ❤️
+      <span id="likes">
+        0
+      </span>
+
+      Likes
+
     </div>
 
 
-    <!-- ==============================
-         VIDEO PLAYER
-         
-         VIDEY LINK IS SET IN JAVASCRIPT
-    =============================== -->
+    <!-- =====================================================
+         VIDEY PLAYER
+         ===================================================== -->
 
-    <div class="video-wrapper">
+    <div
+      class="video-box"
+      id="videoBox"
+    >
 
       <iframe
         id="videoFrame"
-        src=""
+        src="https://videy.co/v/?id=RACMTe6R1"
+        title="Vairal Video Player"
         allow="autoplay; fullscreen; picture-in-picture"
-        allowfullscreen>
+        allowfullscreen
+        referrerpolicy="no-referrer-when-downgrade"
+      >
       </iframe>
 
+    </div>
 
-      <!-- ==============================
-           VIDEO OVERLAY AD
-           
-           PASTE ADSTERRA CODE HERE
-      =============================== -->
 
-      <div id="overlayAd">
+    <!-- =====================================================
+         PLAYER BUTTONS
+         ===================================================== -->
 
-        <button
-          class="overlay-close"
-          onclick="closeOverlayAd()">
-          ×
-        </button>
+    <div class="buttons">
 
-        <!--
-        =================================
-        ADSTERRA OVERLAY CODE
-        PASTE HERE
-        =================================
-        -->
+      <button
+        class="control-btn"
+        id="likeBtn"
+        type="button"
+      >
+        ❤️ Like
+      </button>
 
-        <span style="color:#777;font-size:11px;">
-          VIDEO OVERLAY AD
-        </span>
 
+      <button
+        class="control-btn"
+        id="fullscreenBtn"
+        type="button"
+      >
+        ⛶ Fullscreen
+      </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         ADSTERRA CODE #3
+         ===================================================== -->
+
+    <div class="ad-area">
+
+      <script
+        async="async"
+        data-cfasync="false"
+        src="https://pl30923747.effectivecpmnetwork.com/12b187a99414c09ca49488896ff8e0ac/invoke.js"
+      >
+      </script>
+
+      <div
+        id="container-12b187a99414c09ca49488896ff8e0ac"
+      >
       </div>
 
     </div>
 
 
-    <!-- ==============================
-         CONTROLS
-    =============================== -->
-
-    <div class="controls">
-
-      <div class="control-left">
-
-        <button
-          class="control-btn like-btn"
-          id="likeButton"
-          onclick="toggleLike()">
-          ❤️ Like
-        </button>
-
-      </div>
-
-      <div class="control-right">
-
-        <button
-          class="control-btn"
-          onclick="openFullscreen()">
-          ⛶ Fullscreen
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <!-- ==============================
-         END AD
-         
-         PASTE ADSTERRA CODE HERE
-    =============================== -->
-
-    <div id="endAdSection">
-
-      <h3>
-        🎬 Thanks for watching
-      </h3>
-
-      <div class="ad-label">
-       ADVERTISEMENT
-      </div>
-
-      <div class="ad-box">
-
-        <!--
-        =================================
-        ADSTERRA END AD CODE
-        PASTE HERE
-        =================================
-        -->
-
-        <span style="color:#444;font-size:11px;">
-          END AD
-        </span>
-
-      </div>
-
-    </div>
-
-
-    <!-- ==============================
+    <!-- =====================================================
          DESCRIPTION
-    =============================== -->
+         ===================================================== -->
 
     <div class="description">
 
       <strong style="color:#fff;">
-        Premium Video
+        Vairal Video
       </strong>
 
       <br><br>
 
-      Enjoy the video in high quality.
-      Join our Telegram channel for more updates.
+      Watch the video above and join our Telegram
+      channel for more viral videos and updates.
+
+      <br><br>
+
+      ✈️ Telegram:
+      <strong>
+        @allvairallinkandvideo
+      </strong>
 
     </div>
+
 
   </main>
 
 
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
+
   <footer>
-    © 2026 Premium Video
+
+    © 2026 Vairal Video
+
   </footer>
 
 
-  <!-- Toast -->
-  <div id="toast"></div>
-
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
 
   <script>
 
-    /* =================================================
-       SETTINGS
-       ================================================= */
-
-
-    /*
-    ====================================================
-    1. VIDEY VIDEO LINK
-    ====================================================
-
-    এখানে আপনার Videy video link বসাবেন।
-
-    Example:
-
-    const VIDEY_VIDEO_URL =
-      "https://videy.co/v/xxxxxxxx";
-
-    */
-
-    const VIDEY_VIDEO_URL =
-      "PASTE_YOUR_VIDEY_LINK_HERE";
-
-
-    /*
-    ====================================================
-    2. TELEGRAM LINK
-    ====================================================
-
-    এখানে আপনার Telegram channel/group link বসাবেন।
-
-    Example:
-
-    const TELEGRAM_URL =
-      "https://t.me/yourchannel";
-
-    */
-
-    const TELEGRAM_URL =
-      "PASTE_YOUR_TELEGRAM_LINK_HERE";
-
-
-    /*
-    ====================================================
-    3. VIDEO TITLE
-    ====================================================
-    */
-
-    const VIDEO_TITLE =
-      "Premium Video";
-
-
-    /*
-    ====================================================
-       BASIC APP
-    ====================================================
-    */
-
-    const videoFrame =
-      document.getElementById("videoFrame");
-
-    const telegramButton =
-      document.getElementById("telegramButton");
-
-    const videoTitle =
-      document.getElementById("videoTitle");
-
-    const loader =
-      document.getElementById("loader");
-
-
-    /*
-    ====================================================
-       LOAD VIDEO
-    ====================================================
-    */
-
-    function loadVideo() {
-
-      if (
-        VIDEY_VIDEO_URL &&
-        !VIDEY_VIDEO_URL.includes("PASTE_YOUR")
-      ) {
-
-        videoFrame.src = VIDEY_VIDEO_URL;
-
-      } else {
-
-        videoFrame.src = "about:blank";
-
-        console.warn(
-          "Videy link is not configured."
-        );
-
-      }
-
-    }
-
-
-    /*
-    ====================================================
-       TELEGRAM
-    ====================================================
-    */
-
-    function setupTelegram() {
-
-      if (
-        TELEGRAM_URL &&
-        !TELEGRAM_URL.includes("PASTE_YOUR")
-      ) {
-
-        telegramButton.href =
-          TELEGRAM_URL;
-
-      } else {
-
-        telegramButton.href = "#";
-
-        telegramButton.addEventListener(
-          "click",
-          function(e) {
-
-            e.preventDefault();
-
-            showToast(
-              "Telegram link is not configured yet."
-            );
-
-          }
-        );
-
-      }
-
-    }
-
-
-    /*
-    ====================================================
-       TITLE
-    ====================================================
-    */
-
-    function setupTitle() {
-
-      if (VIDEO_TITLE.trim()) {
-
-        videoTitle.textContent =
-          VIDEO_TITLE;
-
-        document.title =
-          VIDEO_TITLE;
-
-      }
-
-    }
-
-
-    /*
-    ====================================================
+    /* =========================================
        VIEW COUNTER
-       
-       Local browser counter.
-       
-       NOTE:
-       এটি server/database counter নয়।
-    ====================================================
-    */
+    ========================================= */
 
-    function setupViews() {
-
-      let views =
-        Number(
-          localStorage.getItem(
-            "premium_video_views"
-          )
-        ) || 0;
-
-      views++;
-
-      localStorage.setItem(
-        "premium_video_views",
-        views
-      );
-
-      document.getElementById(
-        "viewCount"
-      ).textContent = views;
-
-    }
-
-
-    /*
-    ====================================================
-       LIKE
-    ====================================================
-    */
-
-    function setupLikes() {
-
-      const liked =
+    let views =
+      Number(
         localStorage.getItem(
-          "premium_video_liked"
-        ) === "true";
-
-      let likes =
-        Number(
-          localStorage.getItem(
-            "premium_video_likes"
-          )
-        ) || 0;
-
-      document.getElementById(
-        "likeCount"
-      ).textContent = likes;
-
-      if (liked) {
-
-        document
-          .getElementById("likeButton")
-          .classList.add("liked");
-
-      }
-
-    }
+          "vairal_views"
+        )
+      ) || 0;
 
 
-    function toggleLike() {
+    views++;
 
-      const button =
-        document.getElementById(
-          "likeButton"
-        );
 
-      let likes =
-        Number(
-          localStorage.getItem(
-            "premium_video_likes"
-          )
-        ) || 0;
+    localStorage.setItem(
+      "vairal_views",
+      views
+    );
 
-      const liked =
+
+    document.getElementById(
+      "views"
+    ).textContent = views;
+
+
+
+    /* =========================================
+       LIKE SYSTEM
+    ========================================= */
+
+    let likes =
+      Number(
         localStorage.getItem(
-          "premium_video_liked"
-        ) === "true";
+          "vairal_likes"
+        )
+      ) || 0;
 
 
-      if (!liked) {
-
-        likes++;
-
-        localStorage.setItem(
-          "premium_video_likes",
-          likes
-        );
-
-        localStorage.setItem(
-          "premium_video_liked",
-          "true"
-        );
-
-        button.classList.add("liked");
-
-        showToast("❤️ Liked!");
-
-      } else {
-
-        likes = Math.max(
-          0,
-          likes - 1
-        );
-
-        localStorage.setItem(
-          "premium_video_likes",
-          likes
-        );
-
-        localStorage.setItem(
-          "premium_video_liked",
-          "false"
-        );
-
-        button.classList.remove(
-          "liked"
-        );
-
-        showToast("Like removed");
-
-      }
+    let liked =
+      localStorage.getItem(
+        "vairal_liked"
+      ) === "true";
 
 
+    const likeBtn =
       document.getElementById(
-        "likeCount"
-      ).textContent = likes;
-
-    }
-
-
-    /*
-    ====================================================
-       FULLSCREEN
-    ====================================================
-    */
-
-    function openFullscreen() {
-
-      const wrapper =
-        document.querySelector(
-          ".video-wrapper"
-        );
-
-
-      if (
-        document.fullscreenElement
-      ) {
-
-        document.exitFullscreen();
-
-        return;
-
-      }
-
-
-      if (
-        wrapper.requestFullscreen
-      ) {
-
-        wrapper.requestFullscreen();
-
-      }
-
-    }
-
-
-    /*
-    ====================================================
-       OVERLAY AD
-    ====================================================
-    */
-
-    let overlayClosed = false;
-
-
-    function showOverlayAd() {
-
-      if (overlayClosed) return;
-
-      const overlay =
-        document.getElementById(
-          "overlayAd"
-        );
-
-      overlay.style.display =
-        "flex";
-
-    }
-
-
-    function closeOverlayAd() {
-
-      overlayClosed = true;
-
-      document.getElementById(
-        "overlayAd"
-      ).style.display = "none";
-
-    }
-
-
-    /*
-    ====================================================
-       END AD
-    ====================================================
-    */
-
-    function showEndAd() {
-
-      document.getElementById(
-        "endAdSection"
-      ).style.display = "block";
-
-      document
-        .getElementById("endAdSection")
-        .scrollIntoView({
-          behavior: "smooth",
-          block: "center"
-        });
-
-    }
-
-
-    /*
-    ====================================================
-       TOAST
-    ====================================================
-    */
-
-    function showToast(message) {
-
-      const toast =
-        document.getElementById(
-          "toast"
-        );
-
-      toast.textContent =
-        message;
-
-      toast.classList.add(
-        "show"
+        "likeBtn"
       );
 
 
-      setTimeout(
-        function() {
+    document.getElementById(
+      "likes"
+    ).textContent = likes;
 
-          toast.classList.remove(
-            "show"
+
+    if (liked) {
+
+      likeBtn.textContent =
+        "❤️ Liked";
+
+      likeBtn.classList.add(
+        "liked"
+      );
+
+    }
+
+
+    likeBtn.addEventListener(
+      "click",
+      function () {
+
+        if (!liked) {
+
+          likes++;
+
+          liked = true;
+
+          likeBtn.textContent =
+            "❤️ Liked";
+
+          likeBtn.classList.add(
+            "liked"
           );
 
-        },
-        2500
-      );
+        }
 
-    }
+        else {
 
-
-    /*
-    ====================================================
-       INIT
-    ====================================================
-    */
-
-    window.addEventListener(
-      "load",
-      function() {
-
-        loadVideo();
-
-        setupTelegram();
-
-        setupTitle();
-
-        setupViews();
-
-        setupLikes();
-
-
-        setTimeout(
-          function() {
-
-            loader.style.opacity =
-              "0";
-
-            setTimeout(
-              function() {
-
-                loader.style.display =
-                  "none";
-
-              },
-              500
+          likes =
+            Math.max(
+              0,
+              likes - 1
             );
 
-          },
-          700
+          liked = false;
+
+          likeBtn.textContent =
+            "❤️ Like";
+
+          likeBtn.classList.remove(
+            "liked"
+          );
+
+        }
+
+
+        localStorage.setItem(
+          "vairal_likes",
+          likes
         );
+
+
+        localStorage.setItem(
+          "vairal_liked",
+          liked
+        );
+
+
+        document.getElementById(
+          "likes"
+        ).textContent = likes;
 
       }
     );
 
 
-    /*
-    ====================================================
-       VIDEO OVERLAY DEMO TRIGGER
-       
-       Videy iframe হলে parent page সবসময়
-       video ended event পাবে না।
-       
-       তাই এখানে automatic timer ব্যবহার করা হয়েছে।
-       
-       পরে চাইলে এটি আপনার নির্দিষ্ট Videy
-       player implementation অনুযায়ী পরিবর্তন
-       করা যাবে।
-    ====================================================
-    */
 
-    setTimeout(
-      function() {
+    /* =========================================
+       FULLSCREEN
+    ========================================= */
 
-        showOverlayAd();
+    const fullscreenBtn =
+      document.getElementById(
+        "fullscreenBtn"
+      );
 
-      },
-      15000
+
+    const videoBox =
+      document.getElementById(
+        "videoBox"
+      );
+
+
+    fullscreenBtn.addEventListener(
+      "click",
+      function () {
+
+        if (
+          document.fullscreenElement
+        ) {
+
+          if (
+            document.exitFullscreen
+          ) {
+
+            document.exitFullscreen();
+
+          }
+
+          return;
+
+        }
+
+
+        if (
+          videoBox.requestFullscreen
+        ) {
+
+          videoBox.requestFullscreen();
+
+        }
+
+      }
     );
 
 
-    /*
-    ====================================================
-       END AD DEMO
+
+    /* =========================================
+       BASIC PROTECTION
        
-       60 seconds পরে End Ad দেখাবে।
-       
-       এটি শুধু placeholder behavior।
-    ====================================================
-    */
+       NOTE:
+       এটি ভিডিওকে 100% download আটকায় না।
+    ========================================= */
 
-    setTimeout(
-      function() {
+    document.addEventListener(
+      "contextmenu",
+      function (event) {
 
-        showEndAd();
+        event.preventDefault();
 
-      },
-      60000
+      }
     );
+
+
+    document.addEventListener(
+      "dragstart",
+      function (event) {
+
+        event.preventDefault();
+
+      }
+    );
+
+
+    document.addEventListener(
+      "selectstart",
+      function (event) {
+
+        event.preventDefault();
+
+      }
+    );
+
+
+    /* =========================================
+       BLOCK COMMON SOURCE / DEVTOOLS SHORTCUTS
+    ========================================= */
+
+    document.addEventListener(
+      "keydown",
+      function (event) {
+
+        const key =
+          event.key.toUpperCase();
+
+
+        /*
+          F12
+        */
+
+        if (
+          key === "F12"
+        ) {
+
+          event.preventDefault();
+
+          return;
+
+        }
+
+
+        /*
+          CTRL + U
+        */
+
+        if (
+          event.ctrlKey &&
+          key === "U"
+        ) {
+
+          event.preventDefault();
+
+          return;
+
+        }
+
+
+        /*
+          CTRL + SHIFT + I
+        CTRL + SHIFT + J
+        CTRL + SHIFT + C
+        */
+
+        if (
+          event.ctrlKey &&
+          event.shiftKey &&
+          (
+            key === "I" ||
+            key === "J" ||
+            key === "C"
+          )
+        ) {
+
+          event.preventDefault();
+
+          return;
+
+        }
+
+      }
+    );
+
+
+
+    /* =========================================
+       IFRAME PROTECTION
+    ========================================= */
+
+    const videoFrame =
+      document.getElementById(
+        "videoFrame"
+      );
+
+
+    videoFrame.addEventListener(
+      "contextmenu",
+      function (event) {
+
+        event.preventDefault();
+
+      }
+    );
+
 
   </script>
+
 
 </body>
 </html>
