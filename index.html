@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8">
 
   <meta
@@ -19,7 +18,6 @@
       box-sizing: border-box;
     }
 
-
     html,
     body {
       margin: 0;
@@ -27,11 +25,8 @@
       min-height: 100%;
     }
 
-
     body {
-
       min-height: 100vh;
-
       color: #fff;
 
       font-family:
@@ -45,27 +40,25 @@
           #35105f,
           transparent 35%
         ),
-
         radial-gradient(
           circle at bottom right,
           #60103c,
           transparent 35%
         ),
-
         #050507;
-
     }
 
 
+    /* ==========================================
+       HEADER
+    ========================================== */
+
     .header {
-
       position: sticky;
-
       top: 0;
-
       z-index: 100;
 
-      padding: 14px 12px;
+      padding: 12px;
 
       background:
         rgba(5,5,8,.94);
@@ -76,34 +69,23 @@
       border-bottom:
         1px solid
         rgba(255,255,255,.08);
-
     }
 
 
     .header-inner {
-
       width: 100%;
-
       max-width: 900px;
 
       margin: auto;
 
       display: flex;
-
       align-items: center;
-
-      justify-content:
-        space-between;
-
-      gap: 10px;
-
+      justify-content: space-between;
     }
 
 
     .logo {
-
       font-size: 21px;
-
       font-weight: 900;
 
       background:
@@ -113,53 +95,84 @@
           #8c5cff
         );
 
-      -webkit-background-clip:
-        text;
-
-      background-clip:
-        text;
+      -webkit-background-clip: text;
+      background-clip: text;
 
       color: transparent;
-
     }
 
 
-    .telegram {
+    /* ==========================================
+       TELEGRAM LOGO ONLY
+    ========================================== */
 
-      text-decoration: none;
+    .telegram-logo {
+      width: 44px;
+      height: 44px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
 
       color: #fff;
 
-      background: #168cff;
+      background: #229ED9;
 
-      padding:
-        10px 14px;
+      border-radius: 50%;
 
-      border-radius: 25px;
+      text-decoration: none;
 
-      font-size: 13px;
+      box-shadow:
+        0 5px 20px
+        rgba(34,158,217,.35);
 
-      font-weight: bold;
-
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease;
     }
 
 
+    .telegram-logo:hover {
+      transform: scale(1.08);
+
+      box-shadow:
+        0 7px 25px
+        rgba(34,158,217,.5);
+    }
+
+
+    .telegram-logo:active {
+      transform: scale(.95);
+    }
+
+
+    .telegram-logo svg {
+      width: 27px;
+      height: 27px;
+    }
+
+
+    /* ==========================================
+       MAIN
+    ========================================== */
+
     .container {
-
       width: 100%;
-
       max-width: 900px;
 
       margin: auto;
 
       padding:
         18px 10px 40px;
-
     }
 
 
-    .ad-box {
+    /* ==========================================
+       ADS
+    ========================================== */
 
+    .ad-box {
       width: 100%;
 
       min-height: 60px;
@@ -170,16 +183,17 @@
       display: flex;
 
       align-items: center;
-
       justify-content: center;
 
       overflow: hidden;
-
     }
 
 
-    h1 {
+    /* ==========================================
+       TITLE
+    ========================================== */
 
+    h1 {
       margin:
         5px 0 8px;
 
@@ -192,23 +206,23 @@
 
       text-transform:
         capitalize;
-
     }
 
 
     .info {
-
       color: #999;
 
       font-size: 13px;
 
       margin-bottom: 14px;
-
     }
 
 
-    .video-wrapper {
+    /* ==========================================
+       VIDEO
+    ========================================== */
 
+    .video-wrapper {
       width: 100%;
 
       background: #000;
@@ -220,12 +234,10 @@
       box-shadow:
         0 20px 60px
         rgba(0,0,0,.65);
-
     }
 
 
     video {
-
       display: block;
 
       width: 100%;
@@ -235,859 +247,8 @@
       min-height: 200px;
 
       background: #000;
-
     }
 
 
     .status {
-
-      min-height: 220px;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      text-align: center;
-
-      padding: 30px;
-
-      color: #aaa;
-
-      font-size: 15px;
-
-    }
-
-
-    .like-button {
-
-      margin-top: 12px;
-
-      padding:
-        10px 16px;
-
-      border: 0;
-
-      border-radius: 10px;
-
-      color: #fff;
-
-      background:
-        rgba(255,255,255,.08);
-
-      cursor: pointer;
-
-      font-size: 14px;
-
-    }
-
-
-    .like-button.active {
-
-      background:
-        linear-gradient(
-          135deg,
-          #ff1590,
-          #8c5cff
-        );
-
-    }
-
-
-    .description {
-
-      margin-top: 18px;
-
-      padding: 17px;
-
-      border-radius: 13px;
-
-      background:
-        rgba(255,255,255,.05);
-
-      border:
-        1px solid
-        rgba(255,255,255,.08);
-
-      color: #aaa;
-
-      line-height: 1.6;
-
-    }
-
-
-    footer {
-
-      text-align: center;
-
-      padding:
-        25px 10px;
-
-      color: #555;
-
-      font-size: 12px;
-
-    }
-
-
-    @media (max-width: 600px) {
-
-      .logo {
-
-        font-size: 18px;
-
-      }
-
-
-      .telegram {
-
-        padding:
-          9px 11px;
-
-        font-size: 12px;
-
-      }
-
-    }
-
-  </style>
-
-
-  <!-- ==================================================
-       POPUNDER
-  =================================================== -->
-
-  <script
-    src="https://pl30923744.effectivecpmnetwork.com/bc/bf/98/bcbf98c695a71ec20aa923a7a131ffa3.js">
-  </script>
-
-
-  <!-- ==================================================
-       SOCIAL BAR
-  =================================================== -->
-
-  <script
-    src="https://pl30923746.effectivecpmnetwork.com/60/5e/6e/605e6e402e2188c01fb7fcc993d62be2.js">
-  </script>
-
-
-</head>
-
-
-<body>
-
-
-  <!-- ==================================================
-       HEADER
-  =================================================== -->
-
-  <header class="header">
-
-    <div class="header-inner">
-
-      <div class="logo">
-        VAIRAL VIDEO
-      </div>
-
-
-      <a
-        class="telegram"
-        href="https://t.me/allvairallinkandvideo"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        ✈️ Telegram
-      </a>
-
-    </div>
-
-  </header>
-
-
-
-  <main class="container">
-
-
-    <!-- ==================================================
-         TOP AD
-    =================================================== -->
-
-    <div class="ad-box">
-
-      <!-- আপনার Top Ad code এখানে রাখতে পারবেন -->
-
-    </div>
-
-
-
-    <!-- ==================================================
-         TITLE
-    =================================================== -->
-
-    <h1 id="videoTitle">
-      Loading Video...
-    </h1>
-
-
-    <div class="info">
-
-      👁️
-      <span id="views">
-        0
-      </span>
-      Views
-
-      &nbsp; • &nbsp;
-
-      ❤️
-      <span id="likes">
-        0
-      </span>
-      Likes
-
-    </div>
-
-
-
-    <!-- ==================================================
-         VIDEO PLAYER
-    =================================================== -->
-
-    <div class="video-wrapper">
-
-
-      <div
-        id="videoStatus"
-        class="status"
-      >
-        ভিডিও লোড হচ্ছে...
-      </div>
-
-
-      <video
-        id="videoPlayer"
-        controls
-        playsinline
-        preload="metadata"
-        controlsList="nodownload"
-        disablePictureInPicture
-        style="display:none;"
-      >
-
-        <source
-          id="videoSource"
-          type="video/mp4"
-        >
-
-        আপনার browser HTML5 video support করে না।
-
-      </video>
-
-
-    </div>
-
-
-
-    <!-- ==================================================
-         LIKE
-    =================================================== -->
-
-    <button
-      id="likeButton"
-      class="like-button"
-      type="button"
-    >
-
-      ❤️ Like
-
-    </button>
-
-
-
-    <!-- ==================================================
-         AD CODE #3
-    =================================================== -->
-
-    <div class="ad-box">
-
-
-      <script
-        async="async"
-        data-cfasync="false"
-        src="https://pl30923747.effectivecpmnetwork.com/12b187a99414c09ca49488896ff8e0ac/invoke.js">
-      </script>
-
-
-      <div
-        id="container-12b187a99414c09ca49488896ff8e0ac">
-      </div>
-
-
-    </div>
-
-
-
-    <!-- ==================================================
-         DESCRIPTION
-    =================================================== -->
-
-    <div class="description">
-
-      <strong style="color:#fff;">
-        Vairal Video
-      </strong>
-
-      <br><br>
-
-      Watch the video and join our
-      Telegram channel for more videos.
-
-      <br><br>
-
-      
-      <a
-        class="telegram"
-        href="https://t.me/allvairallinkandvideo"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        ✈️ Telegram
-      </a>
-
-    </div>
-
-
-  </main>
-
-
-
-  <footer>
-
-    © 2026 Vairal Video
-
-  </footer>
-
-
-
-  <script>
-
-    /* ====================================================
-       SUPABASE CONFIGURATION
-    ==================================================== */
-
-    const SUPABASE_URL =
-      "https://mshoftgubfbkvynndtnu.supabase.co";
-
-
-    const SUPABASE_BUCKET =
-      "Video";
-
-
-    const SUPABASE_KEY =
-      "sb_publishable_2L716MuF36gsDT5fGu_k9Q_LzGLqTk0";
-
-
-
-    /* ====================================================
-       ELEMENTS
-    ==================================================== */
-
-    const videoPlayer =
-      document.getElementById(
-        "videoPlayer"
-      );
-
-
-    const videoSource =
-      document.getElementById(
-        "videoSource"
-      );
-
-
-    const videoStatus =
-      document.getElementById(
-        "videoStatus"
-      );
-
-
-    const videoTitle =
-      document.getElementById(
-        "videoTitle"
-      );
-
-
-
-    /* ====================================================
-       GET VIDEO FILES FROM SUPABASE
-    ==================================================== */
-
-    async function getVideos() {
-
-      const url =
-        SUPABASE_URL +
-        "/storage/v1/object/list/" +
-        SUPABASE_BUCKET;
-
-
-      const response =
-        await fetch(
-          url,
-          {
-            method: "POST",
-
-            headers: {
-
-              "apikey":
-                SUPABASE_KEY,
-
-              "Authorization":
-                "Bearer " +
-                SUPABASE_KEY,
-
-              "Content-Type":
-                "application/json"
-
-            },
-
-            body: JSON.stringify({
-
-              prefix: "",
-
-              limit: 1000,
-
-              offset: 0
-
-            })
-
-          }
-        );
-
-
-      if (!response.ok) {
-
-        const error =
-          await response.text();
-
-        throw new Error(
-          "Supabase Storage error " +
-          response.status +
-          ": " +
-          error
-        );
-
-      }
-
-
-      const files =
-        await response.json();
-
-
-      return files.filter(
-        function(file) {
-
-          return (
-            file.name &&
-            file.name
-              .toLowerCase()
-              .endsWith(".mp4")
-          );
-
-        }
-      );
-
-    }
-
-
-
-    /* ====================================================
-       SORT VIDEOS BY NUMBER
-
-       video-10
-       video-9
-       video-8
-       ...
-    ==================================================== */
-
-    function sortVideos(videos) {
-
-      return videos.sort(
-        function(a, b) {
-
-          const aMatch =
-            a.name.match(/\d+/);
-
-          const bMatch =
-            b.name.match(/\d+/);
-
-
-          const aNumber =
-            aMatch
-              ? parseInt(
-                  aMatch[0],
-                  10
-                )
-              : 0;
-
-
-          const bNumber =
-            bMatch
-              ? parseInt(
-                  bMatch[0],
-                  10
-                )
-              : 0;
-
-
-          return (
-            bNumber -
-            aNumber
-          );
-
-        }
-      );
-
-    }
-
-
-
-    /* ====================================================
-       LOAD CURRENT VIDEO
-    ==================================================== */
-
-    async function loadVideo() {
-
-      try {
-
-        videoStatus.style.display =
-          "flex";
-
-        videoStatus.textContent =
-          "ভিডিও লোড হচ্ছে...";
-
-
-        videoPlayer.style.display =
-          "none";
-
-
-        /* Supabase থেকে সব MP4 */
-
-        let videos =
-          await getVideos();
-
-
-        if (!videos.length) {
-
-          throw new Error(
-            "Video bucket-এ কোনো MP4 পাওয়া যায়নি।"
-          );
-
-        }
-
-
-        /* Number অনুযায়ী sort */
-
-        videos =
-          sortVideos(videos);
-
-
-        console.log(
-          "Supabase videos:",
-          videos
-        );
-
-
-        /* =================================================
-           VIDEO SEQUENCE
-
-           নতুন visitor:
-           video-10 → video-9 → video-8 ...
-
-           নতুন video upload হলে সেটিও
-           automatically list-এ আসবে।
-        ================================================= */
-
-
-        const STORAGE_KEY =
-          "vairal_current_video_name";
-
-
-        const lastVideo =
-          localStorage.getItem(
-            STORAGE_KEY
-          );
-
-
-        let index = 0;
-
-
-        if (lastVideo) {
-
-          const lastIndex =
-            videos.findIndex(
-              function(video) {
-
-                return (
-                  video.name ===
-                  lastVideo
-                );
-
-              }
-            );
-
-
-          if (lastIndex >= 0) {
-
-            index =
-              (
-                lastIndex + 1
-              ) %
-              videos.length;
-
-          }
-
-        }
-
-
-        const selectedVideo =
-          videos[index];
-
-
-        /* বর্তমান ভিডিও save */
-
-        localStorage.setItem(
-          STORAGE_KEY,
-          selectedVideo.name
-        );
-
-
-        /* =================================================
-           PUBLIC VIDEO URL
-        ================================================= */
-
-        const videoURL =
-          SUPABASE_URL +
-          "/storage/v1/object/public/" +
-          SUPABASE_BUCKET +
-          "/" +
-          encodeURIComponent(
-            selectedVideo.name
-          );
-
-
-        console.log(
-          "Playing:",
-          selectedVideo.name
-        );
-
-
-        /* =================================================
-           SET VIDEO
-        ================================================= */
-
-        videoSource.src =
-          videoURL;
-
-
-        videoPlayer.load();
-
-
-        videoPlayer.style.display =
-          "block";
-
-
-        videoStatus.style.display =
-          "none";
-
-
-        /* =================================================
-           TITLE
-        ================================================= */
-
-        videoTitle.textContent =
-          selectedVideo.name
-            .replace(
-              /\.mp4$/i,
-              ""
-            )
-            .replace(
-              /[-_]/g,
-              " "
-            );
-
-
-      }
-
-      catch (error) {
-
-        console.error(
-          "VIDEO ERROR:",
-          error
-        );
-
-
-        videoPlayer.style.display =
-          "none";
-
-
-        videoStatus.style.display =
-          "flex";
-
-
-        videoStatus.innerHTML =
-          "⚠️ ভিডিও লোড করা যাচ্ছে না।<br><br>" +
-          "Supabase Storage permission অথবা API key পরীক্ষা করুন।";
-
-      }
-
-    }
-
-
-
-    /* ====================================================
-       START VIDEO
-    ==================================================== */
-
-    loadVideo();
-
-
-
-    /* ====================================================
-       VIEW COUNTER
-    ==================================================== */
-
-    let views =
-      Number(
-        localStorage.getItem(
-          "vairal_views"
-        )
-      ) || 0;
-
-
-    views++;
-
-
-    localStorage.setItem(
-      "vairal_views",
-      views
-    );
-
-
-    document.getElementById(
-      "views"
-    ).textContent =
-      views;
-
-
-
-    /* ====================================================
-       LIKE SYSTEM
-    ==================================================== */
-
-    let likes =
-      Number(
-        localStorage.getItem(
-          "vairal_likes"
-        )
-      ) || 0;
-
-
-    let liked =
-      localStorage.getItem(
-        "vairal_liked"
-      ) === "true";
-
-
-    const likeButton =
-      document.getElementById(
-        "likeButton"
-      );
-
-
-    document.getElementById(
-      "likes"
-    ).textContent =
-      likes;
-
-
-    if (liked) {
-
-      likeButton.classList.add(
-        "active"
-      );
-
-      likeButton.textContent =
-        "❤️ Liked";
-
-    }
-
-
-    likeButton.addEventListener(
-      "click",
-      function() {
-
-        if (!liked) {
-
-          likes++;
-
-          liked = true;
-
-
-          likeButton.classList.add(
-            "active"
-          );
-
-
-          likeButton.textContent =
-            "❤️ Liked";
-
-        }
-
-        else {
-
-          likes =
-            Math.max(
-              0,
-              likes - 1
-            );
-
-          liked = false;
-
-
-          likeButton.classList.remove(
-            "active"
-          );
-
-
-          likeButton.textContent =
-            "❤️ Like";
-
-        }
-
-
-        localStorage.setItem(
-          "vairal_likes",
-          likes
-        );
-
-
-        localStorage.setItem(
-          "vairal_liked",
-          liked
-        );
-
-
-        document.getElementById(
-          "likes"
-        ).textContent =
-          likes;
-
-      }
-
-    );
-
-
-  </script>
-
-</body>
-</html>
+      min-height: 
