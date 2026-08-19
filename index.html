@@ -124,7 +124,7 @@
     }
 
     /* =========================
-       CLOUDINARY PLAYER
+       VIDEO PLAYER
     ========================== */
 
     .video-box {
@@ -139,7 +139,8 @@
       overflow: hidden;
 
       box-shadow:
-        0 20px 60px rgba(0,0,0,.6);
+        0 20px 60px rgba(0,0,0,.6),
+        0 0 40px rgba(130,0,255,.08);
     }
 
     .video-box iframe {
@@ -178,11 +179,17 @@
       cursor: pointer;
 
       font-size: 14px;
+
+      transition: .2s;
     }
 
     .control-btn:hover {
       background:
         rgba(255,255,255,.17);
+    }
+
+    .control-btn:active {
+      transform: scale(.96);
     }
 
     .liked {
@@ -226,7 +233,11 @@
       font-size: 12px;
     }
 
-    @media(max-width:600px) {
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media (max-width: 600px) {
 
       .logo {
         font-size: 19px;
@@ -266,6 +277,7 @@
 
 
 <body>
+
 
   <!-- =========================
        HEADER
@@ -313,7 +325,7 @@
       class="title"
       id="videoTitle"
     >
-      Premium Viral Video
+      Premium Viral Video #1
     </h1>
 
 
@@ -333,36 +345,19 @@
 
 
     <!-- ==================================================
-         CLOUDINARY VIDEO PLAYER
+         CLOUDINARY VIDEO
 
-         👇👇👇
-
-         এখানে আপনার Cloudinary Player URL বসাবেন।
-
-         Example:
-
-         https://player.cloudinary.com/embed/?cloud_name=rr8qrzr5&public_id=Salsa_35
-
+         আপনার দেওয়া ভিডিও ইতিমধ্যে এখানে বসানো হয়েছে।
     =================================================== -->
 
     <div class="video-box">
 
       <iframe
         id="videoFrame"
-
-        src="CLOUDINARY_VIDEO_URL"
-
-        title="Video Player"
-
-        allow="
-          autoplay;
-          fullscreen;
-          encrypted-media;
-          picture-in-picture
-        "
-
-        allowfullscreen
-      >
+        src="https://player.cloudinary.com/embed/?cloud_name=rr8qrzr5&public_id=Salsa_35"
+        title="Vairal Video"
+        allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+        allowfullscreen>
       </iframe>
 
     </div>
@@ -394,13 +389,11 @@
       <script
         async="async"
         data-cfasync="false"
-        src="https://pl30923747.effectivecpmnetwork.com/12b187a99414c09ca49488896ff8e0ac/invoke.js"
-      >
+        src="https://pl30923747.effectivecpmnetwork.com/12b187a99414c09ca49488896ff8e0ac/invoke.js">
       </script>
 
       <div
-        id="container-12b187a99414c09ca49488896ff8e0ac"
-      >
+        id="container-12b187a99414c09ca49488896ff8e0ac">
       </div>
 
     </div>
@@ -444,43 +437,21 @@
 
   <script>
 
-    /* ==================================================
-       CLOUDINARY VIDEO
-
-       👇 এখানে আপনার Cloudinary URL বসাবেন
-
-    =================================================== */
-
-    const CLOUDINARY_VIDEO_URL =
-      "CLOUDINARY_VIDEO_URL";
-
-
-    document.getElementById(
-      "videoFrame"
-    ).src = CLOUDINARY_VIDEO_URL;
-
-
-
-    /* ==================================================
+    /* ==========================================
        VIEW COUNTER
-    =================================================== */
+    ========================================== */
 
     let views =
       Number(
-        localStorage.getItem(
-          "vairal_views"
-        )
+        localStorage.getItem("vairal_views")
       ) || 0;
 
-
     views++;
-
 
     localStorage.setItem(
       "vairal_views",
       views
     );
-
 
     document.getElementById(
       "views"
@@ -488,17 +459,14 @@
 
 
 
-    /* ==================================================
+    /* ==========================================
        LIKE SYSTEM
-    =================================================== */
+    ========================================== */
 
     let likes =
       Number(
-        localStorage.getItem(
-          "vairal_likes"
-        )
+        localStorage.getItem("vairal_likes")
       ) || 0;
-
 
     let liked =
       localStorage.getItem(
@@ -546,9 +514,7 @@
             "liked"
           );
 
-        }
-
-        else {
+        } else {
 
           likes =
             Math.max(
@@ -573,7 +539,6 @@
           likes
         );
 
-
         localStorage.setItem(
           "vairal_liked",
           liked
@@ -588,22 +553,19 @@
     );
 
 
-
-    /* ==================================================
-       BASIC RIGHT CLICK PROTECTION
-    =================================================== */
+    /* ==========================================
+       BASIC RIGHT-CLICK PROTECTION
+    ========================================== */
 
     document.addEventListener(
       "contextmenu",
       function(event) {
-
         event.preventDefault();
-
       }
     );
 
-
   </script>
+
 
 </body>
 </html>
