@@ -1,182 +1,395 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>Vairal Video</title>
 
+
   <style>
+
     * {
       box-sizing: border-box;
     }
 
+
+    html,
     body {
       margin: 0;
-      min-height: 100vh;
-      color: #fff;
-      font-family: Arial, Helvetica, sans-serif;
-      background:
-        radial-gradient(circle at top left, #35105f, transparent 35%),
-        radial-gradient(circle at bottom right, #60103c, transparent 35%),
-        #050507;
+      padding: 0;
+      min-height: 100%;
     }
+
+
+    body {
+
+      min-height: 100vh;
+
+      color: #fff;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      background:
+        radial-gradient(
+          circle at top left,
+          #35105f,
+          transparent 35%
+        ),
+
+        radial-gradient(
+          circle at bottom right,
+          #60103c,
+          transparent 35%
+        ),
+
+        #050507;
+
+    }
+
 
     .header {
+
       position: sticky;
+
       top: 0;
+
       z-index: 100;
+
       padding: 14px 12px;
-      background: rgba(5,5,8,.94);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,.08);
+
+      background:
+        rgba(5,5,8,.94);
+
+      backdrop-filter:
+        blur(12px);
+
+      border-bottom:
+        1px solid
+        rgba(255,255,255,.08);
+
     }
+
 
     .header-inner {
+
+      width: 100%;
+
       max-width: 900px;
+
       margin: auto;
+
       display: flex;
+
       align-items: center;
-      justify-content: space-between;
+
+      justify-content:
+        space-between;
+
       gap: 10px;
+
     }
+
 
     .logo {
+
       font-size: 21px;
+
       font-weight: 900;
-      background: linear-gradient(90deg,#ff1590,#8c5cff);
-      -webkit-background-clip: text;
-      background-clip: text;
+
+      background:
+        linear-gradient(
+          90deg,
+          #ff1590,
+          #8c5cff
+        );
+
+      -webkit-background-clip:
+        text;
+
+      background-clip:
+        text;
+
       color: transparent;
+
     }
+
 
     .telegram {
+
       text-decoration: none;
-      color: white;
+
+      color: #fff;
+
       background: #168cff;
-      padding: 10px 14px;
+
+      padding:
+        10px 14px;
+
       border-radius: 25px;
+
       font-size: 13px;
+
       font-weight: bold;
+
     }
+
 
     .container {
+
       width: 100%;
+
       max-width: 900px;
+
       margin: auto;
-      padding: 18px 10px 40px;
+
+      padding:
+        18px 10px 40px;
+
     }
+
 
     .ad-box {
+
       width: 100%;
+
       min-height: 60px;
-      margin: 10px 0 18px;
+
+      margin:
+        10px 0 18px;
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
+
       overflow: hidden;
+
     }
+
 
     h1 {
-      margin: 5px 0 8px;
-      font-size: clamp(22px,5vw,34px);
+
+      margin:
+        5px 0 8px;
+
+      font-size:
+        clamp(
+          22px,
+          5vw,
+          34px
+        );
+
+      text-transform:
+        capitalize;
+
     }
+
 
     .info {
+
       color: #999;
+
       font-size: 13px;
+
       margin-bottom: 14px;
+
     }
+
 
     .video-wrapper {
+
       width: 100%;
+
       background: #000;
+
       border-radius: 14px;
+
       overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,.65);
+
+      box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.65);
+
     }
+
 
     video {
+
       display: block;
+
       width: 100%;
+
       height: auto;
+
       min-height: 200px;
+
       background: #000;
+
     }
+
 
     .status {
+
+      min-height: 220px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
       text-align: center;
-      padding: 30px 15px;
+
+      padding: 30px;
+
       color: #aaa;
+
+      font-size: 15px;
+
     }
+
 
     .like-button {
+
       margin-top: 12px;
-      padding: 10px 16px;
+
+      padding:
+        10px 16px;
+
       border: 0;
+
       border-radius: 10px;
-      color: white;
-      background: rgba(255,255,255,.08);
+
+      color: #fff;
+
+      background:
+        rgba(255,255,255,.08);
+
       cursor: pointer;
+
       font-size: 14px;
+
     }
+
 
     .like-button.active {
-      background: linear-gradient(135deg,#ff1590,#8c5cff);
+
+      background:
+        linear-gradient(
+          135deg,
+          #ff1590,
+          #8c5cff
+        );
+
     }
+
 
     .description {
+
       margin-top: 18px;
+
       padding: 17px;
+
       border-radius: 13px;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.08);
+
+      background:
+        rgba(255,255,255,.05);
+
+      border:
+        1px solid
+        rgba(255,255,255,.08);
+
       color: #aaa;
+
       line-height: 1.6;
+
     }
+
 
     footer {
+
       text-align: center;
-      padding: 25px 10px;
+
+      padding:
+        25px 10px;
+
       color: #555;
+
       font-size: 12px;
+
     }
 
-    @media(max-width:600px) {
+
+    @media (max-width: 600px) {
+
       .logo {
+
         font-size: 18px;
+
       }
+
 
       .telegram {
-        padding: 9px 11px;
+
+        padding:
+          9px 11px;
+
         font-size: 12px;
+
       }
+
     }
+
   </style>
 
 
-  <!-- ================================
-       POPUNDER_1
-  ================================= -->
-  <script src="https://pl30923744.effectivecpmnetwork.com/bc/bf/98/bcbf98c695a71ec20aa923a7a131ffa3.js"></script>
+  <!-- ==================================================
+       POPUNDER
+  =================================================== -->
+
+  <script
+    src="https://pl30923744.effectivecpmnetwork.com/bc/bf/98/bcbf98c695a71ec20aa923a7a131ffa3.js">
+  </script>
 
 
-  <!-- ================================
+  <!-- ==================================================
        SOCIAL BAR
-  ================================= -->
-  <script src="https://pl30923746.effectivecpmnetwork.com/60/5e/6e/605e6e402e2188c01fb7fcc993d62be2.js"></script>
+  =================================================== -->
+
+  <script
+    src="https://pl30923746.effectivecpmnetwork.com/60/5e/6e/605e6e402e2188c01fb7fcc993d62be2.js">
+  </script>
+
 
 </head>
 
 
 <body>
 
-  <div class="header">
+
+  <!-- ==================================================
+       HEADER
+  =================================================== -->
+
+  <header class="header">
+
     <div class="header-inner">
 
       <div class="logo">
         VAIRAL VIDEO
       </div>
+
 
       <a
         class="telegram"
@@ -188,15 +401,29 @@
       </a>
 
     </div>
-  </div>
+
+  </header>
 
 
-  <div class="container">
+
+  <main class="container">
 
 
-    <!-- TOP AD -->
-    <div class="ad-box"></div>
+    <!-- ==================================================
+         TOP AD
+    =================================================== -->
 
+    <div class="ad-box">
+
+      <!-- আপনার Top Ad code এখানে রাখতে পারবেন -->
+
+    </div>
+
+
+
+    <!-- ==================================================
+         TITLE
+    =================================================== -->
 
     <h1 id="videoTitle">
       Loading Video...
@@ -206,30 +433,37 @@
     <div class="info">
 
       👁️
-      <span id="views">0</span>
+      <span id="views">
+        0
+      </span>
       Views
 
       &nbsp; • &nbsp;
 
       ❤️
-      <span id="likes">0</span>
+      <span id="likes">
+        0
+      </span>
       Likes
 
     </div>
 
 
-    <!-- ================================
+
+    <!-- ==================================================
          VIDEO PLAYER
-    ================================= -->
+    =================================================== -->
 
     <div class="video-wrapper">
+
 
       <div
         id="videoStatus"
         class="status"
       >
-        Loading video...
+        ভিডিও লোড হচ্ছে...
       </div>
+
 
       <video
         id="videoPlayer"
@@ -237,36 +471,46 @@
         playsinline
         preload="metadata"
         controlsList="nodownload"
+        disablePictureInPicture
         style="display:none;"
       >
+
         <source
           id="videoSource"
           type="video/mp4"
         >
 
-        Your browser does not support HTML5 video.
+        আপনার browser HTML5 video support করে না।
 
       </video>
+
 
     </div>
 
 
-    <!-- LIKE -->
+
+    <!-- ==================================================
+         LIKE
+    =================================================== -->
 
     <button
-      class="like-button"
       id="likeButton"
+      class="like-button"
       type="button"
     >
+
       ❤️ Like
+
     </button>
 
 
-    <!-- ================================
-         PREVIOUS AD CODE #3
-    ================================= -->
+
+    <!-- ==================================================
+         AD CODE #3
+    =================================================== -->
 
     <div class="ad-box">
+
 
       <script
         async="async"
@@ -274,12 +518,19 @@
         src="https://pl30923747.effectivecpmnetwork.com/12b187a99414c09ca49488896ff8e0ac/invoke.js">
       </script>
 
+
       <div
         id="container-12b187a99414c09ca49488896ff8e0ac">
       </div>
 
+
     </div>
 
+
+
+    <!-- ==================================================
+         DESCRIPTION
+    =================================================== -->
 
     <div class="description">
 
@@ -289,91 +540,105 @@
 
       <br><br>
 
-      Watch the video and join our Telegram channel
-      for more videos.
+      Watch the video and join our
+      Telegram channel for more videos.
 
       <br><br>
-     <a
-        class="telegram"
-        href="https://t.me/allvairallinkandvideo"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        ✈️ Telegram
-      </a>
+
+      ✈️
+
+      <strong>
+        @allvairallinkandvideo
+      </strong>
+
     </div>
 
-  </div>
+
+  </main>
+
 
 
   <footer>
+
     © 2026 Vairal Video
+
   </footer>
+
 
 
   <script>
 
-    /* =================================================
+    /* ====================================================
        SUPABASE CONFIGURATION
-    ================================================= */
+    ==================================================== */
 
     const SUPABASE_URL =
       "https://mshoftgubfbkvynndtnu.supabase.co";
 
+
     const SUPABASE_BUCKET =
       "Video";
+
 
     const SUPABASE_KEY =
       "sb_publishable_2L716MuF36gsDT5fGu_k9Q_LzGLqTk0";
 
 
-    /* =================================================
+
+    /* ====================================================
        ELEMENTS
-    ================================================= */
+    ==================================================== */
 
     const videoPlayer =
-      document.getElementById("videoPlayer");
+      document.getElementById(
+        "videoPlayer"
+      );
+
 
     const videoSource =
-      document.getElementById("videoSource");
+      document.getElementById(
+        "videoSource"
+      );
+
 
     const videoStatus =
-      document.getElementById("videoStatus");
+      document.getElementById(
+        "videoStatus"
+      );
+
 
     const videoTitle =
-      document.getElementById("videoTitle");
+      document.getElementById(
+        "videoTitle"
+      );
 
 
-    /* =================================================
-       LOAD VIDEOS AUTOMATICALLY
-       
-       Supabase Video bucket থেকে MP4 files নেওয়া হবে।
-    ================================================= */
 
-    async function loadVideos() {
+    /* ====================================================
+       GET VIDEO FILES FROM SUPABASE
+    ==================================================== */
 
-      try {
+    async function getVideos() {
 
-        videoStatus.textContent =
-          "Loading video...";
+      const url =
+        SUPABASE_URL +
+        "/storage/v1/object/list/" +
+        SUPABASE_BUCKET;
 
 
-        const response = await fetch(
-
-          SUPABASE_URL +
-          "/storage/v1/object/list/" +
-          SUPABASE_BUCKET,
-
+      const response =
+        await fetch(
+          url,
           {
             method: "POST",
 
             headers: {
 
-              "Authorization":
-                "Bearer " +
+              "apikey":
                 SUPABASE_KEY,
 
-              "apikey":
+              "Authorization":
+                "Bearer " +
                 SUPABASE_KEY,
 
               "Content-Type":
@@ -387,84 +652,195 @@
 
               limit: 1000,
 
-              offset: 0,
-
-              sortBy: {
-                column: "name",
-                order: "desc"
-              }
+              offset: 0
 
             })
 
           }
-
         );
 
 
-        if (!response.ok) {
+      if (!response.ok) {
 
-          throw new Error(
-            "Supabase file list failed: " +
-            response.status
+        const error =
+          await response.text();
+
+        throw new Error(
+          "Supabase Storage error " +
+          response.status +
+          ": " +
+          error
+        );
+
+      }
+
+
+      const files =
+        await response.json();
+
+
+      return files.filter(
+        function(file) {
+
+          return (
+            file.name &&
+            file.name
+              .toLowerCase()
+              .endsWith(".mp4")
           );
 
         }
+      );
+
+    }
 
 
-        const files =
-          await response.json();
+
+    /* ====================================================
+       SORT VIDEOS BY NUMBER
+
+       video-10
+       video-9
+       video-8
+       ...
+    ==================================================== */
+
+    function sortVideos(videos) {
+
+      return videos.sort(
+        function(a, b) {
+
+          const aMatch =
+            a.name.match(/\d+/);
+
+          const bMatch =
+            b.name.match(/\d+/);
 
 
-        /* শুধু MP4 ভিডিও */
+          const aNumber =
+            aMatch
+              ? parseInt(
+                  aMatch[0],
+                  10
+                )
+              : 0;
 
-        const videos =
-          files.filter(file => {
 
-            return (
-              file.name &&
-              file.name
-                .toLowerCase()
-                .endsWith(".mp4")
-            );
+          const bNumber =
+            bMatch
+              ? parseInt(
+                  bMatch[0],
+                  10
+                )
+              : 0;
 
-          });
+
+          return (
+            bNumber -
+            aNumber
+          );
+
+        }
+      );
+
+    }
+
+
+
+    /* ====================================================
+       LOAD CURRENT VIDEO
+    ==================================================== */
+
+    async function loadVideo() {
+
+      try {
+
+        videoStatus.style.display =
+          "flex";
+
+        videoStatus.textContent =
+          "ভিডিও লোড হচ্ছে...";
+
+
+        videoPlayer.style.display =
+          "none";
+
+
+        /* Supabase থেকে সব MP4 */
+
+        let videos =
+          await getVideos();
 
 
         if (!videos.length) {
 
           throw new Error(
-            "No MP4 videos found in Video bucket."
+            "Video bucket-এ কোনো MP4 পাওয়া যায়নি।"
           );
 
         }
 
 
-        /* =================================================
-           VIDEO SELECTION
+        /* Number অনুযায়ী sort */
 
-           প্রতিবার page open হলে পরের ভিডিও।
+        videos =
+          sortVideos(videos);
+
+
+        console.log(
+          "Supabase videos:",
+          videos
+        );
+
+
+        /* =================================================
+           VIDEO SEQUENCE
+
+           নতুন visitor:
+           video-10 → video-9 → video-8 ...
+
+           নতুন video upload হলে সেটিও
+           automatically list-এ আসবে।
         ================================================= */
 
+
         const STORAGE_KEY =
-          "vairal_auto_video_index";
+          "vairal_current_video_name";
 
 
-        let index =
-          parseInt(
-            localStorage.getItem(
-              STORAGE_KEY
-            ),
-            10
+        const lastVideo =
+          localStorage.getItem(
+            STORAGE_KEY
           );
 
 
-        if (
-          Number.isNaN(index) ||
-          index < 0 ||
-          index >= videos.length
-        ) {
+        let index = 0;
 
-          index = 0;
+
+        if (lastVideo) {
+
+          const lastIndex =
+            videos.findIndex(
+              function(video) {
+
+                return (
+                  video.name ===
+                  lastVideo
+                );
+
+              }
+            );
+
+
+          if (lastIndex >= 0) {
+
+            index =
+              (
+                lastIndex + 1
+              ) %
+              videos.length;
+
+          }
 
         }
 
@@ -473,16 +849,11 @@
           videos[index];
 
 
-        /* পরেরবার পরের ভিডিও */
-
-        const nextIndex =
-          (index + 1) %
-          videos.length;
-
+        /* বর্তমান ভিডিও save */
 
         localStorage.setItem(
           STORAGE_KEY,
-          nextIndex
+          selectedVideo.name
         );
 
 
@@ -500,6 +871,12 @@
           );
 
 
+        console.log(
+          "Playing:",
+          selectedVideo.name
+        );
+
+
         /* =================================================
            SET VIDEO
         ================================================= */
@@ -507,20 +884,32 @@
         videoSource.src =
           videoURL;
 
+
         videoPlayer.load();
 
 
         videoPlayer.style.display =
           "block";
 
+
         videoStatus.style.display =
           "none";
 
 
+        /* =================================================
+           TITLE
+        ================================================= */
+
         videoTitle.textContent =
           selectedVideo.name
-            .replace(".mp4", "")
-            .replace(/[-_]/g, " ");
+            .replace(
+              /\.mp4$/i,
+              ""
+            )
+            .replace(
+              /[-_]/g,
+              " "
+            );
 
 
       }
@@ -528,7 +917,7 @@
       catch (error) {
 
         console.error(
-          "Video loading error:",
+          "VIDEO ERROR:",
           error
         );
 
@@ -538,26 +927,30 @@
 
 
         videoStatus.style.display =
-          "block";
+          "flex";
 
 
-        videoStatus.textContent =
-          "ভিডিও লোড করা যাচ্ছে না। Supabase Storage permission পরীক্ষা করুন।";
+        videoStatus.innerHTML =
+          "⚠️ ভিডিও লোড করা যাচ্ছে না।<br><br>" +
+          "Supabase Storage permission অথবা API key পরীক্ষা করুন।";
 
       }
 
     }
 
 
-    /* শুরু */
 
-    loadVideos();
+    /* ====================================================
+       START VIDEO
+    ==================================================== */
+
+    loadVideo();
 
 
 
-    /* =================================================
+    /* ====================================================
        VIEW COUNTER
-    ================================================= */
+    ==================================================== */
 
     let views =
       Number(
@@ -583,9 +976,9 @@
 
 
 
-    /* =================================================
+    /* ====================================================
        LIKE SYSTEM
-    ================================================= */
+    ==================================================== */
 
     let likes =
       Number(
@@ -635,9 +1028,11 @@
 
           liked = true;
 
+
           likeButton.classList.add(
             "active"
           );
+
 
           likeButton.textContent =
             "❤️ Liked";
@@ -654,9 +1049,11 @@
 
           liked = false;
 
+
           likeButton.classList.remove(
             "active"
           );
+
 
           likeButton.textContent =
             "❤️ Like";
@@ -684,6 +1081,7 @@
       }
 
     );
+
 
   </script>
 
