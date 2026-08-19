@@ -1,254 +1,882 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
+<title>Vairal Video</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+html,body{
+  margin:0;
+  padding:0;
+  min-height:100%;
+}
+
+body{
+  background:
+    radial-gradient(circle at top left,#35105f,transparent 35%),
+    radial-gradient(circle at bottom right,#60103c,transparent 35%),
+    #050507;
+  color:#fff;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+.header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(5,5,8,.95);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.header-inner{
+  max-width:900px;
+  margin:auto;
+  padding:12px 14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  font-size:21px;
+  font-weight:900;
+  background:linear-gradient(90deg,#ff1590,#8c5cff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+/* TELEGRAM */
+.telegram-button{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+
+  text-decoration:none;
+  color:#fff;
+
+  background:#229ED9;
+
+  padding:9px 14px;
+  border-radius:30px;
+
+  font-size:13px;
+  font-weight:700;
+
+  box-shadow:0 5px 20px rgba(34,158,217,.25);
+
+  transition:.2s;
+}
+
+.telegram-button:hover{
+  transform:scale(1.04);
+}
+
+.telegram-button:active{
+  transform:scale(.97);
+}
+
+.telegram-button svg{
+  width:24px;
+  height:24px;
+  flex:none;
+}
+
+.container{
+  width:100%;
+  max-width:900px;
+  margin:auto;
+  padding:18px 10px 40px;
+}
+
+.ad-box{
+  width:100%;
+  min-height:60px;
+  margin:10px 0 18px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  overflow:hidden;
+}
+
+.video-title{
+  margin:8px 0;
+  font-size:clamp(21px,5vw,32px);
+}
+
+.info{
+  color:#999;
+  font-size:13px;
+  margin-bottom:14px;
+}
+
+.video-wrapper{
+  width:100%;
+  background:#000;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 20px 60px rgba(0,0,0,.65);
+}
+
+.loading{
+  min-height:230px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+
+  text-align:center;
+  color:#aaa;
+
+  font-size:15px;
+}
+
+.spinner{
+  width:35px;
+  height:35px;
+
+  border:3px solid rgba(255,255,255,.15);
+  border-top-color:#229ED9;
+
+  border-radius:50%;
+
+  animation:spin 1s linear infinite;
+
+  margin-bottom:14px;
+}
+
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+video{
+  display:none;
+  width:100%;
+  height:auto;
+  background:#000;
+}
+
+.like-button{
+  margin-top:12px;
+
+  padding:10px 16px;
+
+  border:0;
+  border-radius:10px;
+
+  color:#fff;
+
+  background:rgba(255,255,255,.08);
+
+  cursor:pointer;
+
+  font-size:14px;
+}
+
+.like-button.active{
+  background:linear-gradient(135deg,#ff1590,#8c5cff);
+}
+
+.bottom-telegram{
+  margin:24px 0;
+
+  display:flex;
+  justify-content:center;
+}
+
+.description{
+  margin-top:18px;
+  padding:17px;
+
+  border-radius:13px;
+
+  background:rgba(255,255,255,.05);
+
+  border:1px solid rgba(255,255,255,.08);
+
+  color:#aaa;
+
+  line-height:1.6;
+}
+
+footer{
+  text-align:center;
+  padding:25px 10px;
+  color:#555;
+  font-size:12px;
+}
+
+@media(max-width:600px){
+
+  .logo{
+    font-size:18px;
+  }
+
+  .telegram-button{
+    padding:8px 11px;
+    font-size:12px;
+  }
+
+  .telegram-button svg{
+    width:22px;
+    height:22px;
+  }
+}
+</style>
+
+
+<!-- ================================
+     POPUNDER
+================================ -->
+
+<script src="https://pl30923744.effectivecpmnetwork.com/bc/bf/98/bcbf98c695a71ec20aa923a7a131ffa3.js"></script>
+
+
+<!-- ================================
+     SOCIAL BAR
+================================ -->
+
+<script src="https://pl30923746.effectivecpmnetwork.com/60/5e/6e/605e6e402e2188c01fb7fcc993d62be2.js"></script>
+
+</head>
+
+
+<body>
+
+
+<!-- ================================
+     HEADER
+================================ -->
+
+<header class="header">
+
+  <div class="header-inner">
+
+    <div class="logo">
+      VAIRAL VIDEO
+    </div>
+
+    <a
+      class="telegram-button"
+      href="https://t.me/allvairallinkandvideo"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path
+          fill="currentColor"
+          d="M21.8 3.2
+          2.9 10.5
+          c-1.3.5-1.3 1.2-.2 1.5
+          l4.8 1.5
+          1.8 5.7
+          c.2.6.1.8.8.8
+          .5 0 .7-.2 1-.5
+          l2.4-2.3
+          5 3.7
+          c.9.5 1.6.3 1.8-.8
+          l3.2-15.1
+          c.3-1.4-.5-2-1.7-1.3Z
+          M8.3 13.1
+          l10.9-6.9
+          c.5-.3 1-.1.6.2
+          l-8.9 8-.3 3.2
+          -1.7-5.5-.6-.2Z"
+        />
+      </svg>
+
+      JOIN TELEGRAM CHANNEL
+
+    </a>
+
+  </div>
+
+</header>
+
+
+
+<main class="container">
+
+
+<!-- ================================
+     TOP AD
+================================ -->
+
+<div class="ad-box">
+  <!-- TOP AD CODE HERE -->
+</div>
+
+
+
+<!-- ================================
+     VIDEO TITLE
+================================ -->
+
+<h1
+  id="videoTitle"
+  class="video-title"
+>
+  Vairal Video
+</h1>
+
+
+<div class="info">
+
+  👁️
+  <span id="views">0</span>
+  Views
+
+  &nbsp; • &nbsp;
+
+  ❤️
+  <span id="likes">0</span>
+  Likes
+
+</div>
+
+
+
+<!-- ================================
+     VIDEO
+================================ -->
+
+<div class="video-wrapper">
+
+  <div
+    id="loading"
+    class="loading"
   >
 
-  <title>Vairal Video</title>
+    <div class="spinner"></div>
+
+    <div>
+      VIDEO LOADING...
+    </div>
+
+  </div>
 
 
-  <style>
+  <video
+    id="videoPlayer"
+    controls
+    playsinline
+    preload="metadata"
+    controlsList="nodownload"
+    disablePictureInPicture
+  >
 
-    * {
-      box-sizing: border-box;
+    <source
+      id="videoSource"
+      type="video/mp4"
+    >
+
+    Your browser does not support
+    HTML5 video.
+
+  </video>
+
+</div>
+
+
+
+<!-- ================================
+     LIKE
+================================ -->
+
+<button
+  id="likeButton"
+  class="like-button"
+  type="button"
+>
+  ❤️ Like
+</button>
+
+
+
+<!-- ================================
+     AD #3
+================================ -->
+
+<div class="ad-box">
+
+<script
+  async="async"
+  data-cfasync="false"
+  src="https://pl30923747.effectivecpmnetwork.com/12b187a99414c09ca49488896ff8e0ac/invoke.js">
+</script>
+
+<div
+  id="container-12b187a99414c09ca49488896ff8e0ac">
+</div>
+
+</div>
+
+
+
+<!-- ================================
+     BOTTOM TELEGRAM
+================================ -->
+
+<div class="bottom-telegram">
+
+  <a
+    class="telegram-button"
+    href="https://t.me/allvairallinkandvideo"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+
+      <path
+        fill="currentColor"
+        d="M21.8 3.2
+        2.9 10.5
+        c-1.3.5-1.3 1.2-.2 1.5
+        l4.8 1.5
+        1.8 5.7
+        c.2.6.1.8.8.8
+        .5 0 .7-.2 1-.5
+        l2.4-2.3
+        5 3.7
+        c.9.5 1.6.3 1.8-.8
+        l3.2-15.1
+        c.3-1.4-.5-2-1.7-1.3Z
+        M8.3 13.1
+        l10.9-6.9
+        c.5-.3 1-.1.6.2
+        l-8.9 8-.3 3.2
+        -1.7-5.5-.6-.2Z"
+      />
+
+    </svg>
+
+    JOIN TELEGRAM CHANNEL
+
+  </a>
+
+</div>
+
+
+
+<div class="description">
+
+  <strong style="color:#fff;">
+    Vairal Video
+  </strong>
+
+  <br><br>
+
+  Watch the video and join our
+  Telegram channel for more videos.
+
+</div>
+
+
+</main>
+
+
+
+<footer>
+
+  © 2026 Vairal Video
+
+</footer>
+
+
+
+<script>
+
+/* ============================================
+   SUPABASE
+============================================ */
+
+const SUPABASE_URL =
+  "https://mshoftgubfbkvynndtnu.supabase.co";
+
+const SUPABASE_BUCKET =
+  "Video";
+
+const SUPABASE_KEY =
+  "sb_publishable_2L716MuF36gsDT5fGu_k9Q_LzGLqTk0";
+
+
+/* ============================================
+   ELEMENTS
+============================================ */
+
+const video =
+  document.getElementById("videoPlayer");
+
+const source =
+  document.getElementById("videoSource");
+
+const loading =
+  document.getElementById("loading");
+
+const title =
+  document.getElementById("videoTitle");
+
+
+/* ============================================
+   GET VIDEOS
+============================================ */
+
+async function getVideos(){
+
+  const response = await fetch(
+
+    SUPABASE_URL +
+    "/storage/v1/object/list/" +
+    SUPABASE_BUCKET,
+
+    {
+      method:"POST",
+
+      headers:{
+        "apikey":SUPABASE_KEY,
+        "Authorization":
+          "Bearer " + SUPABASE_KEY,
+        "Content-Type":
+          "application/json"
+      },
+
+      body:JSON.stringify({
+        prefix:"",
+        limit:1000,
+        offset:0
+      })
     }
-
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      min-height: 100%;
-    }
-
-    body {
-      min-height: 100vh;
-      color: #fff;
-
-      font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-      background:
-        radial-gradient(
-          circle at top left,
-          #35105f,
-          transparent 35%
-        ),
-        radial-gradient(
-          circle at bottom right,
-          #60103c,
-          transparent 35%
-        ),
-        #050507;
-    }
+  );
 
 
-    /* ==========================================
-       HEADER
-    ========================================== */
+  if(!response.ok){
 
-    .header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
+    throw new Error(
+      "Supabase error: " +
+      response.status
+    );
 
-      padding: 12px;
-
-      background:
-        rgba(5,5,8,.94);
-
-      backdrop-filter:
-        blur(12px);
-
-      border-bottom:
-        1px solid
-        rgba(255,255,255,.08);
-    }
+  }
 
 
-    .header-inner {
-      width: 100%;
-      max-width: 900px;
-
-      margin: auto;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+  const files =
+    await response.json();
 
 
-    .logo {
-      font-size: 21px;
-      font-weight: 900;
+  return files.filter(
+    file =>
+      file.name &&
+      file.name
+        .toLowerCase()
+        .endsWith(".mp4")
+  );
 
-      background:
-        linear-gradient(
-          90deg,
-          #ff1590,
-          #8c5cff
+}
+
+
+/* ============================================
+   SORT
+============================================ */
+
+function sortVideos(videos){
+
+  return videos.sort(
+    (a,b)=>{
+
+      const aNumber =
+        parseInt(
+          a.name.match(/\d+/)?.[0] || 0
         );
 
-      -webkit-background-clip: text;
-      background-clip: text;
-
-      color: transparent;
-    }
-
-
-    /* ==========================================
-       TELEGRAM LOGO ONLY
-    ========================================== */
-
-    .telegram-logo {
-      width: 44px;
-      height: 44px;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      color: #fff;
-
-      background: #229ED9;
-
-      border-radius: 50%;
-
-      text-decoration: none;
-
-      box-shadow:
-        0 5px 20px
-        rgba(34,158,217,.35);
-
-      transition:
-        transform .2s ease,
-        box-shadow .2s ease;
-    }
-
-
-    .telegram-logo:hover {
-      transform: scale(1.08);
-
-      box-shadow:
-        0 7px 25px
-        rgba(34,158,217,.5);
-    }
-
-
-    .telegram-logo:active {
-      transform: scale(.95);
-    }
-
-
-    .telegram-logo svg {
-      width: 27px;
-      height: 27px;
-    }
-
-
-    /* ==========================================
-       MAIN
-    ========================================== */
-
-    .container {
-      width: 100%;
-      max-width: 900px;
-
-      margin: auto;
-
-      padding:
-        18px 10px 40px;
-    }
-
-
-    /* ==========================================
-       ADS
-    ========================================== */
-
-    .ad-box {
-      width: 100%;
-
-      min-height: 60px;
-
-      margin:
-        10px 0 18px;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      overflow: hidden;
-    }
-
-
-    /* ==========================================
-       TITLE
-    ========================================== */
-
-    h1 {
-      margin:
-        5px 0 8px;
-
-      font-size:
-        clamp(
-          22px,
-          5vw,
-          34px
+      const bNumber =
+        parseInt(
+          b.name.match(/\d+/)?.[0] || 0
         );
 
-      text-transform:
-        capitalize;
+      return bNumber-aNumber;
+
+    }
+  );
+
+}
+
+
+/* ============================================
+   LOAD VIDEO
+============================================ */
+
+async function loadVideo(){
+
+  try{
+
+    loading.style.display =
+      "flex";
+
+    video.style.display =
+      "none";
+
+
+    const videos =
+      sortVideos(
+        await getVideos()
+      );
+
+
+    if(!videos.length){
+
+      throw new Error(
+        "No MP4 videos found"
+      );
+
     }
 
 
-    .info {
-      color: #999;
+    const KEY =
+      "vairal_last_video";
 
-      font-size: 13px;
 
-      margin-bottom: 14px;
+    const last =
+      localStorage.getItem(KEY);
+
+
+    let index = 0;
+
+
+    if(last){
+
+      const oldIndex =
+        videos.findIndex(
+          item =>
+            item.name === last
+        );
+
+
+      if(oldIndex >= 0){
+
+        index =
+          (oldIndex + 1) %
+          videos.length;
+
+      }
+
     }
 
 
-    /* ==========================================
-       VIDEO
-    ========================================== */
+    const selected =
+      videos[index];
 
-    .video-wrapper {
-      width: 100%;
 
-      background: #000;
+    localStorage.setItem(
+      KEY,
+      selected.name
+    );
 
-      border-radius: 14px;
 
-      overflow: hidden;
+    const url =
+      SUPABASE_URL +
+      "/storage/v1/object/public/" +
+      SUPABASE_BUCKET +
+      "/" +
+      encodeURIComponent(
+        selected.name
+      );
 
-      box-shadow:
-        0 20px 60px
-        rgba(0,0,0,.65);
+
+    source.src = url;
+
+
+    video.load();
+
+
+    title.textContent =
+      selected.name
+        .replace(
+          /\.mp4$/i,
+          ""
+        )
+        .replace(
+          /[-_]/g,
+          " "
+        );
+
+
+    video.onloadeddata =
+      function(){
+
+        loading.style.display =
+          "none";
+
+        video.style.display =
+          "block";
+
+      };
+
+
+    video.onerror =
+      function(){
+
+        loading.innerHTML =
+          "⚠️ VIDEO FAILED TO LOAD";
+
+      };
+
+
+  }catch(error){
+
+    console.error(error);
+
+    loading.innerHTML =
+      "⚠️ VIDEO FAILED TO LOAD";
+
+  }
+
+}
+
+
+loadVideo();
+
+
+
+/* ============================================
+   VIEWS
+============================================ */
+
+let views =
+  Number(
+    localStorage.getItem(
+      "vairal_views"
+    )
+  ) || 0;
+
+views++;
+
+localStorage.setItem(
+  "vairal_views",
+  views
+);
+
+document.getElementById(
+  "views"
+).textContent = views;
+
+
+
+/* ============================================
+   LIKE
+============================================ */
+
+let likes =
+  Number(
+    localStorage.getItem(
+      "vairal_likes"
+    )
+  ) || 0;
+
+let liked =
+  localStorage.getItem(
+    "vairal_liked"
+  ) === "true";
+
+
+const likeButton =
+  document.getElementById(
+    "likeButton"
+  );
+
+
+document.getElementById(
+  "likes"
+).textContent = likes;
+
+
+if(liked){
+
+  likeButton.classList.add(
+    "active"
+  );
+
+  likeButton.textContent =
+    "❤️ Liked";
+
+}
+
+
+likeButton.addEventListener(
+  "click",
+  function(){
+
+    if(!liked){
+
+      likes++;
+      liked=true;
+
+      likeButton.classList.add(
+        "active"
+      );
+
+      likeButton.textContent =
+        "❤️ Liked";
+
+    }else{
+
+      likes =
+        Math.max(
+          0,
+          likes-1
+        );
+
+      liked=false;
+
+      likeButton.classList.remove(
+        "active"
+      );
+
+      likeButton.textContent =
+        "❤️ Like";
+
     }
 
 
-    video {
-      display: block;
+    localStorage.setItem(
+      "vairal_likes",
+      likes
+    );
 
-      width: 100%;
-
-      height: auto;
-
-      min-height: 200px;
-
-      background: #000;
-    }
+    localStorage.setItem(
+      "vairal_liked",
+      liked
+    );
 
 
-    .status {
-      min-height: 
+    document.getElementById(
+      "likes"
+    ).textContent = likes;
+
+  }
+);
+
+</script>
+
+</body>
+</html>
