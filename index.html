@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Treasure Rush Runner</title>
+<style>
+:root{--gold:#ffd33d;--green:#18c957;--panel:#08252b;--line:#267f7a}
+*{box-sizing:border-box}html,body{margin:0;height:100%;background:#061219;color:#fff;font-family:system-ui,-apple-system,Segoe UI,sans-serif;overflow:hidden}
+button{font:inherit;border:0;cursor:pointer}.screen{position:fixed;inset:0;display:none}.screen.active{display:flex}
+#home{align-items:center;justify-content:center;background:radial-gradient(circle at 50% 20%,#146076,#061219 65%)}
+.home-card{width:min(92vw,560px);padding:28px 20px;text-align:center}.logo{font-size:56px}.title{font-size:42px;font-weight:900;color:#ffd33d;text-shadow:0 4px 0 #8b5a13}.sub{color:#9db7bb;margin:8px 0 24px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);background:#061a20;border:1px solid #2c8580;border-radius:24px;padding:16px;margin-bottom:18px}.stat b{display:block;font-size:26px}.stat span{font-size:12px;color:#8faeb2}
+.primary{width:100%;padding:18px;border-radius:22px;background:#17c957;color:#fff;font-weight:900;font-size:24px;box-shadow:0 8px 0 #078d3d;margin:8px 0}.secondary{background:#10343a;color:#fff;border:1px solid #347f7d}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.tile{padding:15px;border-radius:18px;background:#0a2b31;border:1px solid #215f60}.tile b{display:block;margin-top:4px}.tile small{color:#91aeb1}
+#game{background:#09151a;flex-direction:column}.hud{height:70px;background:#061017;display:flex;align-items:center;justify-content:space-between;padding:0 14px;z-index:4}.hud .pill{background:#102c31;border:1px solid #2c706f;border-radius:14px;padding:8px 10px;font-weight:800}.back{font-size:24px;background:none;color:#fff}
+#canvas{display:block;width:100%;height:calc(100% - 70px);touch-action:none}
+.controls{position:fixed;left:0;right:0;bottom:18px;display:flex;justify-content:center;gap:12px;z-index:5;pointer-events:none}.ctrl{pointer-events:auto;width:62px;height:62px;border-radius:50%;background:#08282eaa;border:1px solid #55a8a1;color:#fff;font-size:25px}.boost{width:78px;border-radius:22px;font-size:15px;font-weight:900}
+.overlay{position:fixed;inset:70px 0 0;background:#061217dd;display:none;align-items:center;justify-content:center;z-index:8}.overlay.show{display:flex}.modal{width:min(88vw,430px);background:#09282e;border:1px solid #3c918a;border-radius:24px;padding:25px;text-align:center}.modal h2{margin:0 0 10px;color:#ffd33d}.modal p{color:#b5cacc}.reward{font-size:32px;font-weight:900;margin:16px}
+#toast{position:fixed;left:50%;bottom:100px;transform:translateX(-50%);background:#081f24;border:1px solid #3c918a;border-radius:14px;padding:10px 16px;display:none;z-index:20}
+</style>
+</head>
+<body>
+
+<section id="home" class="screen active">
+  <div class="home-card">
+    <div class="logo">💎</div>
+    <div class="title">TREASURE RUSH</div>
+    <div class="sub">Original Jungle Runner</div>
+    <div class="stats">
+      <div class="stat"><span>COINS</span><b id="coins">0</b></div>
+      <div class="stat"><span>GEMS</span><b id="gems">0</b></div>
+      <div class="stat"><span>BEST</span><b id="best">0</b></div>
+    </div>
+    <button class="primary" id="playBtn">▶ PLAY LEVEL 1</button>
+    <button class="primary secondary" id="adBtn">📺 WATCH AD & EARN <small>(+20 🪙)</small></button>
+    <div class="grid">
+      <button class="tile" id="spinBtn">🎡<b>SPIN</b><small>Reward after ad</small></button>
+      <button class="tile" id="refBtn">👥<b>REFERRAL</b><small>$0.050 verified referral</small></button>
+      <button class="tile" id="settingsBtn">⚙️<b>SETTINGS</b><small>Withdraw & account</small></button>
+      <button class="tile" id="missionsBtn">🎯<b>MISSIONS</b><small>Earn bonuses</small></button>
+    </div>
+  </div>
+</section>
+
+<section id="game" class="screen">
+  <div class="hud">
+    <button class="back" id="quitBtn">←</button>
+    <div class="pill">🪙 <span id="gCoins">0</span></div>
+    <div class="pill">💎 <span id="gGems">0</span></div>
+    <div class="pill">❤️ <span id="health">3</span></div>
+    <div class="pill">📏 <span id="distance">0</span>m</div>
+  </div>
+  <canvas id="canvas"></canvas>
+  <div class="controls">
+    <button class="ctrl" data-move="left">←</button>
+    <button class="ctrl" data-move="jump">↑</button>
+    <button class="ctrl boost" data-move="boost">⚡ BOOST</button>
+    <button class="ctrl" data-move="slide">↓</button>
+    <button class="ctrl" data-move="right">→</button>
+  </div>
+</section>
+
+<div class="overlay" id="modal">
+  <div class="modal">
+    <h2 id="modalTitle">Treasure Rush</h2>
+    <p id="modalText"></p>
+    <div class="reward" id="modalReward"></div>
+    <button class="primary" id="modalAction">OK</button>
+  </div>
+</div>
+<div id="toast"></div>
+
+<script>
+/* ---------------- State ---------------- */
+const state = JSON.parse(localStorage.getItem("treasureRush") || '{"coins":0,"gems":0,"best":0,"level":1}');
+const save=()=>localStorage.setItem("treasureRush",JSON.stringify(state));
+const $=id=>document.getElementById(id);
+function refresh(){ $("coins").textContent=state.coins; $("gems").textContent=state.gems; $("best").textContent=state.best; }
+refresh();
+
+/* ---------------- Monetag rewarded-ad hook ----------------
+   Replace the body of requestRewardedAd() with the current Monetag TMA
+   rewarded interstitial call for your publisher/app. Reward is granted
+   ONLY when the Promise resolves successfully.
+---------------------------------------------------------------- */
+async function requestRewardedAd(){
+  // Production: call your Monetag Rewarded Interstitial Promise here.
+  // Example shape:
+  // await window.monetagRewardedInterstitial();
+  //
+  // This demo uses a simulated successful completion so the game is
+  // immediately testable. Set DEMO_AD=false for production integration.
+  const DEMO_AD = true;
+  if(!DEMO_AD) throw new Error("Monetag rewarded-ad function is not configured");
+  await new Promise(r=>setTimeout(r,1200));
+  return true;
+}
+async function claimCoins20(){
+  try{
+    await requestRewardedAd();
+    state.coins += 20; save(); refresh();
+    toast("+20 Coins added");
+    return true;
+  }catch(e){ toast("Ad was not completed — no Coins added"); return false; }
+}
+
+/* ---------------- Home actions ---------------- */
+$("playBtn").onclick=startGame;
+$("adBtn").onclick=claimCoins20;
+$("settingsBtn").onclick=()=>showModal("⚙️ Settings","Withdraw is available inside Settings.","20,000 Coins = $1<br>Minimum withdrawal: $25<br>500,000 Coins = $25","CLOSE");
+$("refBtn").onclick=()=>showModal("👥 Referral","Verified referrals are tracked at $0.050 each.","Referral earnings: $0.050 / verified referral","CLOSE");
+$("missionsBtn").onclick=()=>showModal("🎯 Missions","Complete runner objectives to earn bonuses.","Coming with the mission system","CLOSE");
+
+$("spinBtn").onclick=async()=>{
+  try{
+    await requestRewardedAd();
+    const rewards=[
+      {type:"coins",value:50,label:"50 Coins"},
+      {type:"coins",value:100,label:"100 Coins"},
+      {type:"gems",value:10,label:"10 Diamonds"},
+      {type:"gems",value:30,label:"30 Diamonds"},
+      {type:"gems",value:50,label:"50 Diamonds"},
+      {type:"cash",value:0.02,label:"$0.02"}
+    ];
+    const r=rewards[Math.floor(Math.random()*rewards.length)];
+    // The displayed result and credited result use the SAME reward object.
+    if(r.type==="coins") state.coins+=r.value;
+    if(r.type==="gems") state.gems+=r.value;
+    save(); refresh();
+    showModal("🎉 Lucky Spin", "Rewarded ad completed successfully.", r.label, "DONE");
+  }catch(e){showModal("Ad not completed","No spin reward was credited.","0 reward","CLOSE")}
+};
+
+/* ---------------- Game ---------------- */
+const canvas=$("canvas"), ctx=canvas.getContext("2d");
+let W,H,raf,last,game=null;
+function resize(){W=canvas.width=innerWidth*devicePixelRatio; H=canvas.height=(innerHeight-70)*devicePixelRatio; ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0); W=innerWidth;H=innerHeight-70}
+addEventListener("resize",resize);
+
+function startGame(){
+  $("home").classList.remove("active"); $("game").classList.add("active"); resize();
+  game={lane:1,targetLane:1,y:0,vy:0,slide:0,speed:0.38,dist:0,health:3,coins:0,gems:0,boost:0,items:[],spawn:0,over:false};
+  last=performance.now(); requestAnimationFrame(loop);
+}
+$("quitBtn").onclick=()=>{game=null;$("game").classList.remove("active");$("home").classList.add("active");refresh()};
+
+function move(dir){
+ if(!game||game.over)return;
+ if(dir==="left") game.targetLane=Math.max(0,game.targetLane-1);
+ if(dir==="right") game.targetLane=Math.min(2,game.targetLane+1);
+ if(dir==="jump" && game.y===0) game.vy=0.82;
+ if(dir==="slide" && game.y===0) game.slide=0.45;
+ if(dir==="boost") game.boost=Math.min(2.5,game.boost+0.8);
+}
+document.querySelectorAll("[data-move]").forEach(b=>b.addEventListener("pointerdown",()=>move(b.dataset.move)));
+let sx=0,sy=0;
+canvas.addEventListener("pointerdown",e=>{sx=e.clientX;sy=e.clientY});
+canvas.addEventListener("pointerup",e=>{
+ let dx=e.clientX-sx,dy=e.clientY-sy;
+ if(Math.max(Math.abs(dx),Math.abs(dy))<25)return;
+ if(Math.abs(dx)>Math.abs(dy))move(dx>0?"right":"left");else move(dy<0?"jump":"slide");
+});
+
+function laneX(lane, t){const center=W/2;const spread=Math.min(W*.28,180);return center+(lane-1)*spread*t}
+function spawn(){
+ const lane=Math.floor(Math.random()*3);
+ const roll=Math.random();
+ game.items.push({lane,z:1,type:roll<.62?"coin":roll<.78?"gem":"rock"});
+}
+function hitItem(it){
+ const laneDiff=Math.abs(it.lane-game.lane);
+ if(laneDiff>0.18)return false;
+ if(it.type==="coin"){game.coins++;return true}
+ if(it.type==="gem"){game.gems++;return true}
+ if(game.y>0.18 || game.slide>0)return true;
+ game.health--; toast("Obstacle hit! ❤️ "+game.health);
+ return true;
+}
+function drawScene(){
+ const g=ctx.createLinearGradient(0,0,0,H);g.addColorStop(0,"#55c8e7");g.addColorStop(.52,"#19766e");g.addColorStop(1,"#0a332d");ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+ // distant jungle
+ ctx.fillStyle="#175b42";for(let i=0;i<12;i++){let x=(i/11)*W;ctx.beginPath();ctx.arc(x,H*.28,80,0,7);ctx.fill()}
+ // road perspective
+ const horizon=H*.27;ctx.fillStyle="#b89358";ctx.beginPath();ctx.moveTo(W*.45,horizon);ctx.lineTo(W*.55,horizon);ctx.lineTo(W*.95,H);ctx.lineTo(W*.05,H);ctx.closePath();ctx.fill();
+ // lane lines
+ ctx.strokeStyle="#e4c879";ctx.lineWidth=3;for(let l=1;l<3;l++){let xb=W*(l/3);ctx.beginPath();ctx.moveTo(W/2+(l-1)*18,horizon);ctx.lineTo(xb,H);ctx.stroke()}
+ // trees
+ for(let i=0;i<7;i++){let x=i%2?W*.08:W*.9;let y=H*(.25+i*.08);ctx.fillStyle="#4b3223";ctx.fillRect(x,y,18,H*.25);ctx.fillStyle="#1b7045";ctx.beginPath();ctx.arc(x+8,y,55,0,7);ctx.fill()}
+}
+function drawPlayer(){
+ const x=laneX(game.lane,1), base=H*.82-game.y*170, h=game.slide>0?42:82;
+ ctx.save();ctx.translate(x,base);
+ ctx.fillStyle="rgba(0,0,0,.25)";ctx.beginPath();ctx.ellipse(0,10,30,8,0,0,7);ctx.fill();
+ ctx.fillStyle="#182c3b";ctx.fillRect(-18,-h,36,h*.65);
+ ctx.fillStyle="#e09a72";ctx.beginPath();ctx.arc(0,-h-14,17,0,7);ctx.fill();
+ ctx.fillStyle="#6b3e26";ctx.beginPath();ctx.arc(0,-h-21,18,3.2,6.1);ctx.fill();
+ ctx.fillStyle="#d83f5b";ctx.fillRect(-19,-h+8,38,27);
+ ctx.strokeStyle="#e09a72";ctx.lineWidth=8;ctx.beginPath();ctx.moveTo(-16,-h+12);ctx.lineTo(-31,-h+38);ctx.moveTo(16,-h+12);ctx.lineTo(31,-h+38);ctx.stroke();
+ ctx.restore();
+}
+function drawItem(it){
+ const p=1-it.z, y=H*.27+p*(H*.67), x=laneX(it.lane,p);
+ const s=8+p*25;ctx.save();ctx.translate(x,y);
+ if(it.type==="coin"){ctx.fillStyle="#ffd83d";ctx.beginPath();ctx.arc(0,0,s,0,7);ctx.fill();ctx.fillStyle="#8b6510";ctx.font=`bold ${s}px sans-serif`;ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText("C",0,1)}
+ else if(it.type==="gem"){ctx.fillStyle="#7de7ff";ctx.beginPath();ctx.moveTo(0,-s);ctx.lineTo(s*.8,-s*.2);ctx.lineTo(s*.45,s);ctx.lineTo(-s*.45,s);ctx.lineTo(-s*.8,-s*.2);ctx.closePath();ctx.fill()}
+ else {ctx.fillStyle="#654b43";ctx.fillRect(-s,s*.3,s*2,-s*1.6)}
+ ctx.restore();
+}
+function loop(now){
+ if(!game||game.over)return;
+ const dt=Math.min(.032,(now-last)/1000);last=now;
+ game.lane += (game.targetLane-game.lane)*Math.min(1,dt*12);
+ game.vy-=2.0*dt;game.y=Math.max(0,game.y+game.vy*dt);if(game.y===0)game.vy=0;
+ game.slide=Math.max(0,game.slide-dt);game.boost=Math.max(0,game.boost-dt);
+ game.dist += dt*(game.speed+(game.boost>0?.45:0))*100;
+ game.spawn-=dt;if(game.spawn<=0){spawn();game.spawn=.55+Math.random()*.5}
+ game.items.forEach(it=>it.z-=dt*(.65+(game.boost>0?.2:0)));
+ for(let i=game.items.length-1;i>=0;i--){let it=game.items[i];if(it.z<.18){if(it.z>-0.02)hitItem(it);game.items.splice(i,1)}}
+ $("gCoins").textContent=game.coins;$("gGems").textContent=game.gems;$("health").textContent=game.health;$("distance").textContent=Math.floor(game.dist);
+ drawScene();game.items.forEach(drawItem);drawPlayer();
+ if(game.health<=0 || game.dist>=1000){finishGame();return}
+ raf=requestAnimationFrame(loop);
+}
+async function finishGame(){
+ game.over=true;state.coins+=game.coins;state.gems+=game.gems;state.best=Math.max(state.best,Math.floor(game.dist));save();
+ const won=game.health>0;
+ showModal(won?"🏁 Level Complete":"💥 Run Over",won?"Level 1 completed!":"Your runner was caught by obstacles.",`🪙 +${game.coins}  💎 +${game.gems}<br>${won?"Next level can be unlocked after the rewarded ad.":"Try again!"}`,won?"CLAIM & UNLOCK":"TRY AGAIN");
+}
+$("modalAction").onclick=async()=>{
+ const action=$("modalAction").dataset.action;
+ if(action==="claim"){
+   try{await requestRewardedAd(); state.level=Math.max(state.level,2);save();closeModal();refresh();toast("Level 2 unlocked");}
+   catch(e){toast("Ad not completed — level remains locked")}
+ }else if(action==="retry"){closeModal();startGame()}else closeModal();
+};
+function showModal(title,text,reward,button,action="close"){$("modalTitle").textContent=title;$("modalText").innerHTML=text;$("modalReward").innerHTML=reward;$("modalAction").textContent=button;$("modalAction").dataset.action=action;$("modal").classList.add("show")}
+function closeModal(){$("modal").classList.remove("show")}
+function toast(t){$("toast").textContent=t;$("toast").style.display="block";clearTimeout(window.__toast);window.__toast=setTimeout(()=>$("toast").style.display="none",1600)}
+</script>
+</body>
+</html>
