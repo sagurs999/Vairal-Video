@@ -280,6 +280,7 @@ footer{
         viewBox="0 0 24 24"
         aria-hidden="true"
       >
+
         <path
           fill="currentColor"
           d="M21.8 3.2
@@ -298,8 +299,10 @@ footer{
           l10.9-6.9
           c.5-.3 1-.1.6.2
           l-8.9 8-.3 3.2
-          -1.7-5.5-.6-.2Z"
+          -1.7-5.5
+          -.6-.2Z"
         />
+
       </svg>
 
       JOIN TELEGRAM CHANNEL
@@ -466,7 +469,8 @@ footer{
         l10.9-6.9
         c.5-.3 1-.1.6.2
         l-8.9 8-.3 3.2
-        -1.7-5.5-.6-.2Z"
+        -1.7-5.5
+        -.6-.2Z"
       />
 
     </svg>
@@ -508,17 +512,17 @@ footer{
 <script>
 
 /* ============================================
-   SUPABASE
+   APPWRITE
 ============================================ */
 
-const SUPABASE_URL =
-  "https://mshoftgubfbkvynndtnu.supabase.co";
+const APPWRITE_ENDPOINT =
+  "https://fra.cloud.appwrite.io/v1";
 
-const SUPABASE_BUCKET =
-  "Video";
+const APPWRITE_PROJECT_ID =
+  "6a953702002468f915bf";
 
-const SUPABASE_KEY =
-  "sb_publishable_2L716MuF36gsDT5fGu_k9Q_LzGLqTk0";
+const APPWRITE_BUCKET_ID =
+  "6a953982002211c0c710";
 
 
 /* ============================================
@@ -539,52 +543,59 @@ const title =
 
 
 /* ============================================
-   GET VIDEOS
+   GET VIDEOS FROM APPWRITE
 ============================================ */
 
 async function getVideos(){
 
   const response = await fetch(
 
-    SUPABASE_URL +
-    "/storage/v1/object/list/" +
-    SUPABASE_BUCKET,
+    APPWRITE_ENDPOINT +
+    "/storage/buckets/" +
+    APPWRITE_BUCKET_ID +
+    "/files?queries[]=" +
+    encodeURIComponent(
+      JSON.stringify({
+        method:"limit",
+        values:[1000]
+      })
+    ),
 
     {
-      method:"POST",
+      method:"GET",
 
       headers:{
-        "apikey":SUPABASE_KEY,
-        "Authorization":
-          "Bearer " + SUPABASE_KEY,
-        "Content-Type":
-          "application/json"
-      },
-
-      body:JSON.stringify({
-        prefix:"",
-        limit:1000,
-        offset:0
-      })
+        "X-Appwrite-Project":
+          APPWRITE_PROJECT_ID
+      }
     }
+
   );
 
 
   if(!response.ok){
 
+    const errorText =
+      await response.text();
+
+    console.error(
+      "Appwrite error:",
+      errorText
+    );
+
     throw new Error(
-      "Supabase error: " +
+      "Appwrite error: " +
       response.status
     );
 
   }
 
 
-  const files =
+  const data =
     await response.json();
 
 
-  return files.filter(
+  return (data.files || []).filter(
     file =>
       file.name &&
       file.name
@@ -596,7 +607,7 @@ async function getVideos(){
 
 
 /* ============================================
-   SORT
+   SORT VIDEOS
 ============================================ */
 
 function sortVideos(videos){
@@ -646,7 +657,7 @@ async function loadVideo(){
     if(!videos.length){
 
       throw new Error(
-        "No MP4 videos found"
+        "No MP4 videos found in Appwrite"
       );
 
     }
@@ -693,17 +704,28 @@ async function loadVideo(){
     );
 
 
+    /* ========================================
+       APPWRITE VIDEO URL
+    ======================================== */
+
     const url =
-      SUPABASE_URL +
-      "/storage/v1/object/public/" +
-      SUPABASE_BUCKET +
-      "/" +
-      encodeURIComponent(
-        selected.name
-      );
+      APPWRITE_ENDPOINT +
+      "/storage/buckets/" +
+      APPWRITE_BUCKET_ID +
+      "/files/" +
+      selected.$id +
+      "/view?project=" +
+      APPWRITE_PROJECT_ID;
 
 
-    source.src = url;
+    console.log(
+      "Video URL:",
+      url
+    );
+
+
+    source.src =
+      url;
 
 
     video.load();
@@ -736,6 +758,11 @@ async function loadVideo(){
     video.onerror =
       function(){
 
+        console.error(
+          "Video failed:",
+          video.error
+        );
+
         loading.innerHTML =
           "⚠️ VIDEO FAILED TO LOAD";
 
@@ -755,6 +782,22 @@ async function loadVideo(){
 
 
 loadVideo();
+
+
+
+/* ============================================
+   WHEN VIDEO ENDS
+   LOAD NEXT VIDEO
+============================================ */
+
+video.addEventListener(
+  "ended",
+  function(){
+
+    loadVideo();
+
+  }
+);
 
 
 
