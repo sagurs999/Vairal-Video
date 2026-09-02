@@ -6,918 +6,989 @@
 
 <title>Vairal Video</title>
 
+<meta name="description" content="Vairal Video - Watch viral videos">
+<meta name="theme-color" content="#111111">
+
 <style>
 *{
-  box-sizing:border-box;
-}
-
-html,body{
-  margin:0;
-  padding:0;
-  min-height:100%;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 body{
-  background:
-    radial-gradient(circle at top left,#35105f,transparent 35%),
-    radial-gradient(circle at bottom right,#60103c,transparent 35%),
-    #050507;
-  color:#fff;
-  font-family:Arial,Helvetica,sans-serif;
+    background:#080808;
+    color:#fff;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
-.header{
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:rgba(5,5,8,.95);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.header-inner{
-  max-width:900px;
-  margin:auto;
-  padding:12px 14px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+header{
+    background:linear-gradient(135deg,#111,#1d1d1d);
+    padding:15px 10px;
+    text-align:center;
+    border-bottom:1px solid #333;
+    position:sticky;
+    top:0;
+    z-index:999;
 }
 
 .logo{
-  font-size:21px;
-  font-weight:900;
-  background:linear-gradient(90deg,#ff1590,#8c5cff);
-  -webkit-background-clip:text;
-  background-clip:text;
-  color:transparent;
+    font-size:27px;
+    font-weight:900;
+    letter-spacing:2px;
+    color:#fff;
 }
 
-/* TELEGRAM */
-.telegram-button{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-
-  text-decoration:none;
-  color:#fff;
-
-  background:#229ED9;
-
-  padding:9px 14px;
-  border-radius:30px;
-
-  font-size:13px;
-  font-weight:700;
-
-  box-shadow:0 5px 20px rgba(34,158,217,.25);
-
-  transition:.2s;
+.logo span{
+    color:#ff1744;
 }
 
-.telegram-button:hover{
-  transform:scale(1.04);
-}
-
-.telegram-button:active{
-  transform:scale(.97);
-}
-
-.telegram-button svg{
-  width:24px;
-  height:24px;
-  flex:none;
+.telegram-btn{
+    display:inline-block;
+    margin-top:10px;
+    padding:10px 18px;
+    background:#229ED9;
+    color:white;
+    text-decoration:none;
+    border-radius:25px;
+    font-weight:bold;
+    font-size:14px;
 }
 
 .container{
-  width:100%;
-  max-width:900px;
-  margin:auto;
-  padding:18px 10px 40px;
+    width:100%;
+    max-width:900px;
+    margin:auto;
+    padding:15px;
 }
 
-.ad-box{
-  width:100%;
-  min-height:60px;
-  margin:10px 0 18px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  overflow:hidden;
-}
-
-.video-title{
-  margin:8px 0;
-  font-size:clamp(21px,5vw,32px);
-}
-
-.info{
-  color:#999;
-  font-size:13px;
-  margin-bottom:14px;
-}
-
-.video-wrapper{
-  width:100%;
-  background:#000;
-  border-radius:14px;
-  overflow:hidden;
-  box-shadow:0 20px 60px rgba(0,0,0,.65);
-}
-
-.loading{
-  min-height:230px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-
-  text-align:center;
-  color:#aaa;
-
-  font-size:15px;
-}
-
-.spinner{
-  width:35px;
-  height:35px;
-
-  border:3px solid rgba(255,255,255,.15);
-  border-top-color:#229ED9;
-
-  border-radius:50%;
-
-  animation:spin 1s linear infinite;
-
-  margin-bottom:14px;
-}
-
-@keyframes spin{
-  to{
-    transform:rotate(360deg);
-  }
+.video-box{
+    width:100%;
+    background:#000;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 0 25px rgba(255,23,68,.15);
+    border:1px solid #242424;
 }
 
 video{
-  display:none;
-  width:100%;
-  height:auto;
-  background:#000;
+    display:block;
+    width:100%;
+    height:auto;
+    min-height:220px;
+    background:#000;
 }
 
-.like-button{
-  margin-top:12px;
-
-  padding:10px 16px;
-
-  border:0;
-  border-radius:10px;
-
-  color:#fff;
-
-  background:rgba(255,255,255,.08);
-
-  cursor:pointer;
-
-  font-size:14px;
+.loading{
+    text-align:center;
+    padding:35px 15px;
+    font-size:16px;
+    color:#aaa;
 }
 
-.like-button.active{
-  background:linear-gradient(135deg,#ff1590,#8c5cff);
+.error{
+    display:none;
+    text-align:center;
+    padding:25px 15px;
+    color:#ff5252;
+    line-height:1.7;
 }
 
-.bottom-telegram{
-  margin:24px 0;
-
-  display:flex;
-  justify-content:center;
+.info{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:13px 5px;
+    color:#aaa;
+    font-size:14px;
 }
 
-.description{
-  margin-top:18px;
-  padding:17px;
-
-  border-radius:13px;
-
-  background:rgba(255,255,255,.05);
-
-  border:1px solid rgba(255,255,255,.08);
-
-  color:#aaa;
-
-  line-height:1.6;
+.stats{
+    display:flex;
+    gap:15px;
 }
 
-footer{
-  text-align:center;
-  padding:25px 10px;
-  color:#555;
-  font-size:12px;
+.stat{
+    cursor:pointer;
+    user-select:none;
+}
+
+.stat.liked{
+    color:#ff1744;
+}
+
+.next-btn{
+    display:block;
+    width:100%;
+    margin-top:12px;
+    padding:14px;
+    border:0;
+    border-radius:10px;
+    background:linear-gradient(135deg,#ff1744,#ff4569);
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.next-btn:active{
+    transform:scale(.98);
+}
+
+.ad-box{
+    width:100%;
+    margin:15px 0;
+    text-align:center;
+}
+
+.footer{
+    text-align:center;
+    padding:30px 15px;
+    color:#666;
+    font-size:13px;
 }
 
 @media(max-width:600px){
+    .container{
+        padding:8px;
+    }
 
-  .logo{
-    font-size:18px;
-  }
+    .logo{
+        font-size:23px;
+    }
 
-  .telegram-button{
-    padding:8px 11px;
-    font-size:12px;
-  }
-
-  .telegram-button svg{
-    width:22px;
-    height:22px;
-  }
+    video{
+        min-height:200px;
+    }
 }
 </style>
 
-
-<!-- ================================
-     POPUNDER
-================================ -->
-
+<!-- Monetag Popunder -->
 <script src="https://pl30923744.effectivecpmnetwork.com/bc/bf/98/bcbf98c695a71ec20aa923a7a131ffa3.js"></script>
 
-
-<!-- ================================
-     SOCIAL BAR
-================================ -->
-
+<!-- Monetag Social Bar -->
 <script src="https://pl30923746.effectivecpmnetwork.com/60/5e/6e/605e6e402e2188c01fb7fcc993d62be2.js"></script>
 
 </head>
 
-
 <body>
 
-
-<!-- ================================
-     HEADER
-================================ -->
-
-<header class="header">
-
-  <div class="header-inner">
+<header>
 
     <div class="logo">
-      VAIRAL VIDEO
+        VAIRAL <span>VIDEO</span>
     </div>
 
     <a
-      class="telegram-button"
-      href="https://t.me/allvairallinkandvideo"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-
-      <svg
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-      >
-
-        <path
-          fill="currentColor"
-          d="M21.8 3.2
-          2.9 10.5
-          c-1.3.5-1.3 1.2-.2 1.5
-          l4.8 1.5
-          1.8 5.7
-          c.2.6.1.8.8.8
-          .5 0 .7-.2 1-.5
-          l2.4-2.3
-          5 3.7
-          c.9.5 1.6.3 1.8-.8
-          l3.2-15.1
-          c.3-1.4-.5-2-1.7-1.3Z
-          M8.3 13.1
-          l10.9-6.9
-          c.5-.3 1-.1.6.2
-          l-8.9 8-.3 3.2
-          -1.7-5.5
-          -.6-.2Z"
-        />
-
-      </svg>
-
-      JOIN TELEGRAM CHANNEL
-
+        class="telegram-btn"
+        href="https://t.me/allvairallinkandvideo"
+        target="_blank"
+        rel="noopener">
+        ✈ Join Telegram
     </a>
-
-  </div>
 
 </header>
 
 
+<div class="container">
 
-<main class="container">
+    <!-- VIDEO -->
+    <div class="video-box">
 
+        <div id="loading" class="loading">
+            ⏳ Loading video...
+        </div>
 
-<!-- ================================
-     TOP AD
-================================ -->
+        <video
+            id="videoPlayer"
+            controls
+            playsinline
+            preload="metadata"
+            style="display:none;">
+        </video>
 
-<div class="ad-box">
-  <!-- TOP AD CODE HERE -->
-</div>
+        <div id="errorBox" class="error"></div>
 
-
-
-<!-- ================================
-     VIDEO TITLE
-================================ -->
-
-<h1
-  id="videoTitle"
-  class="video-title"
->
-  Vairal Video
-</h1>
-
-
-<div class="info">
-
-  👁️
-  <span id="views">0</span>
-  Views
-
-  &nbsp; • &nbsp;
-
-  ❤️
-  <span id="likes">0</span>
-  Likes
-
-</div>
-
-
-
-<!-- ================================
-     VIDEO
-================================ -->
-
-<div class="video-wrapper">
-
-  <div
-    id="loading"
-    class="loading"
-  >
-
-    <div class="spinner"></div>
-
-    <div>
-      VIDEO LOADING...
     </div>
 
-  </div>
+
+    <!-- INFO -->
+    <div class="info">
+
+        <div id="videoName">
+            Loading...
+        </div>
+
+        <div class="stats">
+
+            <div
+                id="likeBtn"
+                class="stat">
+                ❤️ <span id="likeCount">0</span>
+            </div>
+
+            <div class="stat">
+                👁 <span id="viewCount">0</span>
+            </div>
+
+        </div>
+
+    </div>
 
 
-  <video
-    id="videoPlayer"
-    controls
-    playsinline
-    preload="metadata"
-    controlsList="nodownload"
-    disablePictureInPicture
-  >
-
-    <source
-      id="videoSource"
-      type="video/mp4"
-    >
-
-    Your browser does not support
-    HTML5 video.
-
-  </video>
-
-</div>
+    <!-- NEXT VIDEO -->
+    <button
+        id="nextBtn"
+        class="next-btn"
+        style="display:none;">
+        ▶ Next Video
+    </button>
 
 
+    <!-- AD #3 -->
+    <div class="ad-box">
 
-<!-- ================================
-     LIKE
-================================ -->
+        <script
+            async
+            data-cfasync="false"
+            src="https://pl30923747.effectivecpmnetwork.com/12b187a99414c09ca49488896ff8e0ac/invoke.js">
+        </script>
 
-<button
-  id="likeButton"
-  class="like-button"
-  type="button"
->
-  ❤️ Like
-</button>
+        <div
+            id="container-12b187a99414c09ca49488896ff8e0ac">
+        </div>
 
-
-
-<!-- ================================
-     AD #3
-================================ -->
-
-<div class="ad-box">
-
-<script
-  async="async"
-  data-cfasync="false"
-  src="https://pl30923747.effectivecpmnetwork.com/12b187a99414c09ca49488896ff8e0ac/invoke.js">
-</script>
-
-<div
-  id="container-12b187a99414c09ca49488896ff8e0ac">
-</div>
+    </div>
 
 </div>
 
 
-
-<!-- ================================
-     BOTTOM TELEGRAM
-================================ -->
-
-<div class="bottom-telegram">
-
-  <a
-    class="telegram-button"
-    href="https://t.me/allvairallinkandvideo"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-
-    <svg
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-    >
-
-      <path
-        fill="currentColor"
-        d="M21.8 3.2
-        2.9 10.5
-        c-1.3.5-1.3 1.2-.2 1.5
-        l4.8 1.5
-        1.8 5.7
-        c.2.6.1.8.8.8
-        .5 0 .7-.2 1-.5
-        l2.4-2.3
-        5 3.7
-        c.9.5 1.6.3 1.8-.8
-        l3.2-15.1
-        c.3-1.4-.5-2-1.7-1.3Z
-        M8.3 13.1
-        l10.9-6.9
-        c.5-.3 1-.1.6.2
-        l-8.9 8-.3 3.2
-        -1.7-5.5
-        -.6-.2Z"
-      />
-
-    </svg>
-
-    JOIN TELEGRAM CHANNEL
-
-  </a>
-
+<div class="footer">
+    © 2026 Vairal Video
 </div>
-
-
-
-<div class="description">
-
-  <strong style="color:#fff;">
-    Vairal Video
-  </strong>
-
-  <br><br>
-
-  Watch the video and join our
-  Telegram channel for more videos.
-
-</div>
-
-
-</main>
-
-
-
-<footer>
-
-  © 2026 Vairal Video
-
-</footer>
-
 
 
 <script>
 
-/* ============================================
-   APPWRITE
-============================================ */
+/* =========================================================
+   APPWRITE CONFIG
+   ========================================================= */
 
 const APPWRITE_ENDPOINT =
-  "https://fra.cloud.appwrite.io/v1";
+    "https://fra.cloud.appwrite.io/v1";
 
 const APPWRITE_PROJECT_ID =
-  "6a953702002468f915bf";
+    "6a953702002468f915bf";
 
 const APPWRITE_BUCKET_ID =
-  "6a953982002211c0c710";
+    "6a953982002211c0c710";
 
 
-/* ============================================
+/* =========================================================
    ELEMENTS
-============================================ */
+   ========================================================= */
 
-const video =
-  document.getElementById("videoPlayer");
-
-const source =
-  document.getElementById("videoSource");
+const videoPlayer =
+    document.getElementById("videoPlayer");
 
 const loading =
-  document.getElementById("loading");
+    document.getElementById("loading");
 
-const title =
-  document.getElementById("videoTitle");
+const errorBox =
+    document.getElementById("errorBox");
+
+const videoName =
+    document.getElementById("videoName");
+
+const nextBtn =
+    document.getElementById("nextBtn");
+
+const likeBtn =
+    document.getElementById("likeBtn");
+
+const likeCount =
+    document.getElementById("likeCount");
+
+const viewCount =
+    document.getElementById("viewCount");
 
 
-/* ============================================
-   GET VIDEOS FROM APPWRITE
-============================================ */
+/* =========================================================
+   LOCAL STORAGE
+   ========================================================= */
 
-async function getVideos(){
+const LAST_VIDEO_KEY =
+    "vairal_last_video";
 
-  const response = await fetch(
+const VIEW_PREFIX =
+    "vairal_view_";
 
-    APPWRITE_ENDPOINT +
-    "/storage/buckets/" +
-    APPWRITE_BUCKET_ID +
-    "/files?queries[]=" +
-    encodeURIComponent(
-      JSON.stringify({
-        method:"limit",
-        values:[1000]
-      })
-    ),
+const LIKE_PREFIX =
+    "vairal_like_";
 
-    {
-      method:"GET",
 
-      headers:{
-        "X-Appwrite-Project":
-          APPWRITE_PROJECT_ID
-      }
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+let videos = [];
+
+let currentIndex = 0;
+
+
+/* =========================================================
+   APPWRITE LIST FILES
+   ========================================================= */
+
+async function getAllVideos(){
+
+    try{
+
+        loading.style.display = "block";
+
+        loading.innerHTML =
+            "⏳ Loading videos from server...";
+
+        errorBox.style.display = "none";
+
+
+        /*
+         * Appwrite List Files
+         */
+
+        const url =
+            APPWRITE_ENDPOINT +
+            "/storage/buckets/" +
+            APPWRITE_BUCKET_ID +
+            "/files?limit=100";
+
+        console.log("APPWRITE LIST URL:", url);
+
+
+        const response = await fetch(url, {
+
+            method: "GET",
+
+            headers: {
+                "X-Appwrite-Project":
+                    APPWRITE_PROJECT_ID
+            }
+
+        });
+
+
+        console.log(
+            "APPWRITE STATUS:",
+            response.status
+        );
+
+
+        if(!response.ok){
+
+            let message =
+                "Appwrite error: " +
+                response.status;
+
+            try{
+
+                const data =
+                    await response.json();
+
+                console.error(
+                    "APPWRITE ERROR:",
+                    data
+                );
+
+                if(data.message){
+                    message +=
+                        " - " +
+                        data.message;
+                }
+
+            }catch(e){}
+
+            throw new Error(message);
+        }
+
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            "APPWRITE FILES:",
+            data
+        );
+
+
+        /*
+         * Filter video files
+         */
+
+        videos =
+            (data.files || []).filter(file => {
+
+                const name =
+                    String(file.name || "")
+                    .toLowerCase();
+
+                const mime =
+                    String(file.mimeType || "")
+                    .toLowerCase();
+
+                return (
+                    name.endsWith(".mp4") ||
+                    name.endsWith(".webm") ||
+                    name.endsWith(".mov") ||
+                    mime.startsWith("video/")
+                );
+
+            });
+
+
+        console.log(
+            "VIDEO FILES FOUND:",
+            videos.length
+        );
+
+
+        if(videos.length === 0){
+
+            throw new Error(
+                "কোনো ভিডিও পাওয়া যায়নি। " +
+                "Appwrite Bucket-এ ভিডিও আছে কিনা " +
+                "এবং Read Permission = Any কিনা দেখুন।"
+            );
+        }
+
+
+        /*
+         * Sort videos
+         *
+         * Example:
+         * 100.mp4
+         * 99.mp4
+         * 98.mp4
+         */
+
+        videos.sort((a,b) => {
+
+            const getNumber = file => {
+
+                const match =
+                    String(file.name)
+                    .match(/\d+/);
+
+                return match
+                    ? parseInt(match[0],10)
+                    : 0;
+            };
+
+            return (
+                getNumber(b) -
+                getNumber(a)
+            );
+
+        });
+
+
+        console.log(
+            "SORTED VIDEOS:",
+            videos
+        );
+
+
+        /*
+         * Find previous video
+         */
+
+        const lastVideo =
+            localStorage.getItem(
+                LAST_VIDEO_KEY
+            );
+
+
+        if(lastVideo){
+
+            const index =
+                videos.findIndex(
+                    file =>
+                        file.$id === lastVideo
+                );
+
+
+            if(index >= 0){
+
+                /*
+                 * Start with next video
+                 */
+
+                currentIndex =
+                    (index + 1) %
+                    videos.length;
+
+            }else{
+
+                currentIndex = 0;
+
+            }
+
+        }else{
+
+            currentIndex = 0;
+
+        }
+
+
+        loadVideo(currentIndex);
+
+    }catch(error){
+
+        console.error(
+            "VIDEO LOAD ERROR:",
+            error
+        );
+
+        loading.style.display =
+            "none";
+
+        videoPlayer.style.display =
+            "none";
+
+        errorBox.style.display =
+            "block";
+
+        errorBox.innerHTML =
+            "❌ ভিডিও লোড করা যাচ্ছে না।<br><br>" +
+            "<small>" +
+            error.message +
+            "</small><br><br>" +
+            "Appwrite Bucket-এর Read Permission চেক করুন।";
+
     }
-
-  );
-
-
-  if(!response.ok){
-
-    const errorText =
-      await response.text();
-
-    console.error(
-      "Appwrite error:",
-      errorText
-    );
-
-    throw new Error(
-      "Appwrite error: " +
-      response.status
-    );
-
-  }
-
-
-  const data =
-    await response.json();
-
-
-  return (data.files || []).filter(
-    file =>
-      file.name &&
-      file.name
-        .toLowerCase()
-        .endsWith(".mp4")
-  );
 
 }
 
 
-/* ============================================
-   SORT VIDEOS
-============================================ */
+/* =========================================================
+   CREATE VIDEO URL
+   ========================================================= */
 
-function sortVideos(videos){
+function getVideoUrl(fileId){
 
-  return videos.sort(
-    (a,b)=>{
-
-      const aNumber =
-        parseInt(
-          a.name.match(/\d+/)?.[0] || 0
-        );
-
-      const bNumber =
-        parseInt(
-          b.name.match(/\d+/)?.[0] || 0
-        );
-
-      return bNumber-aNumber;
-
-    }
-  );
+    return (
+        APPWRITE_ENDPOINT +
+        "/storage/buckets/" +
+        APPWRITE_BUCKET_ID +
+        "/files/" +
+        encodeURIComponent(fileId) +
+        "/view?project=" +
+        encodeURIComponent(APPWRITE_PROJECT_ID)
+    );
 
 }
 
 
-/* ============================================
+/* =========================================================
    LOAD VIDEO
-============================================ */
+   ========================================================= */
 
-async function loadVideo(){
-
-  try{
-
-    loading.style.display =
-      "flex";
-
-    video.style.display =
-      "none";
-
-
-    const videos =
-      sortVideos(
-        await getVideos()
-      );
-
+function loadVideo(index){
 
     if(!videos.length){
-
-      throw new Error(
-        "No MP4 videos found in Appwrite"
-      );
-
+        return;
     }
 
 
-    const KEY =
-      "vairal_last_video";
+    /*
+     * Loop index
+     */
 
+    if(index >= videos.length){
+        index = 0;
+    }
 
-    const last =
-      localStorage.getItem(KEY);
-
-
-    let index = 0;
-
-
-    if(last){
-
-      const oldIndex =
-        videos.findIndex(
-          item =>
-            item.name === last
-        );
-
-
-      if(oldIndex >= 0){
-
-        index =
-          (oldIndex + 1) %
-          videos.length;
-
-      }
-
+    if(index < 0){
+        index = videos.length - 1;
     }
 
 
-    const selected =
-      videos[index];
+    currentIndex = index;
 
 
-    localStorage.setItem(
-      KEY,
-      selected.name
-    );
-
-
-    /* ========================================
-       APPWRITE VIDEO URL
-    ======================================== */
-
-    const url =
-      APPWRITE_ENDPOINT +
-      "/storage/buckets/" +
-      APPWRITE_BUCKET_ID +
-      "/files/" +
-      selected.$id +
-      "/view?project=" +
-      APPWRITE_PROJECT_ID;
+    const file =
+        videos[currentIndex];
 
 
     console.log(
-      "Video URL:",
-      url
+        "SELECTED VIDEO:",
+        file
     );
 
 
-    source.src =
-      url;
+    /*
+     * Save current video
+     */
+
+    localStorage.setItem(
+        LAST_VIDEO_KEY,
+        file.$id
+    );
 
 
-    video.load();
+    /*
+     * Video URL
+     */
+
+    const videoUrl =
+        getVideoUrl(file.$id);
 
 
-    title.textContent =
-      selected.name
-        .replace(
-          /\.mp4$/i,
-          ""
-        )
-        .replace(
-          /[-_]/g,
-          " "
-        );
+    console.log(
+        "VIDEO URL:",
+        videoUrl
+    );
 
 
-    video.onloadeddata =
-      function(){
+    /*
+     * UI
+     */
 
-        loading.style.display =
-          "none";
-
-        video.style.display =
-          "block";
-
-      };
-
-
-    video.onerror =
-      function(){
-
-        console.error(
-          "Video failed:",
-          video.error
-        );
-
-        loading.innerHTML =
-          "⚠️ VIDEO FAILED TO LOAD";
-
-      };
-
-
-  }catch(error){
-
-    console.error(error);
+    loading.style.display =
+        "block";
 
     loading.innerHTML =
-      "⚠️ VIDEO FAILED TO LOAD";
+        "⏳ Loading video...";
 
-  }
+    errorBox.style.display =
+        "none";
 
-}
+    videoPlayer.style.display =
+        "none";
 
-
-loadVideo();
-
-
-
-/* ============================================
-   WHEN VIDEO ENDS
-   LOAD NEXT VIDEO
-============================================ */
-
-video.addEventListener(
-  "ended",
-  function(){
-
-    loadVideo();
-
-  }
-);
+    nextBtn.style.display =
+        "block";
 
 
-
-/* ============================================
-   VIEWS
-============================================ */
-
-let views =
-  Number(
-    localStorage.getItem(
-      "vairal_views"
-    )
-  ) || 0;
-
-views++;
-
-localStorage.setItem(
-  "vairal_views",
-  views
-);
-
-document.getElementById(
-  "views"
-).textContent = views;
+    videoName.textContent =
+        file.name || "Video";
 
 
+    /*
+     * View counter
+     */
 
-/* ============================================
-   LIKE
-============================================ */
-
-let likes =
-  Number(
-    localStorage.getItem(
-      "vairal_likes"
-    )
-  ) || 0;
-
-let liked =
-  localStorage.getItem(
-    "vairal_liked"
-  ) === "true";
+    updateViewCount(file.$id);
 
 
-const likeButton =
-  document.getElementById(
-    "likeButton"
-  );
+    /*
+     * Like counter
+     */
+
+    updateLikeCount(file.$id);
 
 
-document.getElementById(
-  "likes"
-).textContent = likes;
+    /*
+     * Reset old video
+     */
+
+    videoPlayer.pause();
+
+    videoPlayer.removeAttribute("src");
+
+    videoPlayer.load();
 
 
-if(liked){
+    /*
+     * Set Appwrite video
+     */
 
-  likeButton.classList.add(
-    "active"
-  );
+    videoPlayer.src =
+        videoUrl;
 
-  likeButton.textContent =
-    "❤️ Liked";
+
+    videoPlayer.load();
 
 }
 
 
-likeButton.addEventListener(
-  "click",
-  function(){
+/* =========================================================
+   VIDEO CAN PLAY
+   ========================================================= */
 
-    if(!liked){
+videoPlayer.addEventListener(
+    "loadeddata",
+    function(){
 
-      likes++;
-      liked=true;
+        loading.style.display =
+            "none";
 
-      likeButton.classList.add(
-        "active"
-      );
+        videoPlayer.style.display =
+            "block";
 
-      likeButton.textContent =
-        "❤️ Liked";
+        errorBox.style.display =
+            "none";
 
-    }else{
+    }
+);
 
-      likes =
-        Math.max(
-          0,
-          likes-1
+
+/* =========================================================
+   VIDEO ERROR
+   ========================================================= */
+
+videoPlayer.addEventListener(
+    "error",
+    function(){
+
+        console.error(
+            "HTML VIDEO ERROR:",
+            videoPlayer.error
         );
 
-      liked=false;
 
-      likeButton.classList.remove(
-        "active"
-      );
+        loading.style.display =
+            "none";
 
-      likeButton.textContent =
-        "❤️ Like";
+        videoPlayer.style.display =
+            "none";
+
+        errorBox.style.display =
+            "block";
+
+        errorBox.innerHTML =
+            "❌ এই ভিডিওটি চালানো যাচ্ছে না।<br><br>" +
+            "Appwrite File-এর Read Permission এবং ভিডিও ফাইলটি MP4 কিনা চেক করুন।";
+
+    }
+);
+
+
+/* =========================================================
+   AUTO NEXT VIDEO
+   ========================================================= */
+
+videoPlayer.addEventListener(
+    "ended",
+    function(){
+
+        console.log(
+            "VIDEO ENDED → NEXT VIDEO"
+        );
+
+
+        const nextIndex =
+            (currentIndex + 1) %
+            videos.length;
+
+
+        loadVideo(nextIndex);
+
+    }
+);
+
+
+/* =========================================================
+   NEXT BUTTON
+   ========================================================= */
+
+nextBtn.addEventListener(
+    "click",
+    function(){
+
+        const nextIndex =
+            (currentIndex + 1) %
+            videos.length;
+
+        loadVideo(nextIndex);
+
+    }
+);
+
+
+/* =========================================================
+   VIEW COUNTER
+   ========================================================= */
+
+function updateViewCount(fileId){
+
+    const key =
+        VIEW_PREFIX + fileId;
+
+
+    let count =
+        parseInt(
+            localStorage.getItem(key) || "0",
+            10
+        );
+
+
+    /*
+     * Count once per browser
+     */
+
+    const viewedKey =
+        key + "_done";
+
+
+    if(!localStorage.getItem(viewedKey)){
+
+        count++;
+
+        localStorage.setItem(
+            key,
+            count
+        );
+
+        localStorage.setItem(
+            viewedKey,
+            "1"
+        );
 
     }
 
 
-    localStorage.setItem(
-      "vairal_likes",
-      likes
-    );
+    viewCount.textContent =
+        count;
 
-    localStorage.setItem(
-      "vairal_liked",
-      liked
-    );
+}
 
 
-    document.getElementById(
-      "likes"
-    ).textContent = likes;
+/* =========================================================
+   LIKE COUNTER
+   ========================================================= */
 
-  }
+function updateLikeCount(fileId){
+
+    const key =
+        LIKE_PREFIX + fileId;
+
+
+    const count =
+        parseInt(
+            localStorage.getItem(key) || "0",
+            10
+        );
+
+
+    likeCount.textContent =
+        count;
+
+
+    const likedKey =
+        key + "_clicked";
+
+
+    if(
+        localStorage.getItem(
+            likedKey
+        )
+    ){
+
+        likeBtn.classList.add(
+            "liked"
+        );
+
+    }else{
+
+        likeBtn.classList.remove(
+            "liked"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   LIKE BUTTON
+   ========================================================= */
+
+likeBtn.addEventListener(
+    "click",
+    function(){
+
+        if(!videos.length){
+            return;
+        }
+
+
+        const file =
+            videos[currentIndex];
+
+
+        const key =
+            LIKE_PREFIX +
+            file.$id;
+
+
+        const likedKey =
+            key + "_clicked";
+
+
+        let count =
+            parseInt(
+                localStorage.getItem(key) || "0",
+                10
+            );
+
+
+        /*
+         * Unlike
+         */
+
+        if(
+            localStorage.getItem(
+                likedKey
+            )
+        ){
+
+            count =
+                Math.max(
+                    0,
+                    count - 1
+                );
+
+            localStorage.removeItem(
+                likedKey
+            );
+
+
+        }else{
+
+            /*
+             * Like
+             */
+
+            count++;
+
+            localStorage.setItem(
+                likedKey,
+                "1"
+            );
+
+        }
+
+
+        localStorage.setItem(
+            key,
+            count
+        );
+
+
+        updateLikeCount(
+            file.$id
+        );
+
+    }
 );
+
+
+/* =========================================================
+   START
+   ========================================================= */
+
+getAllVideos();
 
 </script>
 
