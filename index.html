@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -9,7 +10,9 @@
 <meta name="description" content="Vairal Video - Watch viral videos">
 <meta name="theme-color" content="#111111">
 
+
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -71,12 +74,17 @@ header{
     border:1px solid #242424;
 }
 
-video{
-    display:block;
+.video-area{
     width:100%;
-    height:auto;
-    min-height:220px;
+    aspect-ratio:16/9;
     background:#000;
+}
+
+#vimeoPlayer{
+    width:100%;
+    height:100%;
+    border:0;
+    display:block;
 }
 
 .loading{
@@ -101,11 +109,21 @@ video{
     padding:13px 5px;
     color:#aaa;
     font-size:14px;
+    gap:10px;
+}
+
+#videoName{
+    color:#fff;
+    font-weight:bold;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
 }
 
 .stats{
     display:flex;
     gap:15px;
+    flex-shrink:0;
 }
 
 .stat{
@@ -149,6 +167,7 @@ video{
 }
 
 @media(max-width:600px){
+
     .container{
         padding:8px;
     }
@@ -157,21 +176,48 @@ video{
         font-size:23px;
     }
 
-    video{
-        min-height:200px;
+    .video-area{
+        aspect-ratio:16/9;
     }
+
+    .info{
+        font-size:13px;
+    }
+
 }
+
 </style>
 
-<!-- Monetag Popunder -->
+
+<!-- =====================================================
+     MONETAG POPUNDER
+====================================================== -->
+
 <script src="https://pl30923744.effectivecpmnetwork.com/bc/bf/98/bcbf98c695a71ec20aa923a7a131ffa3.js"></script>
 
-<!-- Monetag Social Bar -->
+
+<!-- =====================================================
+     MONETAG SOCIAL BAR
+====================================================== -->
+
 <script src="https://pl30923746.effectivecpmnetwork.com/60/5e/6e/605e6e402e2188c01fb7fcc993d62be2.js"></script>
+
+
+<!-- =====================================================
+     VIMEO PLAYER API
+====================================================== -->
+
+<script src="https://player.vimeo.com/api/player.js"></script>
 
 </head>
 
+
 <body>
+
+
+<!-- =====================================================
+     HEADER
+====================================================== -->
 
 <header>
 
@@ -184,138 +230,238 @@ video{
         href="https://t.me/allvairallinkandvideo"
         target="_blank"
         rel="noopener">
+
         ✈ Join Telegram
+
     </a>
 
 </header>
 
 
+
 <div class="container">
 
-    <!-- VIDEO -->
-    <div class="video-box">
 
-        <div id="loading" class="loading">
-            ⏳ Loading video...
-        </div>
+<!-- =====================================================
+     VIDEO PLAYER
+====================================================== -->
 
-        <video
-            id="videoPlayer"
-            controls
-            playsinline
-            preload="metadata"
-            style="display:none;">
-        </video>
+<div class="video-box">
 
-        <div id="errorBox" class="error"></div>
+
+    <div
+        id="loading"
+        class="loading">
+
+        ⏳ Loading video...
 
     </div>
 
 
-    <!-- INFO -->
-    <div class="info">
-
-        <div id="videoName">
-            Loading...
-        </div>
-
-        <div class="stats">
-
-            <div
-                id="likeBtn"
-                class="stat">
-                ❤️ <span id="likeCount">0</span>
-            </div>
-
-            <div class="stat">
-                👁 <span id="viewCount">0</span>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- NEXT VIDEO -->
-    <button
-        id="nextBtn"
-        class="next-btn"
+    <div
+        id="videoArea"
+        class="video-area"
         style="display:none;">
-        ▶ Next Video
-    </button>
+
+    </div>
 
 
-    <!-- AD #3 -->
-    <div class="ad-box">
+    <div
+        id="errorBox"
+        class="error">
 
-        <script
-            async
-            data-cfasync="false"
-            src="https://pl30923747.effectivecpmnetwork.com/12b187a99414c09ca49488896ff8e0ac/invoke.js">
-        </script>
+    </div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     VIDEO INFO
+====================================================== -->
+
+<div class="info">
+
+
+    <div id="videoName">
+
+        Loading...
+
+    </div>
+
+
+    <div class="stats">
+
 
         <div
-            id="container-12b187a99414c09ca49488896ff8e0ac">
+            id="likeBtn"
+            class="stat">
+
+            ❤️ <span id="likeCount">0</span>
+
         </div>
+
+
+        <div class="stat">
+
+            👁 <span id="viewCount">0</span>
+
+        </div>
+
 
     </div>
 
 </div>
 
 
-<div class="footer">
-    © 2026 Vairal Video
+
+<!-- =====================================================
+     NEXT VIDEO
+====================================================== -->
+
+<button
+    id="nextBtn"
+    class="next-btn"
+    style="display:none;">
+
+    ▶ Next Video
+
+</button>
+
+
+
+<!-- =====================================================
+     MONETAG AD #3
+====================================================== -->
+
+<div class="ad-box">
+
+
+    <script
+        async
+        data-cfasync="false"
+        src="https://pl30923747.effectivecpmnetwork.com/12b187a99414c09ca49488896ff8e0ac/invoke.js">
+    </script>
+
+
+    <div
+        id="container-12b187a99414c09ca49488896ff8e0ac">
+    </div>
+
+
 </div>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<div class="footer">
+
+    © 2026 Vairal Video
+
+</div>
+
 
 
 <script>
 
 /* =========================================================
-   APPWRITE CONFIG
-   ========================================================= */
+   BACKENDLESS CONFIG
+========================================================= */
 
-const APPWRITE_ENDPOINT =
-    "https://fra.cloud.appwrite.io/v1";
 
-const APPWRITE_PROJECT_ID =
-    "6a953702002468f915bf";
+/*
+ * APPLICATION ID
+ */
 
-const APPWRITE_BUCKET_ID =
-    "6a953982002211c0c710";
+const BACKENDLESS_APP_ID =
+    "B73D967B-B1CA-42B7-98B1-34969A1A096D";
+
+
+/*
+ * REST API KEY
+ */
+
+const BACKENDLESS_API_KEY =
+    "C59C4813-C974-4B43-ACBE-313ABCB461B7";
+
+
+/*
+ * BACKENDLESS BASE URL
+ */
+
+const BACKENDLESS_BASE_URL =
+    "https://api.backendless.com/" +
+    BACKENDLESS_APP_ID +
+    "/" +
+    BACKENDLESS_API_KEY;
+
+
+/*
+ * VIDEOS TABLE
+ */
+
+const VIDEOS_API =
+    BACKENDLESS_BASE_URL +
+    "/data/bulk/Videos";
+
 
 
 /* =========================================================
    ELEMENTS
-   ========================================================= */
+========================================================= */
 
-const videoPlayer =
-    document.getElementById("videoPlayer");
+const videoArea =
+    document.getElementById(
+        "videoArea"
+    );
 
 const loading =
-    document.getElementById("loading");
+    document.getElementById(
+        "loading"
+    );
 
 const errorBox =
-    document.getElementById("errorBox");
+    document.getElementById(
+        "errorBox"
+    );
 
 const videoName =
-    document.getElementById("videoName");
+    document.getElementById(
+        "videoName"
+    );
 
 const nextBtn =
-    document.getElementById("nextBtn");
+    document.getElementById(
+        "nextBtn"
+    );
 
 const likeBtn =
-    document.getElementById("likeBtn");
+    document.getElementById(
+        "likeBtn"
+    );
 
 const likeCount =
-    document.getElementById("likeCount");
+    document.getElementById(
+        "likeCount"
+    );
 
 const viewCount =
-    document.getElementById("viewCount");
+    document.getElementById(
+        "viewCount"
+    );
+
 
 
 /* =========================================================
    LOCAL STORAGE
-   ========================================================= */
+========================================================= */
 
 const LAST_VIDEO_KEY =
     "vairal_last_video";
@@ -327,58 +473,72 @@ const LIKE_PREFIX =
     "vairal_like_";
 
 
+
 /* =========================================================
    GLOBAL
-   ========================================================= */
+========================================================= */
 
 let videos = [];
 
 let currentIndex = 0;
 
+let currentVimeoPlayer = null;
+
+let changingVideo = false;
+
+
 
 /* =========================================================
-   APPWRITE LIST FILES
-   ========================================================= */
+   LOAD VIDEOS FROM BACKENDLESS
+========================================================= */
 
 async function getAllVideos(){
 
     try{
 
-        loading.style.display = "block";
+
+        loading.style.display =
+            "block";
+
 
         loading.innerHTML =
             "⏳ Loading videos from server...";
 
-        errorBox.style.display = "none";
+
+        errorBox.style.display =
+            "none";
 
 
-        /*
-         * Appwrite List Files
-         */
-
-        const url =
-            APPWRITE_ENDPOINT +
-            "/storage/buckets/" +
-            APPWRITE_BUCKET_ID +
-            "/files?limit=100";
-
-        console.log("APPWRITE LIST URL:", url);
+        videoArea.style.display =
+            "none";
 
 
-        const response = await fetch(url, {
-
-            method: "GET",
-
-            headers: {
-                "X-Appwrite-Project":
-                    APPWRITE_PROJECT_ID
-            }
-
-        });
+        nextBtn.style.display =
+            "none";
 
 
         console.log(
-            "APPWRITE STATUS:",
+            "Backendless API:",
+            VIDEOS_API
+        );
+
+
+        const response =
+            await fetch(
+                VIDEOS_API,
+                {
+                    method:"GET",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    }
+                }
+            );
+
+
+        console.log(
+            "Backendless status:",
             response.status
         );
 
@@ -386,28 +546,37 @@ async function getAllVideos(){
         if(!response.ok){
 
             let message =
-                "Appwrite error: " +
+                "Backendless Error: " +
                 response.status;
+
 
             try{
 
                 const data =
                     await response.json();
 
+
                 console.error(
-                    "APPWRITE ERROR:",
+                    "Backendless error:",
                     data
                 );
 
+
                 if(data.message){
+
                     message +=
                         " - " +
                         data.message;
+
                 }
 
             }catch(e){}
 
-            throw new Error(message);
+
+            throw new Error(
+                message
+            );
+
         }
 
 
@@ -416,38 +585,72 @@ async function getAllVideos(){
 
 
         console.log(
-            "APPWRITE FILES:",
+            "Backendless response:",
             data
         );
 
 
         /*
-         * Filter video files
+         * Backendless data array
+         */
+
+        if(Array.isArray(data)){
+
+            videos =
+                data;
+
+        }
+
+        else if(
+            data &&
+            Array.isArray(data.data)
+        ){
+
+            videos =
+                data.data;
+
+        }
+
+        else if(
+            data &&
+            Array.isArray(data.result)
+        ){
+
+            videos =
+                data.result;
+
+        }
+
+        else{
+
+            videos =
+                [];
+
+        }
+
+
+        /*
+         * Remove invalid rows
          */
 
         videos =
-            (data.files || []).filter(file => {
+            videos.filter(
+                video => {
 
-                const name =
-                    String(file.name || "")
-                    .toLowerCase();
+                    return (
+                        video &&
+                        (
+                            video.videoId ||
+                            video.videoUrl
+                        )
+                    );
 
-                const mime =
-                    String(file.mimeType || "")
-                    .toLowerCase();
-
-                return (
-                    name.endsWith(".mp4") ||
-                    name.endsWith(".webm") ||
-                    name.endsWith(".mov") ||
-                    mime.startsWith("video/")
-                );
-
-            });
+                }
+            );
 
 
         console.log(
-            "VIDEO FILES FOUND:",
+            "VIDEOS FOUND:",
             videos.length
         );
 
@@ -455,51 +658,41 @@ async function getAllVideos(){
         if(videos.length === 0){
 
             throw new Error(
-                "কোনো ভিডিও পাওয়া যায়নি। " +
-                "Appwrite Bucket-এ ভিডিও আছে কিনা " +
-                "এবং Read Permission = Any কিনা দেখুন।"
+                "Videos table-এ কোনো ভিডিও পাওয়া যায়নি।"
             );
+
         }
 
 
         /*
-         * Sort videos
-         *
-         * Example:
-         * 100.mp4
-         * 99.mp4
-         * 98.mp4
+         * Newest first
          */
 
-        videos.sort((a,b) => {
+        videos.sort(
+            (a,b) => {
 
-            const getNumber = file => {
-
-                const match =
-                    String(file.name)
-                    .match(/\d+/);
-
-                return match
-                    ? parseInt(match[0],10)
-                    : 0;
-            };
-
-            return (
-                getNumber(b) -
-                getNumber(a)
-            );
-
-        });
+                const dateA =
+                    new Date(
+                        a.created ||
+                        0
+                    ).getTime();
 
 
-        console.log(
-            "SORTED VIDEOS:",
-            videos
+                const dateB =
+                    new Date(
+                        b.created ||
+                        0
+                    ).getTime();
+
+
+                return dateB - dateA;
+
+            }
         );
 
 
         /*
-         * Find previous video
+         * Previous video
          */
 
         const lastVideo =
@@ -512,117 +705,199 @@ async function getAllVideos(){
 
             const index =
                 videos.findIndex(
-                    file =>
-                        file.$id === lastVideo
+                    video =>
+                        String(
+                            video.objectId
+                        ) ===
+                        String(
+                            lastVideo
+                        )
                 );
 
 
             if(index >= 0){
 
-                /*
-                 * Start with next video
-                 */
-
                 currentIndex =
-                    (index + 1) %
+                    (
+                        index + 1
+                    ) %
                     videos.length;
 
-            }else{
+            }
+
+            else{
 
                 currentIndex = 0;
 
             }
 
-        }else{
+        }
+
+        else{
 
             currentIndex = 0;
 
         }
 
 
-        loadVideo(currentIndex);
+        loadVideo(
+            currentIndex
+        );
 
-    }catch(error){
+
+    }
+
+    catch(error){
 
         console.error(
             "VIDEO LOAD ERROR:",
             error
         );
 
-        loading.style.display =
-            "none";
 
-        videoPlayer.style.display =
-            "none";
-
-        errorBox.style.display =
-            "block";
-
-        errorBox.innerHTML =
-            "❌ ভিডিও লোড করা যাচ্ছে না।<br><br>" +
-            "<small>" +
-            error.message +
-            "</small><br><br>" +
-            "Appwrite Bucket-এর Read Permission চেক করুন।";
+        showError(
+            error.message
+        );
 
     }
 
 }
 
 
-/* =========================================================
-   CREATE VIDEO URL
-   ========================================================= */
 
-function getVideoUrl(fileId){
+/* =========================================================
+   GET VIMEO VIDEO ID
+========================================================= */
+
+function getVimeoId(video){
+
+
+    /*
+     * videoId exists
+     */
+
+    if(
+        video.videoId &&
+        String(
+            video.videoId
+        ).trim() !== ""
+    ){
+
+        return String(
+            video.videoId
+        ).trim();
+
+    }
+
+
+    /*
+     * Extract from URL
+     */
+
+    if(
+        video.videoUrl
+    ){
+
+        const url =
+            String(
+                video.videoUrl
+            );
+
+
+        const match =
+            url.match(
+                /vimeo\.com\/(?:video\/)?(\d+)/
+            );
+
+
+        if(match){
+
+            return match[1];
+
+        }
+
+    }
+
+
+    return null;
+
+}
+
+
+
+/* =========================================================
+   IS VIMEO
+========================================================= */
+
+function isVimeoVideo(video){
+
+    const url =
+        String(
+            video.videoUrl ||
+            ""
+        ).toLowerCase();
+
 
     return (
-        APPWRITE_ENDPOINT +
-        "/storage/buckets/" +
-        APPWRITE_BUCKET_ID +
-        "/files/" +
-        encodeURIComponent(fileId) +
-        "/view?project=" +
-        encodeURIComponent(APPWRITE_PROJECT_ID)
+        url.includes(
+            "vimeo.com"
+        ) ||
+        !!getVimeoId(video)
     );
 
 }
 
 
+
 /* =========================================================
    LOAD VIDEO
-   ========================================================= */
+========================================================= */
 
 function loadVideo(index){
 
+
     if(!videos.length){
+
         return;
+
     }
 
 
     /*
-     * Loop index
+     * Loop
      */
 
-    if(index >= videos.length){
+    if(
+        index >=
+        videos.length
+    ){
+
         index = 0;
+
     }
+
 
     if(index < 0){
-        index = videos.length - 1;
+
+        index =
+            videos.length - 1;
+
     }
 
 
-    currentIndex = index;
+    currentIndex =
+        index;
 
 
-    const file =
-        videos[currentIndex];
+    const video =
+        videos[
+            currentIndex
+        ];
 
 
     console.log(
-        "SELECTED VIDEO:",
-        file
+        "CURRENT VIDEO:",
+        video
     );
 
 
@@ -630,215 +905,549 @@ function loadVideo(index){
      * Save current video
      */
 
-    localStorage.setItem(
-        LAST_VIDEO_KEY,
-        file.$id
+    if(video.objectId){
+
+        localStorage.setItem(
+            LAST_VIDEO_KEY,
+            video.objectId
+        );
+
+    }
+
+
+    /*
+     * Title
+     */
+
+    videoName.textContent =
+        video.title ||
+        "Vairal Video";
+
+
+    /*
+     * Counters
+     */
+
+    updateViewCount(
+        video
+    );
+
+
+    updateLikeCount(
+        video
     );
 
 
     /*
-     * Video URL
+     * Reset
      */
 
-    const videoUrl =
-        getVideoUrl(file.$id);
+    destroyCurrentPlayer();
 
-
-    console.log(
-        "VIDEO URL:",
-        videoUrl
-    );
-
-
-    /*
-     * UI
-     */
 
     loading.style.display =
         "block";
 
+
     loading.innerHTML =
         "⏳ Loading video...";
+
 
     errorBox.style.display =
         "none";
 
-    videoPlayer.style.display =
+
+    videoArea.style.display =
         "none";
+
 
     nextBtn.style.display =
         "block";
 
 
-    videoName.textContent =
-        file.name || "Video";
-
-
     /*
-     * View counter
+     * Vimeo
      */
 
-    updateViewCount(file.$id);
+    if(
+        isVimeoVideo(video)
+    ){
 
+        loadVimeoVideo(
+            video
+        );
 
-    /*
-     * Like counter
-     */
+    }
 
-    updateLikeCount(file.$id);
+    else{
 
+        loadNormalVideo(
+            video
+        );
 
-    /*
-     * Reset old video
-     */
-
-    videoPlayer.pause();
-
-    videoPlayer.removeAttribute("src");
-
-    videoPlayer.load();
-
-
-    /*
-     * Set Appwrite video
-     */
-
-    videoPlayer.src =
-        videoUrl;
-
-
-    videoPlayer.load();
+    }
 
 }
 
 
+
 /* =========================================================
-   VIDEO CAN PLAY
-   ========================================================= */
+   VIMEO PLAYER
+========================================================= */
 
-videoPlayer.addEventListener(
-    "loadeddata",
-    function(){
+function loadVimeoVideo(video){
 
-        loading.style.display =
-            "none";
 
-        videoPlayer.style.display =
-            "block";
+    const vimeoId =
+        getVimeoId(
+            video
+        );
 
-        errorBox.style.display =
-            "none";
+
+    if(!vimeoId){
+
+        showError(
+            "Vimeo Video ID পাওয়া যায়নি।"
+        );
+
+        return;
 
     }
-);
 
 
-/* =========================================================
-   VIDEO ERROR
-   ========================================================= */
+    /*
+     * Create iframe
+     */
 
-videoPlayer.addEventListener(
-    "error",
-    function(){
+    const iframe =
+        document.createElement(
+            "iframe"
+        );
+
+
+    iframe.id =
+        "vimeoPlayer";
+
+
+    iframe.setAttribute(
+        "allow",
+        "autoplay; fullscreen; picture-in-picture"
+    );
+
+
+    iframe.setAttribute(
+        "allowfullscreen",
+        ""
+    );
+
+
+    iframe.frameBorder =
+        "0";
+
+
+    iframe.src =
+        "https://player.vimeo.com/video/" +
+        encodeURIComponent(
+            vimeoId
+        ) +
+        "?title=0&byline=0&portrait=0";
+
+
+    videoArea.innerHTML =
+        "";
+
+
+    videoArea.appendChild(
+        iframe
+    );
+
+
+    videoArea.style.display =
+        "block";
+
+
+    /*
+     * Vimeo SDK
+     */
+
+    try{
+
+        currentVimeoPlayer =
+            new Vimeo.Player(
+                iframe
+            );
+
+
+        /*
+         * Loaded
+         */
+
+        currentVimeoPlayer.on(
+            "loaded",
+            function(){
+
+                loading.style.display =
+                    "none";
+
+            }
+        );
+
+
+        /*
+         * Play
+         */
+
+        currentVimeoPlayer.on(
+            "play",
+            function(){
+
+                loading.style.display =
+                    "none";
+
+            }
+        );
+
+
+        /*
+         * Ended
+         */
+
+        currentVimeoPlayer.on(
+            "ended",
+            function(){
+
+                if(
+                    changingVideo
+                ){
+
+                    return;
+
+                }
+
+
+                console.log(
+                    "VIDEO ENDED"
+                );
+
+
+                goToNextVideo();
+
+            }
+        );
+
+
+        /*
+         * Error
+         */
+
+        currentVimeoPlayer.on(
+            "error",
+            function(data){
+
+                console.error(
+                    "VIMEO ERROR:",
+                    data
+                );
+
+
+                showError(
+                    "এই Vimeo ভিডিওটি embed করা যাচ্ছে না। Vimeo Privacy/Embed Settings চেক করুন।"
+                );
+
+            }
+        );
+
+
+    }
+
+    catch(error){
 
         console.error(
-            "HTML VIDEO ERROR:",
-            videoPlayer.error
+            "Vimeo Player Error:",
+            error
         );
 
 
-        loading.style.display =
-            "none";
-
-        videoPlayer.style.display =
-            "none";
-
-        errorBox.style.display =
-            "block";
-
-        errorBox.innerHTML =
-            "❌ এই ভিডিওটি চালানো যাচ্ছে না।<br><br>" +
-            "Appwrite File-এর Read Permission এবং ভিডিও ফাইলটি MP4 কিনা চেক করুন।";
+        showError(
+            "Vimeo Player চালু করা যাচ্ছে না।"
+        );
 
     }
-);
+
+}
+
 
 
 /* =========================================================
-   AUTO NEXT VIDEO
-   ========================================================= */
+   NORMAL MP4 VIDEO
+========================================================= */
 
-videoPlayer.addEventListener(
-    "ended",
-    function(){
+function loadNormalVideo(video){
 
-        console.log(
-            "VIDEO ENDED → NEXT VIDEO"
+
+    if(
+        !video.videoUrl
+    ){
+
+        showError(
+            "এই ভিডিওর videoUrl নেই।"
+        );
+
+        return;
+
+    }
+
+
+    const player =
+        document.createElement(
+            "video"
         );
 
 
-        const nextIndex =
-            (currentIndex + 1) %
-            videos.length;
+    player.controls =
+        true;
 
 
-        loadVideo(nextIndex);
+    player.playsInline =
+        true;
+
+
+    player.preload =
+        "metadata";
+
+
+    player.src =
+        String(
+            video.videoUrl
+        );
+
+
+    videoArea.innerHTML =
+        "";
+
+
+    videoArea.appendChild(
+        player
+    );
+
+
+    videoArea.style.display =
+        "block";
+
+
+    player.addEventListener(
+        "loadeddata",
+        function(){
+
+            loading.style.display =
+                "none";
+
+        }
+    );
+
+
+    player.addEventListener(
+        "ended",
+        function(){
+
+            goToNextVideo();
+
+        }
+    );
+
+
+    player.addEventListener(
+        "error",
+        function(){
+
+            showError(
+                "এই ভিডিওটি চালানো যাচ্ছে না।"
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   DESTROY PLAYER
+========================================================= */
+
+function destroyCurrentPlayer(){
+
+    changingVideo =
+        true;
+
+
+    if(
+        currentVimeoPlayer
+    ){
+
+        try{
+
+            currentVimeoPlayer.unload();
+
+        }
+
+        catch(e){
+
+            console.log(e);
+
+        }
+
+
+        currentVimeoPlayer =
+            null;
 
     }
-);
+
+
+    videoArea.innerHTML =
+        "";
+
+
+    changingVideo =
+        false;
+
+}
+
+
+
+/* =========================================================
+   NEXT VIDEO
+========================================================= */
+
+function goToNextVideo(){
+
+    if(
+        !videos.length
+    ){
+
+        return;
+
+    }
+
+
+    const nextIndex =
+        (
+            currentIndex +
+            1
+        ) %
+        videos.length;
+
+
+    loadVideo(
+        nextIndex
+    );
+
+}
+
 
 
 /* =========================================================
    NEXT BUTTON
-   ========================================================= */
+========================================================= */
 
 nextBtn.addEventListener(
     "click",
     function(){
 
-        const nextIndex =
-            (currentIndex + 1) %
-            videos.length;
-
-        loadVideo(nextIndex);
+        goToNextVideo();
 
     }
 );
 
 
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+function showError(message){
+
+    loading.style.display =
+        "none";
+
+
+    videoArea.style.display =
+        "none";
+
+
+    errorBox.style.display =
+        "block";
+
+
+    errorBox.innerHTML =
+        "❌ " +
+        message +
+        "<br><br>" +
+        "<small>" +
+        "Backendless Videos table এবং Vimeo settings চেক করুন।" +
+        "</small>";
+
+
+    if(videos.length){
+
+        nextBtn.style.display =
+            "block";
+
+    }
+
+}
+
+
+
 /* =========================================================
    VIEW COUNTER
-   ========================================================= */
+========================================================= */
 
-function updateViewCount(fileId){
+function updateViewCount(video){
+
+    const id =
+        video.objectId ||
+        video.videoId ||
+        video.videoUrl;
+
 
     const key =
-        VIEW_PREFIX + fileId;
+        VIEW_PREFIX +
+        id;
 
 
     let count =
         parseInt(
-            localStorage.getItem(key) || "0",
+            localStorage.getItem(
+                key
+            ) || "0",
             10
         );
+
+
+    const viewedKey =
+        key +
+        "_done";
 
 
     /*
      * Count once per browser
      */
 
-    const viewedKey =
-        key + "_done";
-
-
-    if(!localStorage.getItem(viewedKey)){
+    if(
+        !localStorage.getItem(
+            viewedKey
+        )
+    ){
 
         count++;
+
 
         localStorage.setItem(
             key,
             count
         );
+
 
         localStorage.setItem(
             viewedKey,
@@ -848,35 +1457,78 @@ function updateViewCount(fileId){
     }
 
 
-    viewCount.textContent =
-        count;
+    /*
+     * Backendless value
+     */
 
-}
-
-
-/* =========================================================
-   LIKE COUNTER
-   ========================================================= */
-
-function updateLikeCount(fileId){
-
-    const key =
-        LIKE_PREFIX + fileId;
-
-
-    const count =
+    const backendViews =
         parseInt(
-            localStorage.getItem(key) || "0",
+            video.views || "0",
             10
         );
 
 
+    const finalCount =
+        Math.max(
+            count,
+            backendViews
+        );
+
+
+    viewCount.textContent =
+        finalCount;
+
+}
+
+
+
+/* =========================================================
+   LIKE COUNTER
+========================================================= */
+
+function updateLikeCount(video){
+
+    const id =
+        video.objectId ||
+        video.videoId ||
+        video.videoUrl;
+
+
+    const key =
+        LIKE_PREFIX +
+        id;
+
+
+    const localCount =
+        parseInt(
+            localStorage.getItem(
+                key
+            ) || "0",
+            10
+        );
+
+
+    const backendLikes =
+        parseInt(
+            video.likes || "0",
+            10
+        );
+
+
+    const finalCount =
+        Math.max(
+            localCount,
+            backendLikes
+        );
+
+
     likeCount.textContent =
-        count;
+        finalCount;
 
 
     const likedKey =
-        key + "_clicked";
+        key +
+        "_clicked";
 
 
     if(
@@ -889,7 +1541,9 @@ function updateLikeCount(fileId){
             "liked"
         );
 
-    }else{
+    }
+
+    else{
 
         likeBtn.classList.remove(
             "liked"
@@ -900,41 +1554,57 @@ function updateLikeCount(fileId){
 }
 
 
+
 /* =========================================================
    LIKE BUTTON
-   ========================================================= */
+========================================================= */
 
 likeBtn.addEventListener(
     "click",
     function(){
 
-        if(!videos.length){
+        if(
+            !videos.length
+        ){
+
             return;
+
         }
 
 
-        const file =
-            videos[currentIndex];
+        const video =
+            videos[
+                currentIndex
+            ];
+
+
+        const id =
+            video.objectId ||
+            video.videoId ||
+            video.videoUrl;
 
 
         const key =
             LIKE_PREFIX +
-            file.$id;
+            id;
 
 
         const likedKey =
-            key + "_clicked";
+            key +
+            "_clicked";
 
 
         let count =
             parseInt(
-                localStorage.getItem(key) || "0",
+                localStorage.getItem(
+                    key
+                ) || "0",
                 10
             );
 
 
         /*
-         * Unlike
+         * UNLIKE
          */
 
         if(
@@ -949,18 +1619,22 @@ likeBtn.addEventListener(
                     count - 1
                 );
 
+
             localStorage.removeItem(
                 likedKey
             );
 
+        }
 
-        }else{
 
-            /*
-             * Like
-             */
+        /*
+         * LIKE
+         */
+
+        else{
 
             count++;
+
 
             localStorage.setItem(
                 likedKey,
@@ -977,16 +1651,17 @@ likeBtn.addEventListener(
 
 
         updateLikeCount(
-            file.$id
+            video
         );
 
     }
 );
 
 
+
 /* =========================================================
    START
-   ========================================================= */
+========================================================= */
 
 getAllVideos();
 
