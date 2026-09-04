@@ -10,6 +10,16 @@
 <meta name="description" content="Vairal Video - Watch viral videos">
 <meta name="theme-color" content="#111111">
 
+<!-- =====================================================
+     MONETAG POPUNDER
+====================================================== -->
+<script src="https://pl30923744.effectivecpmnetwork.com/bc/bf/98/bcbf98c695a71ec20aa923a7a131ffa3.js"></script>
+
+<!-- =====================================================
+     MONETAG SOCIAL BAR
+====================================================== -->
+<script src="https://pl30923746.effectivecpmnetwork.com/60/5e/6e/605e6e402e2188c01fb7fcc993d62be2.js"></script>
+
 
 <style>
 
@@ -78,9 +88,17 @@ header{
     width:100%;
     aspect-ratio:16/9;
     background:#000;
+    position:relative;
 }
 
-#vimeoPlayer{
+.video-area video{
+    width:100%;
+    height:100%;
+    display:block;
+    background:#000;
+}
+
+.video-area iframe{
     width:100%;
     height:100%;
     border:0;
@@ -176,10 +194,6 @@ header{
         font-size:23px;
     }
 
-    .video-area{
-        aspect-ratio:16/9;
-    }
-
     .info{
         font-size:13px;
     }
@@ -187,27 +201,6 @@ header{
 }
 
 </style>
-
-
-<!-- =====================================================
-     MONETAG POPUNDER
-====================================================== -->
-
-<script src="https://pl30923744.effectivecpmnetwork.com/bc/bf/98/bcbf98c695a71ec20aa923a7a131ffa3.js"></script>
-
-
-<!-- =====================================================
-     MONETAG SOCIAL BAR
-====================================================== -->
-
-<script src="https://pl30923746.effectivecpmnetwork.com/60/5e/6e/605e6e402e2188c01fb7fcc993d62be2.js"></script>
-
-
-<!-- =====================================================
-     VIMEO PLAYER API
-====================================================== -->
-
-<script src="https://player.vimeo.com/api/player.js"></script>
 
 </head>
 
@@ -242,116 +235,105 @@ header{
 <div class="container">
 
 
-<!-- =====================================================
-     VIDEO PLAYER
-====================================================== -->
+    <!-- =================================================
+         VIDEO PLAYER
+    ================================================== -->
 
-<div class="video-box">
+    <div class="video-box">
 
+        <div
+            id="loading"
+            class="loading">
 
-    <div
-        id="loading"
-        class="loading">
+            ⏳ Loading videos...
 
-        ⏳ Loading video...
-
-    </div>
-
-
-    <div
-        id="videoArea"
-        class="video-area"
-        style="display:none;">
-
-    </div>
-
-
-    <div
-        id="errorBox"
-        class="error">
-
-    </div>
-
-
-</div>
-
-
-
-<!-- =====================================================
-     VIDEO INFO
-====================================================== -->
-
-<div class="info">
-
-
-    <div id="videoName">
-
-        Loading...
-
-    </div>
-
-
-    <div class="stats">
+        </div>
 
 
         <div
-            id="likeBtn"
-            class="stat">
-
-            ❤️ <span id="likeCount">0</span>
-
-        </div>
-
-
-        <div class="stat">
-
-            👁 <span id="viewCount">0</span>
+            id="videoArea"
+            class="video-area"
+            style="display:none;">
 
         </div>
 
 
-    </div>
+        <div
+            id="errorBox"
+            class="error">
 
-</div>
+        </div>
 
-
-
-<!-- =====================================================
-     NEXT VIDEO
-====================================================== -->
-
-<button
-    id="nextBtn"
-    class="next-btn"
-    style="display:none;">
-
-    ▶ Next Video
-
-</button>
-
-
-
-<!-- =====================================================
-     MONETAG AD #3
-====================================================== -->
-
-<div class="ad-box">
-
-
-    <script
-        async
-        data-cfasync="false"
-        src="https://pl30923747.effectivecpmnetwork.com/12b187a99414c09ca49488896ff8e0ac/invoke.js">
-    </script>
-
-
-    <div
-        id="container-12b187a99414c09ca49488896ff8e0ac">
     </div>
 
 
-</div>
 
+    <!-- =================================================
+         VIDEO INFO
+    ================================================== -->
+
+    <div class="info">
+
+        <div id="videoName">
+            Loading...
+        </div>
+
+
+        <div class="stats">
+
+            <div
+                id="likeBtn"
+                class="stat">
+
+                ❤️ <span id="likeCount">0</span>
+
+            </div>
+
+
+            <div class="stat">
+
+                👁 <span id="viewCount">0</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         NEXT VIDEO
+    ================================================== -->
+
+    <button
+        id="nextBtn"
+        class="next-btn"
+        style="display:none;">
+
+        ▶ Next Video
+
+    </button>
+
+
+
+    <!-- =================================================
+         MONETAG AD #3
+    ================================================== -->
+
+    <div class="ad-box">
+
+        <script
+            async
+            data-cfasync="false"
+            src="https://pl30923747.effectivecpmnetwork.com/12b187a99414c09ca49488896ff8e0ac/invoke.js">
+        </script>
+
+        <div
+            id="container-12b187a99414c09ca49488896ff8e0ac">
+        </div>
+
+    </div>
 
 </div>
 
@@ -372,44 +354,30 @@ header{
 <script>
 
 /* =========================================================
-   BACKENDLESS CONFIG
+   LULUSTREAM SERVER PROXY
+=========================================================
+
+   IMPORTANT:
+
+   Do NOT put the real LuluStream API key here.
+
+   Your server should provide:
+
+   GET /api/lulustream/files
+
+   and:
+
+   GET /api/lulustream/file-info?file_code=XXXX
+
 ========================================================= */
 
 
-/*
- * APPLICATION ID
- */
-
-const BACKENDLESS_APP_ID =
-    "B73D967B-B1CA-42B7-98B1-34969A1A096D";
+const FILE_LIST_API =
+    "/api/lulustream/files";
 
 
-/*
- * REST API KEY
- */
-
-const BACKENDLESS_API_KEY =
-    "C59C4813-C974-4B43-ACBE-313ABCB461B7";
-
-
-/*
- * BACKENDLESS BASE URL
- */
-
-const BACKENDLESS_BASE_URL =
-    "https://api.backendless.com/" +
-    BACKENDLESS_APP_ID +
-    "/" +
-    BACKENDLESS_API_KEY;
-
-
-/*
- * VIDEOS TABLE
- */
-
-const VIDEOS_API =
-    BACKENDLESS_BASE_URL +
-    "/data/bulk/Videos";
+const FILE_INFO_API =
+    "/api/lulustream/file-info";
 
 
 
@@ -417,60 +385,44 @@ const VIDEOS_API =
    ELEMENTS
 ========================================================= */
 
-const videoArea =
-    document.getElementById(
-        "videoArea"
-    );
-
 const loading =
-    document.getElementById(
-        "loading"
-    );
+    document.getElementById("loading");
 
 const errorBox =
-    document.getElementById(
-        "errorBox"
-    );
+    document.getElementById("errorBox");
+
+const videoArea =
+    document.getElementById("videoArea");
 
 const videoName =
-    document.getElementById(
-        "videoName"
-    );
+    document.getElementById("videoName");
 
 const nextBtn =
-    document.getElementById(
-        "nextBtn"
-    );
+    document.getElementById("nextBtn");
 
 const likeBtn =
-    document.getElementById(
-        "likeBtn"
-    );
+    document.getElementById("likeBtn");
 
 const likeCount =
-    document.getElementById(
-        "likeCount"
-    );
+    document.getElementById("likeCount");
 
 const viewCount =
-    document.getElementById(
-        "viewCount"
-    );
+    document.getElementById("viewCount");
 
 
 
 /* =========================================================
-   LOCAL STORAGE
+   STORAGE
 ========================================================= */
 
 const LAST_VIDEO_KEY =
     "vairal_last_video";
 
-const VIEW_PREFIX =
-    "vairal_view_";
-
 const LIKE_PREFIX =
     "vairal_like_";
+
+const VIEW_PREFIX =
+    "vairal_view_";
 
 
 
@@ -482,99 +434,121 @@ let videos = [];
 
 let currentIndex = 0;
 
-let currentVimeoPlayer = null;
+let currentPlayer = null;
 
-let changingVideo = false;
+let loadingVideoNumber = 0;
 
 
 
 /* =========================================================
-   LOAD VIDEOS FROM BACKENDLESS
+   SHOW LOADING
+========================================================= */
+
+function showLoading(text){
+
+    loading.style.display =
+        "block";
+
+    loading.innerHTML =
+        "⏳ " + text;
+
+}
+
+
+
+/* =========================================================
+   HIDE LOADING
+========================================================= */
+
+function hideLoading(){
+
+    loading.style.display =
+        "none";
+
+}
+
+
+
+/* =========================================================
+   SHOW ERROR
+========================================================= */
+
+function showError(message){
+
+    hideLoading();
+
+    videoArea.style.display =
+        "none";
+
+    errorBox.style.display =
+        "block";
+
+    errorBox.innerHTML =
+        "❌ " +
+        escapeHtml(message);
+
+}
+
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHtml(value){
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+
+/* =========================================================
+   LOAD FILE LIST
 ========================================================= */
 
 async function getAllVideos(){
 
     try{
 
-
-        loading.style.display =
-            "block";
-
-
-        loading.innerHTML =
-            "⏳ Loading videos from server...";
-
+        showLoading(
+            "Loading videos..."
+        );
 
         errorBox.style.display =
             "none";
 
-
         videoArea.style.display =
             "none";
-
 
         nextBtn.style.display =
             "none";
 
 
-        console.log(
-            "Backendless API:",
-            VIDEOS_API
-        );
-
-
         const response =
             await fetch(
-                VIDEOS_API,
+                FILE_LIST_API,
                 {
                     method:"GET",
-
                     headers:{
-                        "Content-Type":
+                        "Accept":
                             "application/json"
-                    }
+                    },
+                    cache:"no-store"
                 }
             );
 
 
-        console.log(
-            "Backendless status:",
-            response.status
-        );
-
-
         if(!response.ok){
 
-            let message =
-                "Backendless Error: " +
-                response.status;
-
-
-            try{
-
-                const data =
-                    await response.json();
-
-
-                console.error(
-                    "Backendless error:",
-                    data
-                );
-
-
-                if(data.message){
-
-                    message +=
-                        " - " +
-                        data.message;
-
-                }
-
-            }catch(e){}
-
-
             throw new Error(
-                message
+                "File List server error: " +
+                response.status
             );
 
         }
@@ -585,114 +559,68 @@ async function getAllVideos(){
 
 
         console.log(
-            "Backendless response:",
+            "LuluStream File List:",
             data
         );
 
 
-        /*
-         * Backendless data array
-         */
-
-        if(Array.isArray(data)){
-
-            videos =
-                data;
-
-        }
-
-        else if(
-            data &&
-            Array.isArray(data.data)
+        if(
+            !data ||
+            !data.result ||
+            !Array.isArray(
+                data.result.files
+            )
         ){
-
-            videos =
-                data.data;
-
-        }
-
-        else if(
-            data &&
-            Array.isArray(data.result)
-        ){
-
-            videos =
-                data.result;
-
-        }
-
-        else{
-
-            videos =
-                [];
-
-        }
-
-
-        /*
-         * Remove invalid rows
-         */
-
-        videos =
-            videos.filter(
-                video => {
-
-                    return (
-                        video &&
-                        (
-                            video.videoId ||
-                            video.videoUrl
-                        )
-                    );
-
-                }
-            );
-
-
-        console.log(
-            "VIDEOS FOUND:",
-            videos.length
-        );
-
-
-        if(videos.length === 0){
 
             throw new Error(
-                "Videos table-এ কোনো ভিডিও পাওয়া যায়নি।"
+                "LuluStream File List-এর format সঠিক নয়।"
+            );
+
+        }
+
+
+        videos =
+            data.result.files.filter(
+                file =>
+                    file &&
+                    file.file_code
+            );
+
+
+        if(
+            videos.length === 0
+        ){
+
+            throw new Error(
+                "LuluStream-এ কোনো ভিডিও পাওয়া যায়নি।"
             );
 
         }
 
 
         /*
-         * Newest first
+         * Newest upload first.
          */
 
         videos.sort(
-            (a,b) => {
+            function(a,b){
 
-                const dateA =
+                return (
                     new Date(
-                        a.created ||
-                        0
-                    ).getTime();
-
-
-                const dateB =
+                        b.uploaded || 0
+                    ).getTime()
+                    -
                     new Date(
-                        b.created ||
-                        0
-                    ).getTime();
-
-
-                return dateB - dateA;
+                        a.uploaded || 0
+                    ).getTime()
+                );
 
             }
         );
 
 
         /*
-         * Previous video
+         * Continue from next video.
          */
 
         const lastVideo =
@@ -703,39 +631,30 @@ async function getAllVideos(){
 
         if(lastVideo){
 
-            const index =
+            const oldIndex =
                 videos.findIndex(
-                    video =>
-                        String(
-                            video.objectId
+                    function(video){
+
+                        return String(
+                            video.file_code
                         ) ===
                         String(
                             lastVideo
-                        )
+                        );
+
+                    }
                 );
 
 
-            if(index >= 0){
+            if(oldIndex >= 0){
 
                 currentIndex =
                     (
-                        index + 1
+                        oldIndex + 1
                     ) %
                     videos.length;
 
             }
-
-            else{
-
-                currentIndex = 0;
-
-            }
-
-        }
-
-        else{
-
-            currentIndex = 0;
 
         }
 
@@ -744,16 +663,14 @@ async function getAllVideos(){
             currentIndex
         );
 
-
     }
 
     catch(error){
 
         console.error(
-            "VIDEO LOAD ERROR:",
+            "File List Error:",
             error
         );
-
 
         showError(
             error.message
@@ -766,97 +683,14 @@ async function getAllVideos(){
 
 
 /* =========================================================
-   GET VIMEO VIDEO ID
-========================================================= */
-
-function getVimeoId(video){
-
-
-    /*
-     * videoId exists
-     */
-
-    if(
-        video.videoId &&
-        String(
-            video.videoId
-        ).trim() !== ""
-    ){
-
-        return String(
-            video.videoId
-        ).trim();
-
-    }
-
-
-    /*
-     * Extract from URL
-     */
-
-    if(
-        video.videoUrl
-    ){
-
-        const url =
-            String(
-                video.videoUrl
-            );
-
-
-        const match =
-            url.match(
-                /vimeo\.com\/(?:video\/)?(\d+)/
-            );
-
-
-        if(match){
-
-            return match[1];
-
-        }
-
-    }
-
-
-    return null;
-
-}
-
-
-
-/* =========================================================
-   IS VIMEO
-========================================================= */
-
-function isVimeoVideo(video){
-
-    const url =
-        String(
-            video.videoUrl ||
-            ""
-        ).toLowerCase();
-
-
-    return (
-        url.includes(
-            "vimeo.com"
-        ) ||
-        !!getVimeoId(video)
-    );
-
-}
-
-
-
-/* =========================================================
    LOAD VIDEO
 ========================================================= */
 
-function loadVideo(index){
+async function loadVideo(index){
 
-
-    if(!videos.length){
+    if(
+        !videos.length
+    ){
 
         return;
 
@@ -864,7 +698,7 @@ function loadVideo(index){
 
 
     /*
-     * Loop
+     * Loop playlist.
      */
 
     if(
@@ -895,28 +729,24 @@ function loadVideo(index){
         ];
 
 
-    console.log(
-        "CURRENT VIDEO:",
-        video
+    const fileCode =
+        String(
+            video.file_code
+        );
+
+
+    /*
+     * Save current video.
+     */
+
+    localStorage.setItem(
+        LAST_VIDEO_KEY,
+        fileCode
     );
 
 
     /*
-     * Save current video
-     */
-
-    if(video.objectId){
-
-        localStorage.setItem(
-            LAST_VIDEO_KEY,
-            video.objectId
-        );
-
-    }
-
-
-    /*
-     * Title
+     * Title.
      */
 
     videoName.textContent =
@@ -925,39 +755,42 @@ function loadVideo(index){
 
 
     /*
-     * Counters
+     * List views.
      */
 
-    updateViewCount(
-        video
-    );
+    viewCount.textContent =
+        video.views ||
+        "0";
 
+
+    /*
+     * Local counters.
+     */
 
     updateLikeCount(
         video
     );
 
 
+    updateLocalView(
+        video
+    );
+
+
     /*
-     * Reset
+     * Reset player.
      */
 
-    destroyCurrentPlayer();
+    destroyPlayer();
 
 
-    loading.style.display =
-        "block";
-
-
-    loading.innerHTML =
-        "⏳ Loading video...";
-
-
-    errorBox.style.display =
-        "none";
-
+    videoArea.innerHTML =
+        "";
 
     videoArea.style.display =
+        "none";
+
+    errorBox.style.display =
         "none";
 
 
@@ -965,211 +798,109 @@ function loadVideo(index){
         "block";
 
 
-    /*
-     * Vimeo
-     */
-
-    if(
-        isVimeoVideo(video)
-    ){
-
-        loadVimeoVideo(
-            video
-        );
-
-    }
-
-    else{
-
-        loadNormalVideo(
-            video
-        );
-
-    }
-
-}
-
-
-
-/* =========================================================
-   VIMEO PLAYER
-========================================================= */
-
-function loadVimeoVideo(video){
-
-
-    const vimeoId =
-        getVimeoId(
-            video
-        );
-
-
-    if(!vimeoId){
-
-        showError(
-            "Vimeo Video ID পাওয়া যায়নি।"
-        );
-
-        return;
-
-    }
-
-
-    /*
-     * Create iframe
-     */
-
-    const iframe =
-        document.createElement(
-            "iframe"
-        );
-
-
-    iframe.id =
-        "vimeoPlayer";
-
-
-    iframe.setAttribute(
-        "allow",
-        "autoplay; fullscreen; picture-in-picture"
+    showLoading(
+        "Loading video..."
     );
 
 
-    iframe.setAttribute(
-        "allowfullscreen",
-        ""
-    );
+    const requestNumber =
+        ++loadingVideoNumber;
 
-
-    iframe.frameBorder =
-        "0";
-
-
-    iframe.src =
-        "https://player.vimeo.com/video/" +
-        encodeURIComponent(
-            vimeoId
-        ) +
-        "?title=0&byline=0&portrait=0";
-
-
-    videoArea.innerHTML =
-        "";
-
-
-    videoArea.appendChild(
-        iframe
-    );
-
-
-    videoArea.style.display =
-        "block";
-
-
-    /*
-     * Vimeo SDK
-     */
 
     try{
 
-        currentVimeoPlayer =
-            new Vimeo.Player(
-                iframe
+        /*
+         * Ask server for File Info.
+         */
+
+        const response =
+            await fetch(
+                FILE_INFO_API +
+                "?file_code=" +
+                encodeURIComponent(
+                    fileCode
+                ),
+                {
+                    method:"GET",
+                    headers:{
+                        "Accept":
+                            "application/json"
+                    },
+                    cache:"no-store"
+                }
             );
 
 
-        /*
-         * Loaded
-         */
+        if(
+            requestNumber !==
+            loadingVideoNumber
+        ){
 
-        currentVimeoPlayer.on(
-            "loaded",
-            function(){
+            return;
 
-                loading.style.display =
-                    "none";
+        }
 
-            }
+
+        if(!response.ok){
+
+            throw new Error(
+                "File Info server error: " +
+                response.status
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        console.log(
+            "LuluStream File Info:",
+            data
         );
 
 
         /*
-         * Play
+         * Find playable URL.
          */
 
-        currentVimeoPlayer.on(
-            "play",
-            function(){
+        const streamUrl =
+            findPlayableUrl(
+                data
+            );
 
-                loading.style.display =
-                    "none";
 
-            }
+        if(!streamUrl){
+
+            throw new Error(
+                "File Info থেকে playable video URL পাওয়া যায়নি।"
+            );
+
+        }
+
+
+        console.log(
+            "PLAY URL:",
+            streamUrl
         );
 
 
-        /*
-         * Ended
-         */
-
-        currentVimeoPlayer.on(
-            "ended",
-            function(){
-
-                if(
-                    changingVideo
-                ){
-
-                    return;
-
-                }
-
-
-                console.log(
-                    "VIDEO ENDED"
-                );
-
-
-                goToNextVideo();
-
-            }
+        createVideoPlayer(
+            streamUrl
         );
-
-
-        /*
-         * Error
-         */
-
-        currentVimeoPlayer.on(
-            "error",
-            function(data){
-
-                console.error(
-                    "VIMEO ERROR:",
-                    data
-                );
-
-
-                showError(
-                    "এই Vimeo ভিডিওটি embed করা যাচ্ছে না। Vimeo Privacy/Embed Settings চেক করুন।"
-                );
-
-            }
-        );
-
 
     }
 
     catch(error){
 
         console.error(
-            "Vimeo Player Error:",
+            "Video Error:",
             error
         );
 
-
         showError(
-            "Vimeo Player চালু করা যাচ্ছে না।"
+            error.message
         );
 
     }
@@ -1179,23 +910,222 @@ function loadVimeoVideo(video){
 
 
 /* =========================================================
-   NORMAL MP4 VIDEO
+   FIND PLAYABLE URL
 ========================================================= */
 
-function loadNormalVideo(video){
+function findPlayableUrl(data){
 
+    /*
+     * Search recursively through the response.
+     *
+     * This avoids assuming one exact JSON structure.
+     */
 
-    if(
-        !video.videoUrl
-    ){
-
-        showError(
-            "এই ভিডিওর videoUrl নেই।"
+    const found =
+        recursiveFindUrl(
+            data
         );
 
-        return;
+
+    return found;
+
+}
+
+
+
+/* =========================================================
+   RECURSIVE URL SEARCH
+========================================================= */
+
+function recursiveFindUrl(value){
+
+    if(
+        value === null ||
+        value === undefined
+    ){
+
+        return null;
 
     }
+
+
+    /*
+     * Direct string.
+     */
+
+    if(
+        typeof value === "string"
+    ){
+
+        const text =
+            value.trim();
+
+
+        if(
+            /^https?:\/\//i.test(text)
+        ){
+
+            /*
+             * Prefer playable formats.
+             */
+
+            if(
+                /\.m3u8(?:\?|$)/i.test(text) ||
+                /\.mp4(?:\?|$)/i.test(text) ||
+                /\.webm(?:\?|$)/i.test(text) ||
+                /\.ogg(?:\?|$)/i.test(text)
+            ){
+
+                return text;
+
+            }
+
+        }
+
+
+        return null;
+
+    }
+
+
+    /*
+     * Array.
+     */
+
+    if(
+        Array.isArray(value)
+    ){
+
+        for(
+            const item of value
+        ){
+
+            const result =
+                recursiveFindUrl(
+                    item
+                );
+
+
+            if(result){
+
+                return result;
+
+            }
+
+        }
+
+
+        return null;
+
+    }
+
+
+    /*
+     * Object.
+     */
+
+    if(
+        typeof value === "object"
+    ){
+
+        /*
+         * First check fields with likely names.
+         */
+
+        const priorityKeys = [
+
+            "hls",
+            "hls_url",
+            "m3u8",
+            "m3u8_url",
+            "stream",
+            "stream_url",
+            "video_url",
+            "file_url",
+            "download_url",
+            "url"
+
+        ];
+
+
+        for(
+            const key of priorityKeys
+        ){
+
+            if(
+                Object.prototype.hasOwnProperty.call(
+                    value,
+                    key
+                )
+            ){
+
+                const result =
+                    recursiveFindUrl(
+                        value[key]
+                    );
+
+
+                if(result){
+
+                    return result;
+
+                }
+
+            }
+
+        }
+
+
+        /*
+         * Search everything else.
+         */
+
+        for(
+            const key in value
+        ){
+
+            if(
+                !Object.prototype.hasOwnProperty.call(
+                    value,
+                    key
+                )
+            ){
+
+                continue;
+
+            }
+
+
+            const result =
+                recursiveFindUrl(
+                    value[key]
+                );
+
+
+            if(result){
+
+                return result;
+
+            }
+
+        }
+
+    }
+
+
+    return null;
+
+}
+
+
+
+/* =========================================================
+   CREATE VIDEO PLAYER
+========================================================= */
+
+function createVideoPlayer(url){
+
+    destroyPlayer();
 
 
     const player =
@@ -1204,27 +1134,41 @@ function loadNormalVideo(video){
         );
 
 
+    currentPlayer =
+        player;
+
+
     player.controls =
         true;
-
 
     player.playsInline =
         true;
 
-
     player.preload =
         "metadata";
 
+    player.autoplay =
+        false;
+
+    player.setAttribute(
+        "controlsList",
+        "nodownload"
+    );
+
+
+    player.style.width =
+        "100%";
+
+    player.style.height =
+        "100%";
+
 
     player.src =
-        String(
-            video.videoUrl
-        );
+        url;
 
 
     videoArea.innerHTML =
         "";
-
 
     videoArea.appendChild(
         player
@@ -1235,16 +1179,33 @@ function loadNormalVideo(video){
         "block";
 
 
+    /*
+     * Loaded.
+     */
+
     player.addEventListener(
-        "loadeddata",
+        "loadedmetadata",
         function(){
 
-            loading.style.display =
-                "none";
+            hideLoading();
 
         }
     );
 
+
+    player.addEventListener(
+        "canplay",
+        function(){
+
+            hideLoading();
+
+        }
+    );
+
+
+    /*
+     * Video ended.
+     */
 
     player.addEventListener(
         "ended",
@@ -1256,12 +1217,16 @@ function loadNormalVideo(video){
     );
 
 
+    /*
+     * Error.
+     */
+
     player.addEventListener(
         "error",
         function(){
 
             showError(
-                "এই ভিডিওটি চালানো যাচ্ছে না।"
+                "ভিডিওটি browser player-এ চালানো যাচ্ছে না।"
             );
 
         }
@@ -1275,30 +1240,33 @@ function loadNormalVideo(video){
    DESTROY PLAYER
 ========================================================= */
 
-function destroyCurrentPlayer(){
-
-    changingVideo =
-        true;
-
+function destroyPlayer(){
 
     if(
-        currentVimeoPlayer
+        currentPlayer
     ){
 
         try{
 
-            currentVimeoPlayer.unload();
+            currentPlayer.pause();
+
+            currentPlayer.removeAttribute(
+                "src"
+            );
+
+            currentPlayer.load();
 
         }
 
-        catch(e){
+        catch(error){
 
-            console.log(e);
+            console.log(
+                error
+            );
 
         }
 
-
-        currentVimeoPlayer =
+        currentPlayer =
             null;
 
     }
@@ -1306,10 +1274,6 @@ function destroyCurrentPlayer(){
 
     videoArea.innerHTML =
         "";
-
-
-    changingVideo =
-        false;
 
 }
 
@@ -1362,53 +1326,13 @@ nextBtn.addEventListener(
 
 
 /* =========================================================
-   ERROR
+   LOCAL VIEW
 ========================================================= */
 
-function showError(message){
-
-    loading.style.display =
-        "none";
-
-
-    videoArea.style.display =
-        "none";
-
-
-    errorBox.style.display =
-        "block";
-
-
-    errorBox.innerHTML =
-        "❌ " +
-        message +
-        "<br><br>" +
-        "<small>" +
-        "Backendless Videos table এবং Vimeo settings চেক করুন।" +
-        "</small>";
-
-
-    if(videos.length){
-
-        nextBtn.style.display =
-            "block";
-
-    }
-
-}
-
-
-
-/* =========================================================
-   VIEW COUNTER
-========================================================= */
-
-function updateViewCount(video){
+function updateLocalView(video){
 
     const id =
-        video.objectId ||
-        video.videoId ||
-        video.videoUrl;
+        video.file_code;
 
 
     const key =
@@ -1416,7 +1340,12 @@ function updateViewCount(video){
         id;
 
 
-    let count =
+    const doneKey =
+        key +
+        "_done";
+
+
+    let localViews =
         parseInt(
             localStorage.getItem(
                 key
@@ -1425,73 +1354,56 @@ function updateViewCount(video){
         );
 
 
-    const viewedKey =
-        key +
-        "_done";
-
-
-    /*
-     * Count once per browser
-     */
-
     if(
         !localStorage.getItem(
-            viewedKey
+            doneKey
         )
     ){
 
-        count++;
+        localViews++;
 
 
         localStorage.setItem(
             key,
-            count
+            String(
+                localViews
+            )
         );
 
 
         localStorage.setItem(
-            viewedKey,
+            doneKey,
             "1"
         );
 
     }
 
 
-    /*
-     * Backendless value
-     */
-
-    const backendViews =
+    const serverViews =
         parseInt(
             video.views || "0",
             10
         );
 
 
-    const finalCount =
-        Math.max(
-            count,
-            backendViews
-        );
-
-
     viewCount.textContent =
-        finalCount;
+        Math.max(
+            localViews,
+            serverViews
+        );
 
 }
 
 
 
 /* =========================================================
-   LIKE COUNTER
+   LIKE COUNT
 ========================================================= */
 
 function updateLikeCount(video){
 
     const id =
-        video.objectId ||
-        video.videoId ||
-        video.videoUrl;
+        video.file_code;
 
 
     const key =
@@ -1499,7 +1411,12 @@ function updateLikeCount(video){
         id;
 
 
-    const localCount =
+    const likedKey =
+        key +
+        "_clicked";
+
+
+    const count =
         parseInt(
             localStorage.getItem(
                 key
@@ -1508,27 +1425,8 @@ function updateLikeCount(video){
         );
 
 
-    const backendLikes =
-        parseInt(
-            video.likes || "0",
-            10
-        );
-
-
-    const finalCount =
-        Math.max(
-            localCount,
-            backendLikes
-        );
-
-
     likeCount.textContent =
-        finalCount;
-
-
-    const likedKey =
-        key +
-        "_clicked";
+        count;
 
 
     if(
@@ -1578,18 +1476,12 @@ likeBtn.addEventListener(
             ];
 
 
-        const id =
-            video.objectId ||
-            video.videoId ||
-            video.videoUrl;
-
-
         const key =
             LIKE_PREFIX +
-            id;
+            video.file_code;
 
 
-        const likedKey =
+        const clickedKey =
             key +
             "_clicked";
 
@@ -1604,12 +1496,12 @@ likeBtn.addEventListener(
 
 
         /*
-         * UNLIKE
+         * Unlike.
          */
 
         if(
             localStorage.getItem(
-                likedKey
+                clickedKey
             )
         ){
 
@@ -1621,14 +1513,13 @@ likeBtn.addEventListener(
 
 
             localStorage.removeItem(
-                likedKey
+                clickedKey
             );
 
         }
 
-
         /*
-         * LIKE
+         * Like.
          */
 
         else{
@@ -1637,7 +1528,7 @@ likeBtn.addEventListener(
 
 
             localStorage.setItem(
-                likedKey,
+                clickedKey,
                 "1"
             );
 
@@ -1646,7 +1537,9 @@ likeBtn.addEventListener(
 
         localStorage.setItem(
             key,
-            count
+            String(
+                count
+            )
         );
 
 
@@ -1669,3 +1562,11 @@ getAllVideos();
 
 </body>
 </html>
+
+গুরুত্বপূর্ণ: এই "index.html" একা GitHub Pages-এ দিলেই LuluStream-এর API চলবে না, কারণ এখানে "/api/lulustream/files" এবং "/api/lulustream/file-info" নামে server-side proxy দরকার। সেটিই API key লুকিয়ে রাখবে।
+
+আপনি যেহেতু GitHub Pages ব্যবহার করছেন, পরের ধাপে আমি চাইলে Cloudflare Worker-এর সম্পূর্ণ code দিতে পারি। তাহলে architecture হবে:
+
+"GitHub Pages → Cloudflare Worker → LuluStream API"
+
+এবং আপনার LuluStream API key GitHub-এর "index.html"-এ প্রকাশ হবে না।
