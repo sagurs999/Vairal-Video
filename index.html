@@ -1,71 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Vairal Video</title>
-
-<meta name="description" content="Vairal Video - Watch viral videos">
-<meta name="theme-color" content="#111111">
-
-<!-- =====================================================
-     MONETAG POPUNDER
-====================================================== -->
-<script src="https://pl30923744.effectivecpmnetwork.com/bc/bf/98/bcbf98c695a71ec20aa923a7a131ffa3.js"></script>
-
-<!-- =====================================================
-     MONETAG SOCIAL BAR
-====================================================== -->
-<script src="https://pl30923746.effectivecpmnetwork.com/60/5e/6e/605e6e402e2188c01fb7fcc993d62be2.js"></script>
-
+<title>VAIRAL VIDEO</title>
 
 <style>
-
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
 }
 
 body{
-    background:#080808;
+    background:#050505;
     color:#fff;
     font-family:Arial,Helvetica,sans-serif;
-}
-
-header{
-    background:linear-gradient(135deg,#111,#1d1d1d);
-    padding:15px 10px;
-    text-align:center;
-    border-bottom:1px solid #333;
-    position:sticky;
-    top:0;
-    z-index:999;
-}
-
-.logo{
-    font-size:27px;
-    font-weight:900;
-    letter-spacing:2px;
-    color:#fff;
-}
-
-.logo span{
-    color:#ff1744;
-}
-
-.telegram-btn{
-    display:inline-block;
-    margin-top:10px;
-    padding:10px 18px;
-    background:#229ED9;
-    color:white;
-    text-decoration:none;
-    border-radius:25px;
-    font-weight:bold;
-    font-size:14px;
 }
 
 .container{
@@ -75,94 +26,105 @@ header{
     padding:15px;
 }
 
-.video-box{
+/* HEADER */
+.header{
+    text-align:center;
+    padding:20px 10px;
+}
+
+.logo{
+    font-size:30px;
+    font-weight:900;
+    letter-spacing:2px;
+}
+
+.logo span{
+    color:#ff1e1e;
+}
+
+.telegram{
+    display:inline-block;
+    margin-top:15px;
+    padding:12px 22px;
+    border-radius:30px;
+    background:linear-gradient(90deg,#0088cc,#00c6ff);
+    color:#fff;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+/* AD */
+.ad{
     width:100%;
-    background:#000;
+    min-height:90px;
+    margin:15px 0;
     border-radius:14px;
+    background:#111;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     overflow:hidden;
-    box-shadow:0 0 25px rgba(255,23,68,.15);
-    border:1px solid #242424;
 }
 
-.video-area{
+/* PLAYER */
+.player-box{
     width:100%;
-    aspect-ratio:16/9;
     background:#000;
+    border-radius:20px;
+    overflow:hidden;
     position:relative;
+    min-height:250px;
 }
 
-.video-area video{
+#videoFrame{
     width:100%;
-    height:100%;
-    display:block;
-    background:#000;
-}
-
-.video-area iframe{
-    width:100%;
-    height:100%;
+    height:500px;
     border:0;
     display:block;
+    background:#000;
 }
 
 .loading{
+    padding:40px 20px;
     text-align:center;
-    padding:35px 15px;
-    font-size:16px;
     color:#aaa;
 }
 
 .error{
-    display:none;
+    padding:40px 20px;
     text-align:center;
-    padding:25px 15px;
-    color:#ff5252;
-    line-height:1.7;
+    color:#ff4444;
 }
 
-.info{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:13px 5px;
-    color:#aaa;
-    font-size:14px;
-    gap:10px;
+/* INFO */
+.video-info{
+    padding:18px 5px;
 }
 
-#videoName{
-    color:#fff;
+.title{
+    font-size:20px;
     font-weight:bold;
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
+    margin-bottom:12px;
+    word-break:break-word;
 }
 
 .stats{
     display:flex;
-    gap:15px;
-    flex-shrink:0;
+    gap:20px;
+    color:#aaa;
+    font-size:14px;
 }
 
-.stat{
-    cursor:pointer;
-    user-select:none;
-}
-
-.stat.liked{
-    color:#ff1744;
-}
-
+/* NEXT */
 .next-btn{
-    display:block;
     width:100%;
-    margin-top:12px;
-    padding:14px;
     border:0;
-    border-radius:10px;
-    background:linear-gradient(135deg,#ff1744,#ff4569);
-    color:white;
-    font-size:16px;
+    padding:15px;
+    margin:10px 0 20px;
+    border-radius:12px;
+    background:linear-gradient(90deg,#ff0000,#ff4141);
+    color:#fff;
+    font-size:17px;
     font-weight:bold;
     cursor:pointer;
 }
@@ -171,904 +133,611 @@ header{
     transform:scale(.98);
 }
 
-.ad-box{
-    width:100%;
-    margin:15px 0;
-    text-align:center;
+/* PLAYLIST */
+.playlist-title{
+    font-size:20px;
+    font-weight:bold;
+    margin:20px 0 12px;
 }
 
+.playlist{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.video-item{
+    display:flex;
+    gap:12px;
+    background:#111;
+    padding:10px;
+    border-radius:12px;
+    cursor:pointer;
+}
+
+.video-item:hover{
+    background:#1b1b1b;
+}
+
+.video-item.active{
+    border:1px solid #ff2222;
+}
+
+.thumb{
+    width:120px;
+    height:70px;
+    object-fit:cover;
+    border-radius:8px;
+    background:#222;
+}
+
+.item-info{
+    flex:1;
+    min-width:0;
+}
+
+.item-title{
+    font-size:14px;
+    font-weight:bold;
+    line-height:1.4;
+    margin-bottom:7px;
+}
+
+.item-meta{
+    font-size:12px;
+    color:#888;
+}
+
+/* FOOTER */
 .footer{
     text-align:center;
-    padding:30px 15px;
     color:#666;
+    padding:30px 10px;
     font-size:13px;
 }
 
+/* MOBILE */
 @media(max-width:600px){
 
-    .container{
-        padding:8px;
-    }
-
     .logo{
-        font-size:23px;
+        font-size:25px;
     }
 
-    .info{
+    #videoFrame{
+        height:230px;
+    }
+
+    .thumb{
+        width:100px;
+        height:60px;
+    }
+
+    .item-title{
         font-size:13px;
     }
-
 }
-
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- =====================================================
-     HEADER
-====================================================== -->
-
-<header>
-
-    <div class="logo">
-        VAIRAL <span>VIDEO</span>
-    </div>
-
-    <a
-        class="telegram-btn"
-        href="https://t.me/allvairallinkandvideo"
-        target="_blank"
-        rel="noopener">
-
-        ✈ Join Telegram
-
-    </a>
-
-</header>
-
-
-
 <div class="container">
 
+    <!-- HEADER -->
+    <div class="header">
 
-    <!-- =================================================
-         VIDEO PLAYER
-    ================================================== -->
-
-    <div class="video-box">
-
-        <div
-            id="loading"
-            class="loading">
-
-            ⏳ Loading videos...
-
+        <div class="logo">
+            VAIRAL <span>VIDEO</span>
         </div>
 
-
-        <div
-            id="videoArea"
-            class="video-area"
-            style="display:none;">
-
-        </div>
-
-
-        <div
-            id="errorBox"
-            class="error">
-
-        </div>
+        <a
+            class="telegram"
+            href="https://t.me/allvairallinkandvideo"
+            target="_blank"
+        >
+            ✈️ JOIN TELEGRAM
+        </a>
 
     </div>
 
 
+    <!-- MONETAG AD #1 -->
+    <div class="ad">
 
-    <!-- =================================================
-         VIDEO INFO
-    ================================================== -->
+        <!-- PUT MONETAG AD #1 HERE -->
 
-    <div class="info">
+    </div>
 
-        <div id="videoName">
+
+    <!-- VIDEO PLAYER -->
+    <div class="player-box">
+
+        <div id="loading" class="loading">
+            Loading video...
+        </div>
+
+        <iframe
+            id="videoFrame"
+            allowfullscreen
+            allow="autoplay; fullscreen"
+            style="display:none;"
+        ></iframe>
+
+    </div>
+
+
+    <!-- VIDEO INFO -->
+    <div class="video-info">
+
+        <div id="videoTitle" class="title">
             Loading...
         </div>
 
-
         <div class="stats">
 
-            <div
-                id="likeBtn"
-                class="stat">
+            <span>
+                ❤️ <span id="likes">0</span>
+            </span>
 
-                ❤️ <span id="likeCount">0</span>
-
-            </div>
-
-
-            <div class="stat">
-
-                👁 <span id="viewCount">0</span>
-
-            </div>
+            <span>
+                👁 <span id="views">0</span>
+            </span>
 
         </div>
 
     </div>
 
 
-
-    <!-- =================================================
-         NEXT VIDEO
-    ================================================== -->
-
+    <!-- NEXT BUTTON -->
     <button
-        id="nextBtn"
+        id="nextButton"
         class="next-btn"
-        style="display:none;">
-
-        ▶ Next Video
-
+    >
+        ▶ NEXT VIDEO
     </button>
 
 
+    <!-- MONETAG AD #2 -->
+    <div class="ad">
 
-    <!-- =================================================
-         MONETAG AD #3
-    ================================================== -->
-
-    <div class="ad-box">
-
-        <script
-            async
-            data-cfasync="false"
-            src="https://pl30923747.effectivecpmnetwork.com/12b187a99414c09ca49488896ff8e0ac/invoke.js">
-        </script>
-
-        <div
-            id="container-12b187a99414c09ca49488896ff8e0ac">
-        </div>
+        <!-- PUT MONETAG AD #2 HERE -->
 
     </div>
 
+
+    <!-- PLAYLIST -->
+    <div class="playlist-title">
+        🎬 Latest Videos
+    </div>
+
+    <div
+        id="playlist"
+        class="playlist"
+    ></div>
+
+
+    <!-- MONETAG AD #3 -->
+    <div class="ad">
+
+        <!-- PUT MONETAG AD #3 HERE -->
+
+    </div>
+
+
+    <div class="footer">
+        © 2026 Vairal Video
+    </div>
+
 </div>
-
-
-
-<!-- =====================================================
-     FOOTER
-====================================================== -->
-
-<div class="footer">
-
-    © 2026 Vairal Video
-
-</div>
-
 
 
 <script>
 
 /* =========================================================
-   LULUSTREAM SERVER PROXY
-=========================================================
+   API CONFIG
+   ========================================================= */
 
+/*
    IMPORTANT:
 
-   Do NOT put the real LuluStream API key here.
+   এখানে LuluStream API key থাকবে না।
 
-   Your server should provide:
+   GitHub Pages → Cloudflare Worker → LuluStream API
 
-   GET /api/lulustream/files
+   Worker-এর URL এখানে বসাবেন।
+*/
 
-   and:
-
-   GET /api/lulustream/file-info?file_code=XXXX
-
-========================================================= */
-
-
-const FILE_LIST_API =
-    "/api/lulustream/files";
-
-
-const FILE_INFO_API =
-    "/api/lulustream/file-info";
-
+const API_BASE =
+    "https://YOUR-WORKER.workers.dev";
 
 
 /* =========================================================
-   ELEMENTS
-========================================================= */
+   GLOBAL DATA
+   ========================================================= */
+
+let videos = [];
+let currentIndex = 0;
+
+
+/* =========================================================
+   DOM
+   ========================================================= */
+
+const videoFrame =
+    document.getElementById("videoFrame");
 
 const loading =
     document.getElementById("loading");
 
-const errorBox =
-    document.getElementById("errorBox");
+const videoTitle =
+    document.getElementById("videoTitle");
 
-const videoArea =
-    document.getElementById("videoArea");
+const likes =
+    document.getElementById("likes");
 
-const videoName =
-    document.getElementById("videoName");
+const views =
+    document.getElementById("views");
 
-const nextBtn =
-    document.getElementById("nextBtn");
+const playlist =
+    document.getElementById("playlist");
 
-const likeBtn =
-    document.getElementById("likeBtn");
-
-const likeCount =
-    document.getElementById("likeCount");
-
-const viewCount =
-    document.getElementById("viewCount");
-
-
-
-/* =========================================================
-   STORAGE
-========================================================= */
-
-const LAST_VIDEO_KEY =
-    "vairal_last_video";
-
-const LIKE_PREFIX =
-    "vairal_like_";
-
-const VIEW_PREFIX =
-    "vairal_view_";
-
-
-
-/* =========================================================
-   GLOBAL
-========================================================= */
-
-let videos = [];
-
-let currentIndex = 0;
-
-let currentPlayer = null;
-
-let loadingVideoNumber = 0;
-
-
-
-/* =========================================================
-   SHOW LOADING
-========================================================= */
-
-function showLoading(text){
-
-    loading.style.display =
-        "block";
-
-    loading.innerHTML =
-        "⏳ " + text;
-
-}
-
-
-
-/* =========================================================
-   HIDE LOADING
-========================================================= */
-
-function hideLoading(){
-
-    loading.style.display =
-        "none";
-
-}
-
-
-
-/* =========================================================
-   SHOW ERROR
-========================================================= */
-
-function showError(message){
-
-    hideLoading();
-
-    videoArea.style.display =
-        "none";
-
-    errorBox.style.display =
-        "block";
-
-    errorBox.innerHTML =
-        "❌ " +
-        escapeHtml(message);
-
-}
-
-
-
-/* =========================================================
-   ESCAPE HTML
-========================================================= */
-
-function escapeHtml(value){
-
-    return String(value)
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
-
-}
-
+const nextButton =
+    document.getElementById("nextButton");
 
 
 /* =========================================================
    LOAD FILE LIST
-========================================================= */
+   ========================================================= */
 
-async function getAllVideos(){
+async function loadVideos(){
 
     try{
 
-        showLoading(
-            "Loading videos..."
-        );
-
-        errorBox.style.display =
-            "none";
-
-        videoArea.style.display =
-            "none";
-
-        nextBtn.style.display =
-            "none";
-
+        loading.style.display = "block";
+        loading.textContent = "Loading videos...";
 
         const response =
             await fetch(
-                FILE_LIST_API,
-                {
-                    method:"GET",
-                    headers:{
-                        "Accept":
-                            "application/json"
-                    },
-                    cache:"no-store"
-                }
+                API_BASE +
+                "/api/lulustream/files"
             );
-
 
         if(!response.ok){
-
             throw new Error(
-                "File List server error: " +
-                response.status
+                "File List request failed"
             );
-
         }
-
 
         const data =
             await response.json();
-
 
         console.log(
             "LuluStream File List:",
             data
         );
 
-
         if(
-            !data ||
             !data.result ||
-            !Array.isArray(
-                data.result.files
-            )
+            !Array.isArray(data.result.files)
         ){
 
             throw new Error(
-                "LuluStream File List-এর format সঠিক নয়।"
+                "No videos found"
             );
-
         }
-
 
         videos =
             data.result.files.filter(
-                file =>
-                    file &&
-                    file.file_code
+                video =>
+                    video.canplay == 1
             );
 
 
-        if(
-            videos.length === 0
-        ){
+        if(videos.length === 0){
 
             throw new Error(
-                "LuluStream-এ কোনো ভিডিও পাওয়া যায়নি।"
+                "No playable videos found"
             );
-
         }
 
 
-        /*
-         * Newest upload first.
-         */
+        /* newest first */
 
         videos.sort(
-            function(a,b){
-
-                return (
-                    new Date(
-                        b.uploaded || 0
-                    ).getTime()
-                    -
-                    new Date(
-                        a.uploaded || 0
-                    ).getTime()
-                );
-
-            }
+            (a,b) =>
+                new Date(b.uploaded) -
+                new Date(a.uploaded)
         );
+
+
+        buildPlaylist();
 
 
         /*
-         * Continue from next video.
-         */
+           Continue from previous video
+        */
 
-        const lastVideo =
+        const savedCode =
             localStorage.getItem(
-                LAST_VIDEO_KEY
+                "vairal_current_video"
             );
 
+        let savedIndex =
+            videos.findIndex(
+                video =>
+                    video.file_code === savedCode
+            );
 
-        if(lastVideo){
-
-            const oldIndex =
-                videos.findIndex(
-                    function(video){
-
-                        return String(
-                            video.file_code
-                        ) ===
-                        String(
-                            lastVideo
-                        );
-
-                    }
-                );
-
-
-            if(oldIndex >= 0){
-
-                currentIndex =
-                    (
-                        oldIndex + 1
-                    ) %
-                    videos.length;
-
-            }
-
+        if(savedIndex < 0){
+            savedIndex = 0;
         }
 
+        currentIndex =
+            savedIndex;
 
-        loadVideo(
-            currentIndex
-        );
+
+        await playVideo(currentIndex);
 
     }
-
     catch(error){
 
-        console.error(
-            "File List Error:",
-            error
-        );
+        console.error(error);
 
-        showError(
-            error.message
-        );
+        loading.style.display =
+            "block";
 
+        loading.className =
+            "error";
+
+        loading.textContent =
+            "Unable to load videos.";
     }
-
 }
-
 
 
 /* =========================================================
-   LOAD VIDEO
-========================================================= */
+   PLAY VIDEO
+   ========================================================= */
 
-async function loadVideo(index){
+async function playVideo(index){
 
     if(
-        !videos.length
+        index < 0 ||
+        index >= videos.length
     ){
-
         return;
-
     }
 
 
-    /*
-     * Loop playlist.
-     */
-
-    if(
-        index >=
-        videos.length
-    ){
-
-        index = 0;
-
-    }
-
-
-    if(index < 0){
-
-        index =
-            videos.length - 1;
-
-    }
-
-
-    currentIndex =
-        index;
+    currentIndex = index;
 
 
     const video =
-        videos[
-            currentIndex
-        ];
+        videos[currentIndex];
 
-
-    const fileCode =
-        String(
-            video.file_code
-        );
-
-
-    /*
-     * Save current video.
-     */
 
     localStorage.setItem(
-        LAST_VIDEO_KEY,
-        fileCode
+        "vairal_current_video",
+        video.file_code
     );
 
 
-    /*
-     * Title.
-     */
-
-    videoName.textContent =
-        video.title ||
-        "Vairal Video";
+    videoTitle.textContent =
+        video.title || "Vairal Video";
 
 
-    /*
-     * List views.
-     */
+    views.textContent =
+        video.views || "0";
 
-    viewCount.textContent =
-        video.views ||
-        "0";
+
+    likes.textContent =
+        getLikes(video.file_code);
 
 
     /*
-     * Local counters.
-     */
+       First use LuluStream watch link.
+       File List provides this link.
+    */
 
-    updateLikeCount(
-        video
-    );
-
-
-    updateLocalView(
-        video
-    );
+    let playerURL =
+        video.link;
 
 
     /*
-     * Reset player.
-     */
-
-    destroyPlayer();
-
-
-    videoArea.innerHTML =
-        "";
-
-    videoArea.style.display =
-        "none";
-
-    errorBox.style.display =
-        "none";
-
-
-    nextBtn.style.display =
-        "block";
-
-
-    showLoading(
-        "Loading video..."
-    );
-
-
-    const requestNumber =
-        ++loadingVideoNumber;
-
+       Try File Info as well.
+    */
 
     try{
 
-        /*
-         * Ask server for File Info.
-         */
-
         const response =
             await fetch(
-                FILE_INFO_API +
-                "?file_code=" +
+                API_BASE +
+                "/api/lulustream/file-info?file_code=" +
                 encodeURIComponent(
-                    fileCode
-                ),
-                {
-                    method:"GET",
-                    headers:{
-                        "Accept":
-                            "application/json"
-                    },
-                    cache:"no-store"
-                }
+                    video.file_code
+                )
             );
 
 
-        if(
-            requestNumber !==
-            loadingVideoNumber
-        ){
+        if(response.ok){
 
-            return;
+            const info =
+                await response.json();
+
+            console.log(
+                "LuluStream File Info:",
+                info
+            );
+
+
+            /*
+               Search possible playable URL
+            */
+
+            const foundURL =
+                findPlayableURL(info);
+
+            if(foundURL){
+                playerURL =
+                    foundURL;
+            }
 
         }
-
-
-        if(!response.ok){
-
-            throw new Error(
-                "File Info server error: " +
-                response.status
-            );
-
-        }
-
-
-        const data =
-            await response.json();
-
-
-        console.log(
-            "LuluStream File Info:",
-            data
-        );
-
-
-        /*
-         * Find playable URL.
-         */
-
-        const streamUrl =
-            findPlayableUrl(
-                data
-            );
-
-
-        if(!streamUrl){
-
-            throw new Error(
-                "File Info থেকে playable video URL পাওয়া যায়নি।"
-            );
-
-        }
-
-
-        console.log(
-            "PLAY URL:",
-            streamUrl
-        );
-
-
-        createVideoPlayer(
-            streamUrl
-        );
 
     }
-
     catch(error){
 
-        console.error(
-            "Video Error:",
+        console.log(
+            "File Info unavailable:",
             error
         );
 
-        showError(
-            error.message
-        );
-
     }
 
-}
 
+    if(!playerURL){
+
+        loading.className =
+            "error";
+
+        loading.textContent =
+            "Video URL not available.";
+
+        return;
+    }
+
+
+    loading.style.display =
+        "none";
+
+
+    videoFrame.style.display =
+        "block";
+
+
+    videoFrame.src =
+        playerURL;
+
+
+    highlightPlaylist();
+
+}
 
 
 /* =========================================================
    FIND PLAYABLE URL
-========================================================= */
+   ========================================================= */
 
-function findPlayableUrl(data){
+function findPlayableURL(data){
 
-    /*
-     * Search recursively through the response.
-     *
-     * This avoids assuming one exact JSON structure.
-     */
+    const possibleKeys = [
 
-    const found =
-        recursiveFindUrl(
-            data
-        );
+        "hls",
+        "hls_url",
+        "m3u8",
+        "m3u8_url",
+        "stream",
+        "stream_url",
+        "video_url",
+        "file_url",
+        "embed",
+        "embed_url",
+        "player",
+        "player_url",
+        "link",
+        "url"
 
-
-    return found;
-
-}
-
-
-
-/* =========================================================
-   RECURSIVE URL SEARCH
-========================================================= */
-
-function recursiveFindUrl(value){
-
-    if(
-        value === null ||
-        value === undefined
-    ){
-
-        return null;
-
-    }
+    ];
 
 
-    /*
-     * Direct string.
-     */
+    function search(object){
 
-    if(
-        typeof value === "string"
-    ){
-
-        const text =
-            value.trim();
+        if(!object){
+            return null;
+        }
 
 
-        if(
-            /^https?:\/\//i.test(text)
-        ){
-
-            /*
-             * Prefer playable formats.
-             */
+        if(typeof object === "string"){
 
             if(
-                /\.m3u8(?:\?|$)/i.test(text) ||
-                /\.mp4(?:\?|$)/i.test(text) ||
-                /\.webm(?:\?|$)/i.test(text) ||
-                /\.ogg(?:\?|$)/i.test(text)
+                object.startsWith("http://") ||
+                object.startsWith("https://")
             ){
 
-                return text;
-
+                return object;
             }
 
+            return null;
         }
 
 
-        return null;
+        if(Array.isArray(object)){
 
-    }
-
-
-    /*
-     * Array.
-     */
-
-    if(
-        Array.isArray(value)
-    ){
-
-        for(
-            const item of value
-        ){
-
-            const result =
-                recursiveFindUrl(
-                    item
-                );
-
-
-            if(result){
-
-                return result;
-
-            }
-
-        }
-
-
-        return null;
-
-    }
-
-
-    /*
-     * Object.
-     */
-
-    if(
-        typeof value === "object"
-    ){
-
-        /*
-         * First check fields with likely names.
-         */
-
-        const priorityKeys = [
-
-            "hls",
-            "hls_url",
-            "m3u8",
-            "m3u8_url",
-            "stream",
-            "stream_url",
-            "video_url",
-            "file_url",
-            "download_url",
-            "url"
-
-        ];
-
-
-        for(
-            const key of priorityKeys
-        ){
-
-            if(
-                Object.prototype.hasOwnProperty.call(
-                    value,
-                    key
-                )
+            for(
+                const item of object
             ){
 
                 const result =
-                    recursiveFindUrl(
-                        value[key]
-                    );
-
+                    search(item);
 
                 if(result){
-
                     return result;
+                }
 
+            }
+
+            return null;
+        }
+
+
+        if(typeof object === "object"){
+
+            /*
+               Check preferred keys first
+            */
+
+            for(
+                const key of possibleKeys
+            ){
+
+                if(
+                    typeof object[key] ===
+                    "string"
+                ){
+
+                    const value =
+                        object[key];
+
+                    if(
+                        value.startsWith(
+                            "http://"
+                        ) ||
+                        value.startsWith(
+                            "https://"
+                        )
+                    ){
+
+                        return value;
+                    }
+
+                }
+
+            }
+
+
+            /*
+               Search nested objects
+            */
+
+            for(
+                const key in object
+            ){
+
+                const result =
+                    search(object[key]);
+
+                if(result){
+                    return result;
                 }
 
             }
@@ -1076,497 +745,230 @@ function recursiveFindUrl(value){
         }
 
 
-        /*
-         * Search everything else.
-         */
-
-        for(
-            const key in value
-        ){
-
-            if(
-                !Object.prototype.hasOwnProperty.call(
-                    value,
-                    key
-                )
-            ){
-
-                continue;
-
-            }
-
-
-            const result =
-                recursiveFindUrl(
-                    value[key]
-                );
-
-
-            if(result){
-
-                return result;
-
-            }
-
-        }
-
+        return null;
     }
 
 
-    return null;
-
+    return search(data);
 }
 
 
+/* =========================================================
+   PLAYLIST
+   ========================================================= */
+
+function buildPlaylist(){
+
+    playlist.innerHTML = "";
+
+
+    videos.forEach(
+        (video,index) => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+            item.className =
+                "video-item";
+
+
+            item.innerHTML = `
+
+                <img
+                    class="thumb"
+                    src="${
+                        video.thumbnail ||
+                        ""
+                    }"
+                    loading="lazy"
+                    onerror="
+                        this.style.display='none'
+                    "
+                >
+
+                <div class="item-info">
+
+                    <div class="item-title">
+                        ${
+                            escapeHTML(
+                                video.title ||
+                                "Untitled Video"
+                            )
+                        }
+                    </div>
+
+                    <div class="item-meta">
+
+                        👁 ${
+                            video.views ||
+                            "0"
+                        }
+
+                        &nbsp; • &nbsp;
+
+                        ⏱ ${
+                            video.length ||
+                            "0"
+                        } sec
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            item.addEventListener(
+                "click",
+                () => {
+
+                    playVideo(index);
+
+                    window.scrollTo({
+                        top:0,
+                        behavior:"smooth"
+                    });
+
+                }
+            );
+
+
+            playlist.appendChild(item);
+
+        }
+    );
+
+
+    highlightPlaylist();
+}
+
 
 /* =========================================================
-   CREATE VIDEO PLAYER
-========================================================= */
+   ACTIVE PLAYLIST ITEM
+   ========================================================= */
 
-function createVideoPlayer(url){
+function highlightPlaylist(){
 
-    destroyPlayer();
-
-
-    const player =
-        document.createElement(
-            "video"
+    const items =
+        playlist.querySelectorAll(
+            ".video-item"
         );
 
 
-    currentPlayer =
-        player;
+    items.forEach(
+        (item,index) => {
 
-
-    player.controls =
-        true;
-
-    player.playsInline =
-        true;
-
-    player.preload =
-        "metadata";
-
-    player.autoplay =
-        false;
-
-    player.setAttribute(
-        "controlsList",
-        "nodownload"
-    );
-
-
-    player.style.width =
-        "100%";
-
-    player.style.height =
-        "100%";
-
-
-    player.src =
-        url;
-
-
-    videoArea.innerHTML =
-        "";
-
-    videoArea.appendChild(
-        player
-    );
-
-
-    videoArea.style.display =
-        "block";
-
-
-    /*
-     * Loaded.
-     */
-
-    player.addEventListener(
-        "loadedmetadata",
-        function(){
-
-            hideLoading();
-
-        }
-    );
-
-
-    player.addEventListener(
-        "canplay",
-        function(){
-
-            hideLoading();
-
-        }
-    );
-
-
-    /*
-     * Video ended.
-     */
-
-    player.addEventListener(
-        "ended",
-        function(){
-
-            goToNextVideo();
-
-        }
-    );
-
-
-    /*
-     * Error.
-     */
-
-    player.addEventListener(
-        "error",
-        function(){
-
-            showError(
-                "ভিডিওটি browser player-এ চালানো যাচ্ছে না।"
+            item.classList.toggle(
+                "active",
+                index === currentIndex
             );
 
         }
     );
-
 }
-
-
-
-/* =========================================================
-   DESTROY PLAYER
-========================================================= */
-
-function destroyPlayer(){
-
-    if(
-        currentPlayer
-    ){
-
-        try{
-
-            currentPlayer.pause();
-
-            currentPlayer.removeAttribute(
-                "src"
-            );
-
-            currentPlayer.load();
-
-        }
-
-        catch(error){
-
-            console.log(
-                error
-            );
-
-        }
-
-        currentPlayer =
-            null;
-
-    }
-
-
-    videoArea.innerHTML =
-        "";
-
-}
-
 
 
 /* =========================================================
    NEXT VIDEO
-========================================================= */
+   ========================================================= */
 
-function goToNextVideo(){
+nextButton.addEventListener(
+    "click",
+    () => {
 
-    if(
-        !videos.length
-    ){
+        if(videos.length === 0){
+            return;
+        }
 
-        return;
+
+        let nextIndex =
+            currentIndex + 1;
+
+
+        if(
+            nextIndex >=
+            videos.length
+        ){
+
+            nextIndex = 0;
+
+        }
+
+
+        playVideo(nextIndex);
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
 
     }
+);
 
 
-    const nextIndex =
-        (
-            currentIndex +
-            1
-        ) %
-        videos.length;
+/* =========================================================
+   LIKE SYSTEM
+   ========================================================= */
 
+function getLikes(fileCode){
 
-    loadVideo(
-        nextIndex
+    return (
+        localStorage.getItem(
+            "vairal_like_" +
+            fileCode
+        ) || "0"
     );
 
 }
 
 
-
 /* =========================================================
-   NEXT BUTTON
-========================================================= */
+   HTML ESCAPE
+   ========================================================= */
 
-nextBtn.addEventListener(
-    "click",
-    function(){
+function escapeHTML(text){
 
-        goToNextVideo();
-
-    }
-);
-
-
-
-/* =========================================================
-   LOCAL VIEW
-========================================================= */
-
-function updateLocalView(video){
-
-    const id =
-        video.file_code;
-
-
-    const key =
-        VIEW_PREFIX +
-        id;
-
-
-    const doneKey =
-        key +
-        "_done";
-
-
-    let localViews =
-        parseInt(
-            localStorage.getItem(
-                key
-            ) || "0",
-            10
-        );
-
-
-    if(
-        !localStorage.getItem(
-            doneKey
-        )
-    ){
-
-        localViews++;
-
-
-        localStorage.setItem(
-            key,
-            String(
-                localViews
-            )
-        );
-
-
-        localStorage.setItem(
-            doneKey,
-            "1"
-        );
-
-    }
-
-
-    const serverViews =
-        parseInt(
-            video.views || "0",
-            10
-        );
-
-
-    viewCount.textContent =
-        Math.max(
-            localViews,
-            serverViews
-        );
-
+    return String(text)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 }
-
-
-
-/* =========================================================
-   LIKE COUNT
-========================================================= */
-
-function updateLikeCount(video){
-
-    const id =
-        video.file_code;
-
-
-    const key =
-        LIKE_PREFIX +
-        id;
-
-
-    const likedKey =
-        key +
-        "_clicked";
-
-
-    const count =
-        parseInt(
-            localStorage.getItem(
-                key
-            ) || "0",
-            10
-        );
-
-
-    likeCount.textContent =
-        count;
-
-
-    if(
-        localStorage.getItem(
-            likedKey
-        )
-    ){
-
-        likeBtn.classList.add(
-            "liked"
-        );
-
-    }
-
-    else{
-
-        likeBtn.classList.remove(
-            "liked"
-        );
-
-    }
-
-}
-
-
-
-/* =========================================================
-   LIKE BUTTON
-========================================================= */
-
-likeBtn.addEventListener(
-    "click",
-    function(){
-
-        if(
-            !videos.length
-        ){
-
-            return;
-
-        }
-
-
-        const video =
-            videos[
-                currentIndex
-            ];
-
-
-        const key =
-            LIKE_PREFIX +
-            video.file_code;
-
-
-        const clickedKey =
-            key +
-            "_clicked";
-
-
-        let count =
-            parseInt(
-                localStorage.getItem(
-                    key
-                ) || "0",
-                10
-            );
-
-
-        /*
-         * Unlike.
-         */
-
-        if(
-            localStorage.getItem(
-                clickedKey
-            )
-        ){
-
-            count =
-                Math.max(
-                    0,
-                    count - 1
-                );
-
-
-            localStorage.removeItem(
-                clickedKey
-            );
-
-        }
-
-        /*
-         * Like.
-         */
-
-        else{
-
-            count++;
-
-
-            localStorage.setItem(
-                clickedKey,
-                "1"
-            );
-
-        }
-
-
-        localStorage.setItem(
-            key,
-            String(
-                count
-            )
-        );
-
-
-        updateLikeCount(
-            video
-        );
-
-    }
-);
-
 
 
 /* =========================================================
    START
-========================================================= */
+   ========================================================= */
 
-getAllVideos();
+loadVideos();
 
 </script>
 
+
+<!-- =====================================================
+     MONETAG SCRIPTS
+     ===================================================== -->
+
+<!--
+   MONETAG POPUNDER
+   আপনার আগের code এখানে বসাবেন
+-->
+
+
+<!--
+   MONETAG SOCIAL BAR
+   আপনার আগের code এখানে বসাবেন
+-->
+
+
+<!--
+   MONETAG AD #3
+   আপনার আগের invoke/container code এখানে বসাবেন
+-->
+
+
 </body>
 </html>
-
-গুরুত্বপূর্ণ: এই "index.html" একা GitHub Pages-এ দিলেই LuluStream-এর API চলবে না, কারণ এখানে "/api/lulustream/files" এবং "/api/lulustream/file-info" নামে server-side proxy দরকার। সেটিই API key লুকিয়ে রাখবে।
-
-আপনি যেহেতু GitHub Pages ব্যবহার করছেন, পরের ধাপে আমি চাইলে Cloudflare Worker-এর সম্পূর্ণ code দিতে পারি। তাহলে architecture হবে:
-
-"GitHub Pages → Cloudflare Worker → LuluStream API"
-
-এবং আপনার LuluStream API key GitHub-এর "index.html"-এ প্রকাশ হবে না।
