@@ -1,64 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>VAIRAL VIDEO</title>
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
 body{
-  background:#050505;
-  color:#fff;
-  font-family:Arial,Helvetica,sans-serif;
-  padding:15px;
-}
-.container{
-  max-width:900px;
-  margin:auto;
-}
-.telegram{
-  display:block;
-  padding:18px;
-  margin-bottom:20px;
-  text-align:center;
-  text-decoration:none;
-  font-size:20px;
-  font-weight:bold;
+  margin:0;
+  padding:20px;
+  font-family:Arial,sans-serif;
+  background:linear-gradient(135deg,#141e30,#243b55,#2c5364);
   color:white;
-  border-radius:20px;
-  background:linear-gradient(90deg,#0088cc,#00c6ff);
+}
+.container{max-width:900px;margin:auto;}
+.telegram{
+  display:block;padding:18px;margin-bottom:20px;text-align:center;
+  text-decoration:none;font-size:24px;font-weight:bold;color:white;
+  border-radius:20px;background:linear-gradient(90deg,#0088cc,#00c6ff);
 }
 .ad-top,.ad-bottom{
-  background:#111;
-  padding:15px;
-  border-radius:14px;
-  margin-bottom:20px;
-  min-height:90px;
+  background:#111;padding:20px;border-radius:20px;margin-bottom:20px;min-height:90px;
   text-align:center;
 }
-.player-box{
-  position:relative;
-  overflow:hidden;
-  border-radius:20px;
-  background:#000;
-  width:100%;
-  height:450px;
-}
-iframe{
-  width:100%;
-  height:100%;
-  border:0;
-  display:block;
-}
+.player{position:relative;overflow:hidden;border-radius:25px;background:#000;width:100%;height:450px;}
+iframe{width:100%;height:100%;border:0;display:block;}
 .video-info{
   padding:10px 5px;
   font-size:18px;
   font-weight:bold;
   margin-bottom:15px;
+  text-align:center;
+}
+.overlay-ad{
+  display:none;position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);width:85%;background:white;
+  padding:20px;border-radius:15px;z-index:100;color:#000;
+}
+.end-ad{
+  display:none;margin-top:20px;background:white;padding:20px;border-radius:20px;color:#000;
 }
 </style>
 
@@ -69,11 +48,10 @@ iframe{
 <script src="https://pl30923746.profitableratecpmnetwork.com/60/5e/6e/605e6e402e2188c01fb7fcc993d62be2.js"></script>
 </head>
 <body>
-
 <div class="container">
-  <!-- টেলিগ্রাম লিংক (যাতে ক্লিক করলেই নতুন ভিডিও আসবে এবং টেলিগ্রামেও রিডাইরেক্ট হবে) -->
-  <a id="telegramBtn" class="telegram" href="https://t.me/hotvideo457" target="_blank" rel="noopener">
-    ✈️ JOIN TELEGRAM CHANNEL
+  <!-- টেলিগ্রাম বাটন (এটিতে ক্লিক করলে শুধু টেলিগ্রাম চ্যানেলেই যাবে) -->
+  <a class="telegram" href="https://t.me/hotvideo457" target="_blank" rel="noopener">
+    🚀 JOIN TELEGRAM CHANNEL
   </a>
 
   <!-- টপ অ্যাড (Native Banner) -->
@@ -82,22 +60,23 @@ iframe{
     <div id="container-12b187a99414c09ca49488896ff8e0ac"></div>
   </div>
 
-  <!-- ভিডিও টাইটেল -->
   <div class="video-info" id="videoTitle">Loading Video...</div>
-  
-  <!-- ভিডিও প্লেয়ার (Iframe) -->
-  <div class="player-box">
+
+  <div class="player">
     <iframe id="videoFrame" src="" allowfullscreen scrolling="no"></iframe>
+
+    <div class="overlay-ad" id="middleAd">
+      YOUR_MIDDLE_AD_CODE
+    </div>
   </div>
 
-  <!-- নিচের অ্যাড সেশন -->
-  <div class="ad-bottom" style="margin-top:20px;">
-    <!-- চাইলে এখানে অন্য কোনো ব্যানার অ্যাড বসাতে পারেন -->
+  <div class="end-ad" id="endAd">
+    YOUR_END_AD_CODE
   </div>
 </div>
 
 <script>
-/* ভিডিও লিস্ট (এখানে আপনার ভিডিওগুলোর লিংক এবং টাইটেল বসাবেন) */
+/* ভিডিও প্লেলিস্ট (এখানে আপনার ভিডিওগুলোর লিংক এবং টাইটেল বসাবেন) */
 const videoList = [
   {
     title: "Vairal Video Part 1",
@@ -105,12 +84,12 @@ const videoList = [
   },
   {
     title: "Vairal Video Part 2",
-    url: "https://playmogo.com/e/0vascqz7njes" // প্রয়োজনে এই লিংক পরিবর্তন করে নতুন ভিডিও লিংক দিতে পারেন
+    url: "https://playmogo.com/e/0vascqz7njes" // প্রয়োজনে এই লিংক পরিবর্তন করে অন্য ভিডিও দিতে পারেন
   }
 ];
 
-// ব্রাউজারের লজিক হ্যান্ডেল করার জন্য লোকালস্টোরেজ ব্যবহার
-let currentIndex = parseInt(localStorage.getItem("vairal_index")) || 0;
+// ব্রাউজারে সাইটটি নতুন করে ওপেন বা রিফ্রেশ করলে ভিডিও পরিবর্তন হওয়ার লজিক
+let currentIndex = parseInt(localStorage.getItem("vairal_visit_index")) || 0;
 
 if (currentIndex >= videoList.length) {
   currentIndex = 0;
@@ -118,9 +97,7 @@ if (currentIndex >= videoList.length) {
 
 const videoFrame = document.getElementById("videoFrame");
 const videoTitle = document.getElementById("videoTitle");
-const telegramBtn = document.getElementById("telegramBtn");
 
-// কারেন্ট ভিডিও সেট করা
 function loadCurrentVideo() {
   const currentVideo = videoList[currentIndex];
   videoTitle.textContent = currentVideo.title;
@@ -129,15 +106,12 @@ function loadCurrentVideo() {
 
 loadCurrentVideo();
 
-// টেলিগ্রাম লিংকে ক্লিক করলে পরবর্তী ভিডিওর ইনডেক্স সেভ হবে এবং টেলিগ্রামেও ওপেন হবে
-telegramBtn.addEventListener("click", function () {
-  let nextIndex = currentIndex + 1;
-  if (nextIndex >= videoList.length) {
-    nextIndex = 0;
-  }
-  localStorage.setItem("vairal_index", nextIndex);
-});
+// ইউজার যখনই নতুন করে সাইটে প্রবেশ বা রিফ্রেশ করবে, পরবর্তী ভিজিটের জন্য ইনডেক্স আপডেট হয়ে থাকবে
+let nextIndex = currentIndex + 1;
+if (nextIndex >= videoList.length) {
+  nextIndex = 0;
+}
+localStorage.setItem("vairal_visit_index", nextIndex);
 </script>
-
 </body>
 </html>
