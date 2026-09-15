@@ -82,74 +82,65 @@ const videoList = [
     title: "Step_Brother_-_2023_-_English_Short_Film_-_SexMex",
     url: "https://playmogo.com/e/0vascqz7njes"
   },
-  
   {
     title: "Christmas_Special-Christmas_Present_-2026-English_Short_Film-_SexMex",
     url: "https://playmogo.com/e/dp17ac2pyiml"
   },
-  
- {
-   title: "sex video",
-   url: "https://playmogo.com/e/x7pdzvpfeuw7"
- },
-
   {
-   title: "sex video",
-   url: "https://playmogo.com/e/1zngyas64349"
-  },
-  
-  {
-   title: "sex video",
-   url: "https://playmogo.com/e/hos5vx536juy"
-  },
-
-  {
-   title: "sex video",
-   url: "https://playmogo.com/e/dlne35i4crla"
-  },
-  
-  {
-   title: "Things That Wont Happen In Your Fucking Life – Salome Gil - 2026 - English Short Film - SexMex",
-   url: "https://playmogo.com/e/jp2p3pg0iqoj"
+    title: "sex video",
+    url: "https://playmogo.com/e/x7pdzvpfeuw7"
   },
   {
-   title: "The Prodigal Slut Fucks Again (2026) Brazzers nglish Short Film 720p HDRip x264-Vegamovies hot",
-   url: "https://playmogo.com/e/cbpzdzv0kttx"
+    title: "sex video",
+    url: "https://playmogo.com/e/1zngyas64349"
   },
-  
   {
-   title: "FUCKING MY DELICIOUS SISTER-IN-LAW IN THE SHOWER BEFORE THE CUCKOLD",
-   url: "https://playmogo.com/e/1z565t0ax6f0"
+    title: "sex video",
+    url: "https://playmogo.com/e/hos5vx536juy"
+  },
+  {
+    title: "sex video",
+    url: "https://playmogo.com/e/dlne35i4crla"
+  },
+  {
+    title: "Things That Wont Happen In Your Fucking Life – Salome Gil - 2026 - English Short Film - SexMex",
+    url: "https://playmogo.com/e/jp2p3pg0iqoj"
+  },
+  {
+    title: "The Prodigal Slut Fucks Again (2026) Brazzers nglish Short Film 720p HDRip x264-Vegamovies hot",
+    url: "https://playmogo.com/e/cbpzdzv0kttx"
+  },
+  {
+    title: "FUCKING MY DELICIOUS SISTER-IN-LAW IN THE SHOWER BEFORE THE CUCKOLD",
+    url: "https://playmogo.com/e/1z565t0ax6f0"
+  },
+  {
+    title: "A Better Day - 2026 - English Uncut Short Film - SexArt",
+    url: "https://playmogo.com/e/zz5jrsnzvhgr"
+  },
+  {
+    title: "Click-MySistersHotFriend Blake Blossom - 2026 - English Short Film - Naughty America",
+    url: "https://playmogo.com/e/milkdj7qq393"
+  },
+  {
+    title: "AmericanDaydreams Lexi Stone - 2026 - English Short Film - Naughty America",
+    url: "https://playmogo.com/e/y23hwxxu2w5f"
+  },
+  {
+    title: "Mother-son sex video",
+    url: "https://playmogo.com/e/sxghsxnxuk4e"
+  },
+  {
+    title: "Content Creator Secrets (2026) FamilyStrokes English Short Film 1080p",
+    url: "https://playmogo.com/e/k9a1x1hqrhsi"
+  },
+  {
+    title: "Powerful Wife (2026) HotwifeXXX Originals English Short Film 720p",
+    url: "https://playmogo.com/e/x528qq6wqbnp"
   }
-  {
-   title: "A Better Day - 2026 - English Uncut Short Film - SexArt",
-   url: "https://playmogo.com/e/zz5jrsnzvhgr"
-  },
-  
-  {
-   title: "Click-MySistersHotFriend Blake Blossom - 2026 - English Short Film - Naughty America",
-   url: "https://playmogo.com/d/milkdj7qq393"
-  },
-  {
-   title: "AmericanDaydreams Lexi Stone - 2026 - English Short Film - Naughty America",
-   url: "https://playmogo.com/e/y23hwxxu2w5f"
-  },
-  {
-   title: "Mother-son sex video",
-   url: "https://playmogo.com/e/sxghsxnxuk4e"
-  },
-  {
-   title: "Content Creator Secrets (2026) FamilyStrokes English Short Film 1080p",
-   url: "https://playmogo.com/e/k9a1x1hqrhsi"
-  },
-    
-  {
-   title: "Powerful Wife (2026) HotwifeXXX Originals English Short Film 720p",
-   url: "https://playmogo.com/e/x528qq6wqbnp"
-  },
-    
 ];
-// ব্রাউজারে সাইটটি নতুন করে ওপেন বা রিফ্রেশ করলে ভিডিও পরিবর্তন হওয়ার লজিক
+
+// ব্রাউজারে সাইটটি নতুন করে ওপেন বা রিফ্রেশ করলে ভিডিও পরিবর্তন হওয়ার লজিক
 let currentIndex = parseInt(localStorage.getItem("vairal_visit_index")) || 0;
 
 if (currentIndex >= videoList.length) {
@@ -167,7 +158,7 @@ function loadCurrentVideo() {
 
 loadCurrentVideo();
 
-// ইউজার যখনই নতুন করে সাইটে প্রবেশ বা রিফ্রেশ করবে, পরবর্তী ভিজিটের জন্য ইনডেক্স আপডেট হয়ে থাকবে
+// ইউজার যখনই নতুন করে সাইটে প্রবেশ বা রিফ্রেশ করবে, পরবর্তী ভিজিটের জন্য ইনডেক্স আপডেট হয়ে থাকবে
 let nextIndex = currentIndex + 1;
 if (nextIndex >= videoList.length) {
   nextIndex = 0;
